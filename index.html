@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pryxon Technologies | Turning Bold Ideas Into Powerful Digital Solutions</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Ambient lighting background -->
+  <div class="ambient-scene" aria-hidden="true">
+    <div class="sunlight-beam"></div>
+    <div class="ambient-glow"></div>
+  </div>
+
+  <!-- ================= FLOATING TOPBAR ================= -->
+  <header class="floating-header-wrapper">
+    <nav class="floating-topbar" aria-label="Main Navigation">
+      
+      <!-- Brand Logo (PRYXON STUDIO Logo) -->
+      <a href="#" class="brand-logo" aria-label="Pryxon Studio Home">
+        <img src="assets/images/logo_pryxon_studio.png" alt="Pryxon Studio" class="logo-img" />
+      </a>
+
+      <!-- Center Navigation Links with Left-to-Right Underline Fill -->
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="#home" class="nav-link active">Home</a>
+        </li>
+        <li>
+          <a href="#services" class="nav-link">Services</a>
+        </li>
+        <li>
+          <a href="#our-work" class="nav-link">Our Work</a>
+        </li>
+        <li>
+          <a href="#about" class="nav-link">About</a>
+        </li>
+        <li>
+          <a href="#contact" class="nav-link">Contact</a>
+        </li>
+      </ul>
+
+      <!-- Right Action Items -->
+      <div class="nav-actions">
+        <!-- Get Started Button -->
+        <a href="#contact" class="btn-get-started">
+          <span>Get Started</span>
+          <svg class="arrow-svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button (for responsive screens) -->
+        <button type="button" class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- Mobile Drawer for smaller screens -->
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="#home" class="mobile-nav-link active">Home</a></li>
+        <li><a href="#services" class="mobile-nav-link">Services</a></li>
+        <li><a href="#our-work" class="mobile-nav-link">Our Work</a></li>
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="#contact" class="btn-get-started btn-mobile-full">
+          <span>Get Started</span>
+          <svg class="arrow-svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO BANNER (CENTERED + RICH 3D LIQUID GLASS TECH CLOUD) ================= -->
+  <main class="hero-section" id="home">
+    
+    <!-- 3D Canvas for Background Constellation & Ambient Cyber Particles -->
+    <div class="hero-3d-wrapper" aria-hidden="true">
+      <canvas id="hero3dCanvas"></canvas>
+    </div>
+
+    <!-- 3D Floating Liquid Glass Tech Icons (Evenly Distributed, Butter-Smooth 60FPS) -->
+    <div class="floating-tech-container" id="floatingTechContainer">
+      
+      <!-- Upper Left Flank -->
+      <div class="tech-card-3d pos-1" title="React" data-depth="1.4" data-speed="1.0" data-phase="0.5">
+        <img src="assets/icons/react.svg" alt="React" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-2" title="Next.js" data-depth="1.2" data-speed="1.15" data-phase="2.8">
+        <img src="assets/icons/nextjs.svg" alt="Next.js" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-3" title="Render" data-depth="1.5" data-speed="0.95" data-phase="1.4">
+        <img src="assets/icons/render.svg" alt="Render" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-4" title="Python" data-depth="1.25" data-speed="1.05" data-phase="4.2">
+        <img src="assets/icons/python.svg" alt="Python" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-5" title="Node.js" data-depth="1.35" data-speed="1.1" data-phase="3.1">
+        <img src="assets/icons/nodejs.svg" alt="Node.js" class="tech-icon-img" />
+      </div>
+
+      <!-- Mid Left Wing -->
+      <div class="tech-card-3d pos-6" title="PostgreSQL" data-depth="1.3" data-speed="0.9" data-phase="5.3">
+        <img src="assets/icons/postgresql.svg" alt="PostgreSQL" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-7" title="Tailwind CSS" data-depth="1.4" data-speed="1.2" data-phase="1.8">
+        <img src="assets/icons/tailwindcss.svg" alt="Tailwind CSS" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-8" title="Vercel" data-depth="1.15" data-speed="1.0" data-phase="3.9">
+        <img src="assets/icons/vercel.svg" alt="Vercel" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-9" title="FastAPI" data-depth="1.45" data-speed="0.85" data-phase="0.9">
+        <img src="assets/icons/fastapi.svg" alt="FastAPI" class="tech-icon-img" />
+      </div>
+
+      <!-- Lower Left to Center Constellation -->
+      <div class="tech-card-3d pos-10" title="Supabase" data-depth="1.2" data-speed="1.15" data-phase="4.6">
+        <img src="assets/icons/supabase.svg" alt="Supabase" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-11" title="MongoDB" data-depth="1.35" data-speed="0.95" data-phase="2.3">
+        <img src="assets/icons/mongodb.svg" alt="MongoDB" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-12" title="Render" data-depth="1.1" data-speed="1.25" data-phase="3.5">
+        <img src="assets/icons/render.svg" alt="Render" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-13" title="Next.js" data-depth="1.25" data-speed="0.9" data-phase="1.2">
+        <img src="assets/icons/nextjs.svg" alt="Next.js" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-14" title="React" data-depth="1.05" data-speed="1.1" data-phase="5.1">
+        <img src="assets/icons/react.svg" alt="React" class="tech-icon-img" />
+      </div>
+
+      <!-- Upper Right Flank -->
+      <div class="tech-card-3d pos-15" title="Node.js" data-depth="1.4" data-speed="1.05" data-phase="1.0">
+        <img src="assets/icons/nodejs.svg" alt="Node.js" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-16" title="Python" data-depth="1.2" data-speed="1.15" data-phase="3.4">
+        <img src="assets/icons/python.svg" alt="Python" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-17" title="React" data-depth="1.45" data-speed="0.9" data-phase="2.1">
+        <img src="assets/icons/react.svg" alt="React" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-18" title="PostgreSQL" data-depth="1.3" data-speed="1.1" data-phase="4.8">
+        <img src="assets/icons/postgresql.svg" alt="PostgreSQL" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-19" title="Next.js" data-depth="1.35" data-speed="1.2" data-phase="0.7">
+        <img src="assets/icons/nextjs.svg" alt="Next.js" class="tech-icon-img" />
+      </div>
+
+      <!-- Mid Right Wing -->
+      <div class="tech-card-3d pos-20" title="FastAPI" data-depth="1.2" data-speed="0.95" data-phase="3.2">
+        <img src="assets/icons/fastapi.svg" alt="FastAPI" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-21" title="Supabase" data-depth="1.4" data-speed="1.1" data-phase="2.5">
+        <img src="assets/icons/supabase.svg" alt="Supabase" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-22" title="Tailwind CSS" data-depth="1.15" data-speed="1.25" data-phase="4.1">
+        <img src="assets/icons/tailwindcss.svg" alt="Tailwind CSS" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-23" title="Vercel" data-depth="1.45" data-speed="1.0" data-phase="1.6">
+        <img src="assets/icons/vercel.svg" alt="Vercel" class="tech-icon-img" />
+      </div>
+
+      <!-- Lower Right to Center Constellation -->
+      <div class="tech-card-3d pos-24" title="Angular" data-depth="1.25" data-speed="0.9" data-phase="5.0">
+        <img src="assets/icons/angular.svg" alt="Angular" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-25" title=".NET" data-depth="1.3" data-speed="1.15" data-phase="2.7">
+        <img src="assets/icons/dotnet.svg" alt=".NET" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-26" title="HTML5" data-depth="1.1" data-speed="1.0" data-phase="0.8">
+        <img src="assets/icons/html5.svg" alt="HTML5" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-27" title="SQL" data-depth="1.2" data-speed="1.2" data-phase="3.7">
+        <img src="assets/icons/mysql.svg" alt="SQL" class="tech-icon-img" />
+      </div>
+
+      <div class="tech-card-3d pos-28" title="PHP" data-depth="1.05" data-speed="0.9" data-phase="1.9">
+        <img src="assets/icons/php.svg" alt="PHP" class="tech-icon-img" />
+      </div>
+
+    </div>
+
+    <!-- Centered Hero Text Content -->
+    <div class="hero-container">
+      <div class="hero-centered-content">
+
+        <!-- Main Heading -->
+        <h1 class="hero-heading">
+          <span class="hero-heading-lead">Turning Bold Ideas Into</span>
+          <span class="gradient-text">Powerful Digital Solutions.</span>
+        </h1>
+
+        <!-- Value Description -->
+        <p class="hero-description">
+          We engineer next-generation websites, custom software, and innovative technology solutions that empower businesses to compete, innovate, and grow globally.
+        </p>
+
+        <!-- Centered Action Buttons -->
+        <div class="hero-action-group">
+          <a href="#contact" class="btn btn-hero-primary">
+            <span>Start Your Project</span>
+            <svg class="arrow-svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          
+          <a href="#services" class="btn btn-hero-secondary">
+            <i class="fa-solid fa-circle-play play-icon"></i>
+            <span>Explore Capabilities</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Originkit Cloud Sky WebGL Shader & Custom Scripts -->
+  <script src="js/cloud-sky.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

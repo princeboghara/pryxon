@@ -1,0 +1,699 @@
+/* ===================================================================
+   PRYXON - FLOATING TOPBAR & LIQUID GLASS 3D TECH HERO BANNER
+   Aesthetic: Ultra-modern Frosted Glass, Center Stage with 3D Canvas
+   Features:
+   - Original PRYXON Brand Logo
+   - Animated Line Fill Hover Effect on Nav Links (Left to Right, Soft & Smooth)
+   - Floating Pill Navigation
+   - Centered High-Impact Corporate Hero Banner (Clean Headline & Subtitle)
+   - Pure Liquid Glass Circular Floating 3D Tech Icons (Below Topbar Area)
+   =================================================================== */
+
+/* 1. Global Variables & Design Tokens */
+:root {
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  /* Scene background colors */
+  --bg-scene: #edf2f7;
+  --bg-scene-gradient: radial-gradient(circle at 75% 20%, rgba(255, 255, 255, 0.95) 0%, rgba(235, 240, 248, 0.95) 50%, #e2e8f0 100%);
+  
+  /* Floating Topbar Frosted Glass */
+  --topbar-bg: rgba(255, 255, 255, 0.82);
+  --topbar-border: rgba(255, 255, 255, 0.9);
+  --topbar-shadow: 0 14px 34px -8px rgba(15, 23, 42, 0.07), 
+                   0 0 26px -4px rgba(56, 189, 248, 0.32),
+                   inset 0 1px 2px rgba(255, 255, 255, 0.98);
+  
+  /* Navigation Link Colors */
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --text-hover: #0284c7;
+  --text-active: #0284c7;
+  
+  /* Brand Gradients */
+  --brand-gradient: linear-gradient(135deg, #0048f8 0%, #1d4ed8 50%, #2563eb 100%);
+  --line-gradient: linear-gradient(90deg, #38bdf8 0%, #2563eb 100%);
+  
+  /* CTA Button */
+  --btn-cta-gradient: linear-gradient(135deg, #0ea5e9 0%, #2563eb 55%, #1d4ed8 100%);
+  --btn-cta-shadow: 0 8px 22px -3px rgba(37, 99, 235, 0.42);
+  --btn-cta-shadow-hover: 0 12px 28px -2px rgba(37, 99, 235, 0.58);
+  
+  /* Dimensions & Transitions */
+  --topbar-height: 68px;
+  --transition-fast: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. Base & Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-scene-gradient);
+  background-color: var(--bg-scene);
+  min-height: 100vh;
+  color: var(--text-main);
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* 3. Ambient Scene Background */
+.ambient-scene {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sunlight-beam {
+  position: absolute;
+  top: -120px;
+  right: 12%;
+  width: 600px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(55px);
+  transform: rotate(20deg);
+}
+
+/* 4. Floating Header Wrapper */
+.floating-header-wrapper {
+  position: fixed;
+  top: 14px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 1.5rem;
+  z-index: 1000;
+}
+
+/* 5. Floating Capsule Topbar */
+.floating-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  height: var(--topbar-height);
+  padding: 0 16px 0 24px;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--topbar-border);
+  border-radius: 20px;
+  box-shadow: var(--topbar-shadow);
+  position: relative;
+  transition: all var(--transition-smooth);
+}
+
+.floating-topbar::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 8%;
+  width: 84%;
+  height: 4px;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.55) 0%, rgba(99, 102, 241, 0.2) 60%, transparent 100%);
+  filter: blur(4px);
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* 6. Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-right: 1.5rem;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.brand-logo:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+.logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* 7. Center Navigation Links with Left-to-Right Underline Fill */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0 auto;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+  letter-spacing: -0.01em;
+}
+
+/* Underline Animation (Fills smoothly and softly from Left to Right) */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: auto;
+  width: 0%;
+  height: 2px;
+  background: var(--line-gradient);
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 1px 6px rgba(56, 189, 248, 0.35);
+  opacity: 0.9;
+}
+
+.nav-link:hover {
+  color: var(--text-hover);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--text-active);
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* 8. Right Action Items */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.btn-get-started {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 11px 24px;
+  background: var(--btn-cta-gradient);
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 14px;
+  box-shadow: var(--btn-cta-shadow);
+  transition: all var(--transition-smooth);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.btn-get-started:hover {
+  transform: translateY(-1.5px);
+  box-shadow: var(--btn-cta-shadow-hover);
+  color: #ffffff;
+}
+
+.arrow-svg {
+  transition: transform var(--transition-fast);
+}
+
+.btn-get-started:hover .arrow-svg {
+  transform: translateX(4px);
+}
+
+/* Mobile Toggle Hamburger */
+.mobile-toggle-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4.5px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all var(--transition-fast);
+}
+
+.mobile-toggle-btn .bar {
+  width: 18px;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.mobile-toggle-btn.is-active .bar:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.mobile-toggle-btn.is-active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle-btn.is-active .bar:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile Drawer */
+.mobile-menu-drawer {
+  display: none;
+  position: absolute;
+  top: calc(var(--topbar-height) + 12px);
+  left: 1.5rem;
+  right: 1.5rem;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--topbar-border);
+  border-radius: 24px;
+  padding: 1.25rem;
+  box-shadow: var(--topbar-shadow);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all var(--transition-smooth);
+}
+
+.mobile-menu-drawer.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mobile-nav-link {
+  position: relative;
+  display: block;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: 12px;
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background: rgba(14, 165, 233, 0.08);
+  color: var(--text-active);
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+.mobile-drawer-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.btn-mobile-full {
+  width: 100%;
+}
+
+/* ===================================================================
+   9. HERO SECTION (CENTERED + LIQUID GLASS 3D ICONS)
+   =================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: calc(var(--topbar-height) + 30px);
+  padding-bottom: 40px;
+}
+
+/* 3D Background Canvas Layer */
+.hero-3d-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#hero3dCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 3D Floating Tech Badges Container */
+.floating-tech-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Circular Liquid Glass 3D Tech Card */
+/* Circular Liquid Glass 3D Tech Card (Even Size, Zero-Lag High Performance) */
+.tech-card-3d {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 32% 28%, #ffffff 0%, rgba(255, 255, 255, 0.95) 55%, rgba(228, 242, 255, 0.88) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  box-shadow: 0 8px 22px -4px rgba(15, 23, 42, 0.08), 
+              0 0 16px -2px rgba(56, 189, 248, 0.22),
+              inset 0 2px 2px #ffffff,
+              inset 0 -1.5px 2px rgba(56, 189, 248, 0.15);
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  will-change: transform;
+  contain: layout style paint;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.tech-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 1.5px 3px rgba(0, 0, 0, 0.06));
+  transition: transform 0.25s ease;
+  pointer-events: none;
+}
+
+.tech-card-3d:hover {
+  box-shadow: 0 16px 36px -4px rgba(37, 99, 235, 0.28), 
+              0 0 24px rgba(56, 189, 248, 0.42), 
+              inset 0 2px 3px #ffffff;
+  border-color: rgba(56, 189, 248, 0.6);
+  z-index: 10;
+}
+
+.tech-card-3d:hover .tech-icon-img {
+  transform: scale(1.15);
+}
+
+/* Even Harmonious Atmospheric Positions (Evenly Spaced, Outside Text Zone) */
+/* Upper Left Flank */
+.pos-1  { top: 18%; left: 4%; }
+.pos-2  { top: 20%; left: 14%; }
+.pos-3  { top: 28%; left: 7%; }
+.pos-4  { top: 37%; left: 3%; }
+.pos-5  { top: 40%; left: 12%; }
+
+/* Mid Left Wing */
+.pos-6  { top: 50%; left: 2%; }
+.pos-7  { top: 54%; left: 9%; }
+.pos-8  { top: 63%; left: 4%; }
+.pos-9  { top: 66%; left: 13%; }
+
+/* Lower Left to Center Constellation */
+.pos-10 { top: 76%; left: 5%; }
+.pos-11 { top: 79%; left: 14%; }
+.pos-12 { top: 88%; left: 7%; }
+.pos-13 { top: 86%; left: 19%; }
+.pos-14 { top: 89%; left: 31%; }
+
+/* Upper Right Flank */
+.pos-15 { top: 18%; right: 4%; }
+.pos-16 { top: 20%; right: 14%; }
+.pos-17 { top: 28%; right: 7%; }
+.pos-18 { top: 37%; right: 3%; }
+.pos-19 { top: 40%; right: 12%; }
+
+/* Mid Right Wing */
+.pos-20 { top: 50%; right: 2%; }
+.pos-21 { top: 54%; right: 9%; }
+.pos-22 { top: 63%; right: 4%; }
+.pos-23 { top: 66%; right: 13%; }
+
+/* Lower Right to Center Constellation */
+.pos-24 { top: 76%; right: 5%; }
+.pos-25 { top: 79%; right: 14%; }
+.pos-26 { top: 88%; right: 7%; }
+.pos-27 { top: 86%; right: 19%; }
+.pos-28 { top: 89%; right: 31%; }
+
+/* Centered Text Container */
+.hero-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.hero-centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Main Heading */
+.hero-heading {
+  font-size: clamp(2.5rem, 5.2vw, 4.35rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.6rem;
+}
+
+.hero-heading-lead {
+  display: block;
+  color: #0b1329;
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.25rem;
+}
+
+.gradient-text {
+  display: inline-block;
+  color: #0048f8;
+  background: linear-gradient(135deg, #0042eb 0%, #005cf6 48%, #1d4ed8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 18px rgba(255, 255, 255, 0.98)) drop-shadow(0 1px 3px rgba(255, 255, 255, 0.95));
+  font-weight: 800;
+}
+
+/* Description */
+.hero-description {
+  font-size: 1.18rem;
+  line-height: 1.75;
+  color: #1e293b;
+  max-width: 720px;
+  margin: 0 auto 2.75rem auto;
+  font-weight: 500;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.9);
+}
+
+/* Action Group */
+.hero-action-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  letter-spacing: -0.01em;
+}
+
+.btn-hero-primary {
+  padding: 14px 32px;
+  background: var(--btn-cta-gradient);
+  color: #ffffff;
+  box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.45);
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -2px rgba(37, 99, 235, 0.6);
+  color: #ffffff;
+}
+
+.btn-hero-primary:hover .arrow-svg {
+  transform: translateX(4px);
+}
+
+.btn-hero-secondary {
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(12px);
+}
+
+.btn-hero-secondary:hover {
+  background: #ffffff;
+  border-color: rgba(37, 99, 235, 0.35);
+  color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.play-icon {
+  font-size: 1.1rem;
+  color: #2563eb;
+}
+
+/* ===================================================================
+   10. Responsive Breakpoints
+   =================================================================== */
+@media (max-width: 1200px) {
+  .tech-card-3d {
+    width: 44px;
+    height: 44px;
+  }
+  .tech-icon-img {
+    width: 22px;
+    height: 22px;
+  }
+  .pos-14, .pos-28 {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-toggle-btn {
+    display: flex;
+  }
+
+  .mobile-menu-drawer {
+    display: block;
+  }
+
+  .floating-topbar {
+    padding: 0 10px 0 20px;
+  }
+
+  .tech-card-3d {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .tech-icon-img {
+    width: 19px !important;
+    height: 19px !important;
+  }
+
+  .pos-5, .pos-9, .pos-11, .pos-19, .pos-23, .pos-25 {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-heading {
+    font-size: 2.35rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-action-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+  }
+
+  .btn-get-started {
+    display: none;
+  }
+
+  .floating-header-wrapper {
+    top: 10px;
+    padding: 0 0.85rem;
+  }
+
+  .logo-img {
+    height: 26px;
+  }
+
+  /* Keep 6 key icons visible on small mobile */
+  .pos-l-2, .pos-l-4, .pos-l-6, .pos-l-10, .pos-l-11, .pos-l-12,
+  .pos-r-2, .pos-r-4, .pos-r-6, .pos-r-10, .pos-r-11, .pos-r-12 {
+    display: none;
+  }
+}

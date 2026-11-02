@@ -1,0 +1,17 @@
+# Node dependencies
+node_modules/
+
+# OS / Editor temporary files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Vercel deployment artifacts
+.vercel
+
+# Test screenshots
+*.png-temp
+hero_preview*.png
+topbar_preview*.png
+headline_crop*.png

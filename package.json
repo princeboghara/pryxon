@@ -1,0 +1,18 @@
+{
+  "name": "pryxon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pryxon Studio - Turning Bold Ideas Into Powerful Digital Solutions",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "pryxon",
+    "tech-agency",
+    "software-solutions",
+    "web-development"
+  ],
+  "author": "Prince Boghara",
+  "license": "MIT"
+}
