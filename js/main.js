@@ -105,6 +105,18 @@ document.addEventListener('DOMContentLoaded', () => {
     mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
   }, { passive: true });
 
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      mouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    mouseX = 0;
+    mouseY = 0;
+  }, { passive: true });
+
   const techCards = document.querySelectorAll('.tech-card-3d');
   const cardItems = [];
 
