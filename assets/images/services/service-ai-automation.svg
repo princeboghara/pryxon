@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="aiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090a16"/>
+      <stop offset="100%" stop-color="#16122c"/>
+    </linearGradient>
+    <linearGradient id="neonGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="50%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="aiPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="cyanBadge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Frame Canvas -->
+  <rect x="15" y="15" width="370" height="190" rx="14" fill="url(#aiBg)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Top System Bar -->
+  <path d="M15 15 h370 r14 0 v28 h-370 v-28 r0 -14" fill="#0d0f21"/>
+  <circle cx="34" cy="29" r="4.5" fill="#a855f7"/>
+  <text x="46" y="32" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#f8fafc">AI Automation Engine</text>
+  <rect x="275" y="22" width="95" height="14" rx="7" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="0.8"/>
+  <circle cx="286" cy="29" r="3" fill="#a855f7"/>
+  <text x="325" y="32" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#c084fc" text-anchor="middle">⚡ AUTOPILOT ACTIVE</text>
+
+  <!-- AI Workflow Node Canvas (Left & Center) -->
+  <g transform="translate(25, 52)">
+    <!-- Trigger Node: Webhook / Event -->
+    <rect x="0" y="36" width="75" height="52" rx="8" fill="#131c31" stroke="#38bdf8" stroke-width="1.2"/>
+    <rect x="8" y="44" width="22" height="12" rx="4" fill="rgba(56, 189, 248, 0.2)"/>
+    <text x="19" y="52.5" font-family="system-ui, sans-serif" font-size="6.5" font-weight="700" fill="#38bdf8" text-anchor="middle">STEP 1</text>
+    <text x="8" y="68" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#f8fafc">Event Trigger</text>
+    <text x="8" y="78" font-family="system-ui, sans-serif" font-size="6" fill="#94a3b8">Form / Webhook / API</text>
+
+    <!-- Glowing Connector 1 -->
+    <path d="M75 62 L105 62" stroke="url(#cyanBadge)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="90" cy="62" r="3" fill="#06b6d4"/>
+
+    <!-- Central AI Brain Processing Node (Deep Learning / LLM) -->
+    <rect x="105" y="16" width="105" height="92" rx="10" fill="#1e183a" stroke="#a855f7" stroke-width="1.8"/>
+    <!-- AI Brain Graphic Icon -->
+    <circle cx="157" cy="40" r="16" fill="url(#aiPurple)" opacity="0.25"/>
+    <circle cx="157" cy="40" r="11" fill="none" stroke="#c084fc" stroke-width="1.5"/>
+    <circle cx="157" cy="40" r="4" fill="#f8fafc"/>
+    <line x1="157" y1="24" x2="157" y2="29" stroke="#c084fc" stroke-width="1.5"/>
+    <line x1="157" y1="51" x2="157" y2="56" stroke="#c084fc" stroke-width="1.5"/>
+    <line x1="141" y1="40" x2="146" y2="40" stroke="#c084fc" stroke-width="1.5"/>
+    <line x1="168" y1="40" x2="173" y2="40" stroke="#c084fc" stroke-width="1.5"/>
+
+    <text x="157" y="68" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#ffffff" text-anchor="middle">LLM REASONING</text>
+    <text x="157" y="80" font-family="system-ui, sans-serif" font-size="6.8" fill="#e9d5ff" text-anchor="middle">GPT-4o &amp; Claude 3.5</text>
+    <rect x="120" y="88" width="75" height="12" rx="6" fill="rgba(168, 85, 247, 0.3)"/>
+    <text x="157" y="96.5" font-family="system-ui, sans-serif" font-size="6" font-weight="700" fill="#f0abfc" text-anchor="middle">Auto-Extract &amp; Decide</text>
+
+    <!-- Branching Connectors to Outputs -->
+    <path d="M210 50 L235 28 L245 28" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+    <path d="M210 62 L245 62" stroke="#ec4899" stroke-width="1.5"/>
+    <path d="M210 74 L235 96 L245 96" fill="none" stroke="#10b981" stroke-width="1.5"/>
+
+    <!-- Action 1: Auto Notification / Slack -->
+    <rect x="245" y="14" width="72" height="28" rx="6" fill="#131c31" stroke="#a855f7" stroke-width="1"/>
+    <text x="253" y="26" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#f8fafc">Slack &amp; Email</text>
+    <text x="253" y="36" font-family="system-ui, sans-serif" font-size="5.5" fill="#a855f7">Sent Instantly</text>
+
+    <!-- Action 2: Update CRM & DB -->
+    <rect x="245" y="48" width="72" height="28" rx="6" fill="#131c31" stroke="#ec4899" stroke-width="1"/>
+    <text x="253" y="60" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#f8fafc">CRM Pipeline</text>
+    <text x="253" y="70" font-family="system-ui, sans-serif" font-size="5.5" fill="#ec4899">Deals Updated</text>
+
+    <!-- Action 3: Document Generation -->
+    <rect x="245" y="82" width="72" height="28" rx="6" fill="#131c31" stroke="#10b981" stroke-width="1"/>
+    <text x="253" y="94" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#f8fafc">Doc / Invoice</text>
+    <text x="253" y="104" font-family="system-ui, sans-serif" font-size="5.5" fill="#10b981">Auto-Generated</text>
+  </g>
+
+  <!-- Right Side Stat Widget -->
+  <g transform="translate(328, 56)">
+    <rect x="0" y="0" width="42" height="60" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+    <text x="21" y="18" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#94a3b8" text-anchor="middle">SAVED</text>
+    <text x="21" y="36" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#c084fc" text-anchor="middle">18h</text>
+    <text x="21" y="48" font-family="system-ui, sans-serif" font-size="5.5" fill="#94a3b8" text-anchor="middle">Per Week</text>
+
+    <rect x="0" y="68" width="42" height="60" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+    <text x="21" y="86" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#94a3b8" text-anchor="middle">ACCURACY</text>
+    <text x="21" y="104" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#10b981" text-anchor="middle">99.8%</text>
+    <text x="21" y="116" font-family="system-ui, sans-serif" font-size="5.5" fill="#94a3b8" text-anchor="middle">Zero Error</text>
+  </g>
+</svg>

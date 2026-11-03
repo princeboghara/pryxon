@@ -181,7 +181,7 @@ function initPryxon() {
   requestAnimationFrame(animate);
 
   /* ===================================================================
-     4. ORIGINKIT 3D COVERFLOW GALLERY CONTROLLER
+     4. ORIGINKIT 3D COVERFLOW GALLERY CONTROLLER (REAL-TIME TOUCH & DRAG)
      =================================================================== */
   function initCoverflowGallery() {
     const galleryWrapper = document.getElementById('coverflowGallery');
@@ -196,6 +196,15 @@ function initPryxon() {
     let active = 0;
     let isLocked = false;
     let autoplayTimer = null;
+
+    // Drag interaction states
+    let isPointerDown = false;
+    let isDragging = false;
+    let hasMovedEnough = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let activeOnStart = 0;
+    let currentDragOffset = 0;
 
     // Create dots
     if (dotsContainer) {
@@ -213,22 +222,25 @@ function initPryxon() {
       }
     }
 
-    function updateCoverflow() {
+    function renderCoverflow(offset = 0, isInteractive = false) {
       const isMobile = window.innerWidth <= 640;
-      const gap = isMobile ? 6.2 : 8.5;
+      const gap = isMobile ? 5.8 : 8.2;
       const tilt = isMobile ? 12 : 16;
-      const sideTilt = isMobile ? 4 : 6;
-      const depth = isMobile ? 180 : 250;
-      const scaleStep = isMobile ? 0.14 : 0.16;
+      const sideTilt = isMobile ? 4 : 5.5;
+      const depth = isMobile ? 175 : 245;
+      const scaleStep = isMobile ? 0.13 : 0.15;
+
+      const currentVirtualActive = active + offset;
 
       cards.forEach((card, i) => {
-        let rel = i - active;
+        // Continuous circular relative offset
+        let rel = (i - currentVirtualActive) % n;
+        rel = (rel + n) % n;
         if (rel > n / 2) rel -= n;
-        if (rel < -n / 2) rel += n;
 
         const ax = Math.abs(rel);
-        const visible = ax <= 2;
-        const isActive = rel === 0;
+        const visible = ax <= 2.25;
+        const isCurrentActive = ax < 0.45;
 
         const sc = Math.max(0.42, 1 - ax * scaleStep);
         const tx = rel * (gap * 30);
@@ -236,12 +248,18 @@ function initPryxon() {
         const ry = -rel * tilt;
         const rz = rel * sideTilt;
 
+        if (isInteractive) {
+          card.style.transition = 'none';
+        } else {
+          card.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+        }
+
         card.style.transform = `translate(-50%, -50%) translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg) rotateZ(${rz.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
-        card.style.opacity = visible ? (isActive ? '1' : (ax === 1 ? '0.78' : '0.45')) : '0';
-        card.style.zIndex = (10 - ax).toString();
+        card.style.opacity = visible ? (Math.max(0, 1 - ax * 0.3)).toFixed(2) : '0';
+        card.style.zIndex = Math.round(20 - ax * 4).toString();
         card.style.pointerEvents = visible ? 'auto' : 'none';
 
-        if (isActive) {
+        if (isCurrentActive) {
           card.classList.add('is-active');
           card.setAttribute('aria-hidden', 'false');
         } else {
@@ -250,11 +268,12 @@ function initPryxon() {
         }
       });
 
-      // Update dots
+      // Update dots indicator to closest active card
       if (dotsContainer) {
+        const closestActive = (((Math.round(currentVirtualActive) % n) + n) % n);
         const dots = dotsContainer.querySelectorAll('.coverflow-dot');
         dots.forEach((dot, idx) => {
-          if (idx === active) {
+          if (idx === closestActive) {
             dot.classList.add('is-active');
           } else {
             dot.classList.remove('is-active');
@@ -267,15 +286,20 @@ function initPryxon() {
       if (isLocked) return;
       isLocked = true;
       active = (((newActive % n) + n) % n);
-      updateCoverflow();
+      renderCoverflow(0, false);
       setTimeout(() => {
         isLocked = false;
       }, 550);
     }
 
-    // Card click brings to center
+    // Card click brings to center if not dragged
     cards.forEach((card, idx) => {
       card.addEventListener('click', (e) => {
+        if (hasMovedEnough) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
         if (idx !== active) {
           e.preventDefault();
           setActive(idx);
@@ -299,7 +323,7 @@ function initPryxon() {
       });
     }
 
-    // Keyboard arrow navigation when gallery in focus
+    // Keyboard arrow navigation
     galleryWrapper.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') {
         e.preventDefault();
@@ -312,41 +336,154 @@ function initPryxon() {
       }
     });
 
-    // Touch swipe navigation for mobile
-    let touchStartX = 0;
-    let touchStartY = 0;
+    // Real-time Pointer (Touch & Mouse) Gesture Physics
+    function getSwipeDistance() {
+      const cardWidth = window.innerWidth <= 480 ? 295 : (window.innerWidth <= 768 ? 340 : 420);
+      return cardWidth * 0.62;
+    }
 
-    galleryWrapper.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 0) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }
-    }, { passive: true });
+    function onPointerDown(e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      isPointerDown = true;
+      hasMovedEnough = false;
+      isDragging = false;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      activeOnStart = active;
+      currentDragOffset = 0;
+      stopAutoplay();
+    }
 
-    galleryWrapper.addEventListener('touchend', (e) => {
-      if (e.changedTouches.length > 0) {
-        const deltaX = e.changedTouches[0].clientX - touchStartX;
-        const deltaY = e.changedTouches[0].clientY - touchStartY;
-        // Horizontal swipe detected
-        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
-          if (deltaX < 0) {
-            setActive(active + 1); // Swipe left -> next
+    function onPointerMove(e) {
+      if (!isPointerDown) return;
+      const deltaX = e.clientX - dragStartX;
+      const deltaY = e.clientY - dragStartY;
+
+      if (!hasMovedEnough) {
+        if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
+          if (Math.abs(deltaX) >= Math.abs(deltaY)) {
+            hasMovedEnough = true;
+            isDragging = true;
+            galleryWrapper.classList.add('is-dragging');
+            try {
+              if (galleryWrapper.setPointerCapture) {
+                galleryWrapper.setPointerCapture(e.pointerId);
+              }
+            } catch (_) {}
           } else {
-            setActive(active - 1); // Swipe right -> prev
+            // Predominantly vertical scroll, abandon gallery drag
+            isPointerDown = false;
+            return;
           }
-          resetAutoplay();
         }
       }
+
+      if (isDragging) {
+        if (e.cancelable) e.preventDefault();
+        const swipeDistance = getSwipeDistance();
+        // Negative deltaX (dragging to the left) moves forward (positive offset)
+        currentDragOffset = -deltaX / swipeDistance;
+        renderCoverflow(currentDragOffset, true);
+      }
+    }
+
+    function onPointerUp(e) {
+      if (!isPointerDown && !isDragging) return;
+
+      if (isDragging) {
+        galleryWrapper.classList.remove('is-dragging');
+        try {
+          if (galleryWrapper.releasePointerCapture) {
+            galleryWrapper.releasePointerCapture(e.pointerId);
+          }
+        } catch (_) {}
+
+        const deltaX = e.clientX - dragStartX;
+        const threshold = 32;
+
+        let target = activeOnStart;
+        if (deltaX < -threshold) {
+          target = activeOnStart + Math.max(1, Math.round(Math.abs(currentDragOffset)));
+        } else if (deltaX > threshold) {
+          target = activeOnStart - Math.max(1, Math.round(Math.abs(currentDragOffset)));
+        }
+
+        active = (((target % n) + n) % n);
+        renderCoverflow(0, false);
+        resetAutoplay();
+      }
+
+      isPointerDown = false;
+      setTimeout(() => {
+        isDragging = false;
+        hasMovedEnough = false;
+      }, 60);
+    }
+
+    function onPointerCancel(e) {
+      if (isPointerDown || isDragging) {
+        galleryWrapper.classList.remove('is-dragging');
+        renderCoverflow(0, false);
+        isPointerDown = false;
+        isDragging = false;
+        hasMovedEnough = false;
+        resetAutoplay();
+      }
+    }
+
+    galleryWrapper.addEventListener('pointerdown', onPointerDown);
+    galleryWrapper.addEventListener('pointermove', onPointerMove, { passive: false });
+    galleryWrapper.addEventListener('pointerup', onPointerUp);
+    galleryWrapper.addEventListener('pointercancel', onPointerCancel);
+
+    // Touch event fallbacks to guarantee 100% responsiveness on all mobile browsers
+    galleryWrapper.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        onPointerDown({
+          clientX: e.touches[0].clientX,
+          clientY: e.touches[0].clientY,
+          button: 0,
+          pointerId: 1
+        });
+      }
     }, { passive: true });
 
-    // Autoplay (every 3.8s, pauses on hover)
+    galleryWrapper.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && isPointerDown) {
+        const deltaX = e.touches[0].clientX - dragStartX;
+        const deltaY = e.touches[0].clientY - dragStartY;
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 8) {
+          if (e.cancelable) e.preventDefault();
+        }
+        onPointerMove({
+          clientX: e.touches[0].clientX,
+          clientY: e.touches[0].clientY,
+          cancelable: e.cancelable,
+          preventDefault: () => { if (e.cancelable) e.preventDefault(); },
+          pointerId: 1
+        });
+      }
+    }, { passive: false });
+
+    galleryWrapper.addEventListener('touchend', (e) => {
+      if (isPointerDown || isDragging) {
+        const touch = e.changedTouches[0] || {};
+        onPointerUp({
+          clientX: touch.clientX || dragStartX,
+          clientY: touch.clientY || dragStartY,
+          pointerId: 1
+        });
+      }
+    }, { passive: true });
+
+    // Autoplay (every 4.2s, pauses on hover/drag)
     function startAutoplay() {
       stopAutoplay();
       autoplayTimer = setInterval(() => {
-        if (!document.hidden) {
+        if (!document.hidden && !isDragging && !isPointerDown) {
           setActive(active + 1);
         }
-      }, 3800);
+      }, 4200);
     }
 
     function stopAutoplay() {
@@ -362,11 +499,16 @@ function initPryxon() {
     }
 
     galleryWrapper.addEventListener('mouseenter', stopAutoplay);
-    galleryWrapper.addEventListener('mouseleave', startAutoplay);
-    window.addEventListener('resize', updateCoverflow, { passive: true });
+    galleryWrapper.addEventListener('mouseleave', () => {
+      if (!isDragging && !isPointerDown) startAutoplay();
+    });
+
+    window.addEventListener('resize', () => {
+      renderCoverflow(0, false);
+    }, { passive: true });
 
     // Initial render & start autoplay
-    updateCoverflow();
+    renderCoverflow(0, false);
     startAutoplay();
   }
 
