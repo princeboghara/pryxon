@@ -56,6 +56,9 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -63,7 +66,10 @@ body {
   background: var(--bg-scene-gradient);
   background-color: var(--bg-scene);
   min-height: 100vh;
+  min-height: 100svh;
   color: var(--text-main);
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
@@ -305,22 +311,25 @@ button {
   top: calc(var(--topbar-height) + 12px);
   left: 1.5rem;
   right: 1.5rem;
-  background: var(--topbar-bg);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid var(--topbar-border);
-  border-radius: 24px;
+  border-radius: 22px;
   padding: 1.25rem;
-  box-shadow: var(--topbar-shadow);
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.15), 0 0 30px rgba(56, 189, 248, 0.25);
   opacity: 0;
-  transform: translateY(-10px);
+  visibility: hidden;
+  transform: translateY(-12px) scale(0.98);
   pointer-events: none;
   transition: all var(--transition-smooth);
+  z-index: 1001;
 }
 
 .mobile-menu-drawer.is-open {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  transform: translateY(0) scale(1);
   pointer-events: auto;
 }
 
@@ -514,11 +523,14 @@ button {
 
 /* Main Heading */
 .hero-heading {
-  font-size: clamp(2.5rem, 5.2vw, 4.35rem);
+  font-size: clamp(2.3rem, 5vw, 4.25rem);
   font-weight: 800;
   line-height: 1.18;
   letter-spacing: -0.035em;
   margin-bottom: 1.6rem;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-heading-lead {
@@ -529,7 +541,7 @@ button {
 }
 
 .gradient-text {
-  display: inline-block;
+  display: inline;
   color: #0048f8;
   background: linear-gradient(135deg, #0042eb 0%, #005cf6 48%, #1d4ed8 100%);
   -webkit-background-clip: text;
@@ -611,9 +623,14 @@ button {
 }
 
 /* ===================================================================
-   10. Responsive Breakpoints
+   10. Responsive Breakpoints (All-Screen Mobile / Tablet / Desktop)
    =================================================================== */
+
+/* Tablet Landscape & Laptops (<= 1200px) */
 @media (max-width: 1200px) {
+  .floating-topbar {
+    max-width: 980px;
+  }
   .tech-card-3d {
     width: 44px;
     height: 44px;
@@ -622,11 +639,13 @@ button {
     width: 22px;
     height: 22px;
   }
-  .pos-14, .pos-28 {
+  /* Hide outer 4 lower edge floaters */
+  .pos-14, .pos-28, .pos-12, .pos-26 {
     display: none;
   }
 }
 
+/* Tablet Portrait (<= 992px) */
 @media (max-width: 992px) {
   .nav-links {
     display: none;
@@ -640,60 +659,253 @@ button {
     display: block;
   }
 
+  .floating-header-wrapper {
+    top: 12px;
+    padding: 0 1.25rem;
+  }
+
   .floating-topbar {
-    padding: 0 10px 0 20px;
+    height: 62px;
+    padding: 0 12px 0 20px;
+    border-radius: 18px;
+  }
+
+  .logo-img {
+    height: 32px;
+    max-width: 150px;
+  }
+
+  .hero-heading {
+    font-size: clamp(2.1rem, 5.2vw, 3.2rem);
+  }
+
+  .hero-description {
+    font-size: 1.05rem;
+    margin-bottom: 2.2rem;
   }
 
   .tech-card-3d {
-    width: 38px !important;
-    height: 38px !important;
+    width: 40px !important;
+    height: 40px !important;
   }
   .tech-icon-img {
-    width: 19px !important;
-    height: 19px !important;
+    width: 20px !important;
+    height: 20px !important;
   }
 
-  .pos-5, .pos-9, .pos-11, .pos-19, .pos-23, .pos-25 {
+  /* Curate 16 balanced icons, hide 12 crowded inner floaters */
+  .pos-2, .pos-5, .pos-8, .pos-9, .pos-11, .pos-14,
+  .pos-16, .pos-19, .pos-22, .pos-23, .pos-25, .pos-28 {
     display: none;
   }
 }
 
-@media (max-width: 640px) {
+/* Small Tablets & Large Phones (<= 768px) */
+@media (max-width: 768px) {
+  .floating-header-wrapper {
+    top: 10px;
+    padding: 0 12px;
+  }
+
+  .floating-topbar {
+    height: 56px;
+    padding: 0 10px 0 16px;
+    border-radius: 16px;
+  }
+
+  .logo-img {
+    height: 28px;
+    max-width: 130px;
+  }
+
+  /* Hide the topbar button on mobile to give full room to logo + hamburger */
+  .nav-actions .btn-get-started {
+    display: none;
+  }
+
+  .mobile-toggle-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Mobile Drawer Positioning & Sizing */
+  .mobile-menu-drawer {
+    top: calc(var(--topbar-height) + 6px);
+    left: 12px;
+    right: 12px;
+    padding: 1.15rem;
+    border-radius: 20px;
+  }
+
+  .mobile-drawer-footer .btn-get-started {
+    display: inline-flex !important;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Hero adjustments */
+  .hero-section {
+    padding-top: calc(var(--topbar-height) + 20px);
+    padding-bottom: 35px;
+    min-height: 100svh;
+  }
+
+  .hero-container {
+    padding: 0 1.25rem;
+  }
+
   .hero-heading {
-    font-size: 2.35rem;
+    font-size: clamp(1.85rem, 6.5vw, 2.45rem);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-heading-lead {
+    margin-bottom: 0.35rem;
   }
 
   .hero-description {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 1.85rem;
+    padding: 0 0.25rem;
   }
 
   .hero-action-group {
     flex-direction: column;
     width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: 0.75rem;
   }
 
   .btn-hero-primary,
   .btn-hero-secondary {
     width: 100%;
+    padding: 13px 20px;
+    font-size: 0.95rem;
+    justify-content: center;
   }
 
-  .btn-get-started {
-    display: none;
+  /* Mobile floating icons: Curate 8 perimeter ambient badges */
+  .tech-card-3d {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .tech-icon-img {
+    width: 18px !important;
+    height: 18px !important;
   }
 
+  /* Reposition the 8 visible icons away from text and into outer margins */
+  .pos-1  { top: 14%; left: 3%; }
+  .pos-3  { top: 23%; left: 2%; }
+  .pos-10 { top: 85%; left: 5%; }
+  .pos-13 { top: 92%; left: 20%; }
+
+  .pos-15 { top: 14%; right: 3%; }
+  .pos-17 { top: 23%; right: 2%; }
+  .pos-24 { top: 85%; right: 5%; }
+  .pos-27 { top: 92%; right: 20%; }
+
+  /* Hide all other 20 icons on mobile to prevent clutter */
+  .pos-2, .pos-4, .pos-5, .pos-6, .pos-7, .pos-8, .pos-9,
+  .pos-11, .pos-12, .pos-14, .pos-16, .pos-18, .pos-19,
+  .pos-20, .pos-21, .pos-22, .pos-23, .pos-25, .pos-26, .pos-28 {
+    display: none !important;
+  }
+}
+
+/* Standard Mobile Devices (<= 480px: iPhone 13/14/15/16, Galaxy S, Pixel) */
+@media (max-width: 480px) {
   .floating-header-wrapper {
-    top: 10px;
-    padding: 0 0.85rem;
+    top: 8px;
+    padding: 0 10px;
+  }
+
+  .floating-topbar {
+    height: 52px;
+    padding: 0 8px 0 14px;
+    border-radius: 14px;
   }
 
   .logo-img {
-    height: 26px;
+    height: 25px;
+    max-width: 118px;
   }
 
-  /* Keep 6 key icons visible on small mobile */
-  .pos-l-2, .pos-l-4, .pos-l-6, .pos-l-10, .pos-l-11, .pos-l-12,
-  .pos-r-2, .pos-r-4, .pos-r-6, .pos-r-10, .pos-r-11, .pos-r-12 {
-    display: none;
+  .mobile-toggle-btn {
+    width: 36px;
+    height: 36px;
+    gap: 4px;
+  }
+  .mobile-toggle-btn .bar {
+    width: 16px;
+  }
+
+  .mobile-menu-drawer {
+    top: 60px;
+    left: 10px;
+    right: 10px;
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .hero-container {
+    padding: 0 1rem;
+  }
+
+  .hero-heading {
+    font-size: clamp(1.68rem, 6.8vw, 2.05rem);
+    line-height: 1.22;
+  }
+
+  .hero-description {
+    font-size: 0.92rem;
+    line-height: 1.58;
+    margin-bottom: 1.7rem;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    padding: 12px 18px;
+    font-size: 0.92rem;
+  }
+
+  /* 6 corner icons on small mobile */
+  .pos-13, .pos-27 {
+    display: none !important;
+  }
+  .pos-1  { top: 12%; left: 3%; }
+  .pos-3  { top: 22%; left: 2%; }
+  .pos-10 { top: 88%; left: 6%; }
+  .pos-15 { top: 12%; right: 3%; }
+  .pos-17 { top: 22%; right: 2%; }
+  .pos-24 { top: 88%; right: 6%; }
+}
+
+/* Extra Small Phones (<= 360px: iPhone SE 1st gen, Galaxy A series) */
+@media (max-width: 360px) {
+  .logo-img {
+    height: 22px;
+    max-width: 100px;
+  }
+
+  .hero-heading {
+    font-size: 1.52rem;
+  }
+
+  .hero-description {
+    font-size: 0.88rem;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    padding: 11px 16px;
+    font-size: 0.88rem;
+  }
+
+  .pos-3, .pos-17 {
+    display: none !important;
   }
 }

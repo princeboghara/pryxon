@@ -37,3 +37,4 @@ Then visit `http://localhost:3000` in your browser.
 2. Framework Preset: **Other** / Static Site.
 3. Root Directory: `./`
 4. Click **Deploy**!
+
