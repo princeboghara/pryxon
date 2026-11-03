@@ -6,7 +6,7 @@
  * 3. 28 Liquid Glass Floating Tech Icons with Viscous Fluid Physics
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initPryxon() {
   /* ===================================================================
      1. TOPBAR & MOBILE NAVIGATION
      =================================================================== */
@@ -179,4 +179,202 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   requestAnimationFrame(animate);
-});
+
+  /* ===================================================================
+     4. ORIGINKIT 3D COVERFLOW GALLERY CONTROLLER
+     =================================================================== */
+  function initCoverflowGallery() {
+    const galleryWrapper = document.getElementById('coverflowGallery');
+    const cards = Array.from(document.querySelectorAll('.coverflow-card'));
+    const prevBtn = document.getElementById('coverflowPrevBtn');
+    const nextBtn = document.getElementById('coverflowNextBtn');
+    const dotsContainer = document.getElementById('coverflowDots');
+
+    if (!galleryWrapper || cards.length === 0) return;
+
+    const n = cards.length;
+    let active = 0;
+    let isLocked = false;
+    let autoplayTimer = null;
+
+    // Create dots
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < n; i++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'coverflow-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', `Go to service slide ${i + 1}`);
+        dot.addEventListener('click', () => {
+          setActive(i);
+          resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateCoverflow() {
+      const isMobile = window.innerWidth <= 640;
+      const gap = isMobile ? 6.2 : 8.5;
+      const tilt = isMobile ? 12 : 16;
+      const sideTilt = isMobile ? 4 : 6;
+      const depth = isMobile ? 180 : 250;
+      const scaleStep = isMobile ? 0.14 : 0.16;
+
+      cards.forEach((card, i) => {
+        let rel = i - active;
+        if (rel > n / 2) rel -= n;
+        if (rel < -n / 2) rel += n;
+
+        const ax = Math.abs(rel);
+        const visible = ax <= 2;
+        const isActive = rel === 0;
+
+        const sc = Math.max(0.42, 1 - ax * scaleStep);
+        const tx = rel * (gap * 30);
+        const tz = -ax * depth;
+        const ry = -rel * tilt;
+        const rz = rel * sideTilt;
+
+        card.style.transform = `translate(-50%, -50%) translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg) rotateZ(${rz.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
+        card.style.opacity = visible ? (isActive ? '1' : (ax === 1 ? '0.78' : '0.45')) : '0';
+        card.style.zIndex = (10 - ax).toString();
+        card.style.pointerEvents = visible ? 'auto' : 'none';
+
+        if (isActive) {
+          card.classList.add('is-active');
+          card.setAttribute('aria-hidden', 'false');
+        } else {
+          card.classList.remove('is-active');
+          card.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Update dots
+      if (dotsContainer) {
+        const dots = dotsContainer.querySelectorAll('.coverflow-dot');
+        dots.forEach((dot, idx) => {
+          if (idx === active) {
+            dot.classList.add('is-active');
+          } else {
+            dot.classList.remove('is-active');
+          }
+        });
+      }
+    }
+
+    function setActive(newActive) {
+      if (isLocked) return;
+      isLocked = true;
+      active = (((newActive % n) + n) % n);
+      updateCoverflow();
+      setTimeout(() => {
+        isLocked = false;
+      }, 550);
+    }
+
+    // Card click brings to center
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        if (idx !== active) {
+          e.preventDefault();
+          setActive(idx);
+          resetAutoplay();
+        }
+      });
+    });
+
+    // Prev / Next button listeners
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        setActive(active - 1);
+        resetAutoplay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        setActive(active + 1);
+        resetAutoplay();
+      });
+    }
+
+    // Keyboard arrow navigation when gallery in focus
+    galleryWrapper.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setActive(active + 1);
+        resetAutoplay();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setActive(active - 1);
+        resetAutoplay();
+      }
+    });
+
+    // Touch swipe navigation for mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    galleryWrapper.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    galleryWrapper.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length > 0) {
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+        // Horizontal swipe detected
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          if (deltaX < 0) {
+            setActive(active + 1); // Swipe left -> next
+          } else {
+            setActive(active - 1); // Swipe right -> prev
+          }
+          resetAutoplay();
+        }
+      }
+    }, { passive: true });
+
+    // Autoplay (every 3.8s, pauses on hover)
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(() => {
+        if (!document.hidden) {
+          setActive(active + 1);
+        }
+      }, 3800);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    function resetAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    galleryWrapper.addEventListener('mouseenter', stopAutoplay);
+    galleryWrapper.addEventListener('mouseleave', startAutoplay);
+    window.addEventListener('resize', updateCoverflow, { passive: true });
+
+    // Initial render & start autoplay
+    updateCoverflow();
+    startAutoplay();
+  }
+
+  initCoverflowGallery();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPryxon);
+} else {
+  initPryxon();
+}
