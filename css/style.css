@@ -822,52 +822,51 @@ button {
     justify-content: center;
   }
 
-  /* Full-Screen Floating Tech Stack Constellation (Across Whole Viewport) */
+  /* Mobile Floating Tech Stack: Elegant U-Shape Framing (Clear Center Title Area) */
   .tech-card-3d {
-    width: 38px !important;
-    height: 38px !important;
-    pointer-events: none; /* Let touches pass through cleanly to buttons */
+    width: 32px !important;
+    height: 32px !important;
+    pointer-events: none;
     opacity: 0.85 !important;
     display: flex !important;
   }
   .tech-icon-img {
-    width: 19px !important;
-    height: 19px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
 
-  /* Full Screen Organic Distribution across the entire viewport */
-  .pos-1  { top: 6% !important;  left: 6% !important;  display: flex !important; }
-  .pos-2  { top: 8% !important;  left: 36% !important; display: flex !important; }
-  .pos-15 { top: 6% !important;  right: 6% !important; display: flex !important; }
-  .pos-16 { top: 12% !important; right: 34% !important; display: flex !important; }
+  /* Top Upper Flanks (Above Title) */
+  .pos-1  { top: 6% !important;  left: 2.5% !important;  display: flex !important; }
+  .pos-3  { top: 13.5% !important; left: 3.5% !important; display: flex !important; }
+  .pos-15 { top: 6% !important;  right: 2.5% !important; display: flex !important; }
+  .pos-17 { top: 13.5% !important; right: 3.5% !important; display: flex !important; }
 
-  .pos-3  { top: 17% !important; left: 10% !important; display: flex !important; }
-  .pos-4  { top: 22% !important; left: 52% !important; display: flex !important; }
-  .pos-5  { top: 26% !important; left: 24% !important; display: flex !important; }
-  .pos-17 { top: 17% !important; right: 10% !important; display: flex !important; }
-  .pos-18 { top: 24% !important; right: 28% !important; display: flex !important; }
+  /* Side Pillars of the U (Below Title, Framing Description & Buttons) */
+  .pos-6  { top: 48% !important; left: 2% !important;   display: flex !important; }
+  .pos-7  { top: 57% !important; left: 3.5% !important; display: flex !important; }
+  .pos-8  { top: 66% !important; left: 2% !important;   display: flex !important; }
+  .pos-10 { top: 75% !important; left: 4% !important;   display: flex !important; }
+  .pos-11 { top: 83% !important; left: 2.5% !important; display: flex !important; }
+  .pos-13 { top: 88.5% !important; left: 7% !important; display: flex !important; }
 
-  .pos-6  { top: 33% !important; left: 5% !important;  display: flex !important; }
-  .pos-7  { top: 37% !important; left: 76% !important; display: flex !important; }
-  .pos-8  { top: 43% !important; left: 18% !important; display: flex !important; }
-  .pos-19 { top: 33% !important; right: 5% !important; display: flex !important; }
-  .pos-20 { top: 39% !important; right: 68% !important; display: flex !important; }
-  .pos-21 { top: 45% !important; right: 18% !important; display: flex !important; }
-  .pos-9  { top: 49% !important; left: 46% !important; display: flex !important; }
+  .pos-20 { top: 48% !important; right: 2% !important;   display: flex !important; }
+  .pos-21 { top: 57% !important; right: 3.5% !important; display: flex !important; }
+  .pos-22 { top: 66% !important; right: 2% !important;   display: flex !important; }
+  .pos-24 { top: 75% !important; right: 4% !important;   display: flex !important; }
+  .pos-26 { top: 83% !important; right: 2.5% !important; display: flex !important; }
+  .pos-25 { top: 88.5% !important; right: 7% !important; display: flex !important; }
 
-  .pos-10 { top: 56% !important; left: 8% !important;  display: flex !important; }
-  .pos-11 { top: 62% !important; left: 74% !important; display: flex !important; }
-  .pos-12 { top: 68% !important; left: 26% !important; display: flex !important; }
-  .pos-22 { top: 56% !important; right: 8% !important; display: flex !important; }
-  .pos-23 { top: 63% !important; right: 46% !important; display: flex !important; }
-  .pos-24 { top: 70% !important; right: 14% !important; display: flex !important; }
+  /* Bottom Base of the U (Underneath Buttons) */
+  .pos-2  { top: 92% !important;   left: 18% !important; display: flex !important; }
+  .pos-16 { top: 92% !important;   right: 18% !important; display: flex !important; }
+  .pos-14 { top: 94.5% !important; left: 33% !important; display: flex !important; }
+  .pos-27 { top: 94.5% !important; right: 33% !important; display: flex !important; }
+  .pos-28 { top: 95.5% !important; left: 50% !important; right: auto !important; transform: translate(-50%, 0) !important; display: flex !important; }
 
-  .pos-13 { top: 78% !important; left: 10% !important; display: flex !important; }
-  .pos-14 { top: 86% !important; left: 52% !important; display: flex !important; }
-  .pos-25 { top: 79% !important; right: 14% !important; display: flex !important; }
-  .pos-26 { top: 88% !important; left: 18% !important; display: flex !important; }
-  .pos-27 { top: 92% !important; right: 28% !important; display: flex !important; }
-  .pos-28 { top: 95% !important; left: 66% !important; display: flex !important; }
+  /* Completely clear out Title area (top 18% to 47%) */
+  .pos-4, .pos-5, .pos-9, .pos-12, .pos-18, .pos-19, .pos-23 {
+    display: none !important;
+  }
 }
 
 /* Standard Mobile Devices (<= 480px: iPhone 13/14/15/16, Galaxy S, Pixel) */
@@ -953,51 +952,51 @@ button {
     font-size: 0.94rem;
   }
 
-  /* Full Screen Floating Tech Cards on Mobile (All 28 across the screen) */
+  /* Mobile Floating Tech Stack: Elegant U-Shape Framing (Clear Center Title Area) */
   .tech-card-3d {
-    width: 35px !important;
-    height: 35px !important;
+    width: 30px !important;
+    height: 30px !important;
     pointer-events: none;
     opacity: 0.82 !important;
     display: flex !important;
   }
   .tech-icon-img {
-    width: 17px !important;
-    height: 17px !important;
+    width: 15px !important;
+    height: 15px !important;
   }
 
-  .pos-1  { top: 6% !important;  left: 5% !important;   display: flex !important; }
-  .pos-2  { top: 7.5% !important; left: 34% !important;  display: flex !important; }
-  .pos-15 { top: 6% !important;  right: 5% !important;  display: flex !important; }
-  .pos-16 { top: 11% !important; right: 30% !important; display: flex !important; }
+  /* Top Upper Flanks (Above Title) */
+  .pos-1  { top: 6% !important;  left: 2% !important;   display: flex !important; }
+  .pos-3  { top: 13.5% !important; left: 3% !important;  display: flex !important; }
+  .pos-15 { top: 6% !important;  right: 2% !important;  display: flex !important; }
+  .pos-17 { top: 13.5% !important; right: 3% !important; display: flex !important; }
 
-  .pos-3  { top: 16% !important;  left: 8% !important;   display: flex !important; }
-  .pos-4  { top: 21% !important;  left: 50% !important;  display: flex !important; }
-  .pos-5  { top: 25% !important;  left: 22% !important;  display: flex !important; }
-  .pos-17 { top: 16% !important;  right: 8% !important;  display: flex !important; }
-  .pos-18 { top: 23% !important;  right: 26% !important; display: flex !important; }
+  /* Side Pillars of the U (Below Title, Framing Description & Buttons) */
+  .pos-6  { top: 48% !important; left: 1.5% !important; display: flex !important; }
+  .pos-7  { top: 57% !important; left: 3% !important;   display: flex !important; }
+  .pos-8  { top: 66% !important; left: 1.5% !important; display: flex !important; }
+  .pos-10 { top: 75% !important; left: 3.5% !important; display: flex !important; }
+  .pos-11 { top: 83% !important; left: 2% !important;   display: flex !important; }
+  .pos-13 { top: 88.5% !important; left: 6% !important; display: flex !important; }
 
-  .pos-6  { top: 32% !important;  left: 4% !important;   display: flex !important; }
-  .pos-7  { top: 36% !important;  left: 74% !important;  display: flex !important; }
-  .pos-8  { top: 42% !important;  left: 16% !important;  display: flex !important; }
-  .pos-19 { top: 32% !important;  right: 4% !important;  display: flex !important; }
-  .pos-20 { top: 38% !important;  right: 66% !important; display: flex !important; }
-  .pos-21 { top: 44% !important;  right: 16% !important; display: flex !important; }
-  .pos-9  { top: 48% !important;  left: 44% !important;  display: flex !important; }
+  .pos-20 { top: 48% !important; right: 1.5% !important; display: flex !important; }
+  .pos-21 { top: 57% !important; right: 3% !important;   display: flex !important; }
+  .pos-22 { top: 66% !important; right: 1.5% !important; display: flex !important; }
+  .pos-24 { top: 75% !important; right: 3.5% !important; display: flex !important; }
+  .pos-26 { top: 83% !important; right: 2% !important;   display: flex !important; }
+  .pos-25 { top: 88.5% !important; right: 6% !important; display: flex !important; }
 
-  .pos-10 { top: 55% !important;  left: 6% !important;   display: flex !important; }
-  .pos-11 { top: 61% !important;  left: 72% !important;  display: flex !important; }
-  .pos-12 { top: 67% !important;  left: 24% !important;  display: flex !important; }
-  .pos-22 { top: 55% !important;  right: 6% !important;  display: flex !important; }
-  .pos-23 { top: 62% !important;  right: 44% !important; display: flex !important; }
-  .pos-24 { top: 69% !important;  right: 12% !important; display: flex !important; }
+  /* Bottom Base of the U (Underneath Buttons) */
+  .pos-2  { top: 92% !important;   left: 17% !important; display: flex !important; }
+  .pos-16 { top: 92% !important;   right: 17% !important; display: flex !important; }
+  .pos-14 { top: 94.5% !important; left: 32% !important; display: flex !important; }
+  .pos-27 { top: 94.5% !important; right: 32% !important; display: flex !important; }
+  .pos-28 { top: 95.5% !important; left: 50% !important; right: auto !important; transform: translate(-50%, 0) !important; display: flex !important; }
 
-  .pos-13 { top: 77% !important;  left: 8% !important;   display: flex !important; }
-  .pos-14 { top: 85% !important;  left: 48% !important;  display: flex !important; }
-  .pos-25 { top: 78% !important;  right: 12% !important; display: flex !important; }
-  .pos-26 { top: 87% !important;  left: 16% !important;  display: flex !important; }
-  .pos-27 { top: 91% !important;  right: 26% !important; display: flex !important; }
-  .pos-28 { top: 94% !important;  left: 64% !important;  display: flex !important; }
+  /* Completely clear out Title area (top 18% to 47%) */
+  .pos-4, .pos-5, .pos-9, .pos-12, .pos-18, .pos-19, .pos-23 {
+    display: none !important;
+  }
 }
 
 /* Extra Small Phones (<= 360px: iPhone SE 1st gen, Galaxy A series) */
@@ -1529,5 +1528,252 @@ button {
   }
   .coverflow-dot.is-active {
     width: 13px;
+  }
+}
+
+
+/* ===================================================================
+   12. OUR WORK SECTION (SELECTED PROJECTS - MINIMAL & CLEAN)
+   =================================================================== */
+.work-section {
+  position: relative;
+  z-index: 10;
+  padding: 40px 0 120px 0;
+  background: var(--bg-scene);
+  overflow: hidden;
+}
+
+.work-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.85rem;
+  width: 100%;
+}
+
+.work-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.2px solid rgba(226, 232, 240, 0.9);
+  border-radius: 20px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06),
+              0 0 1px 1px rgba(255, 255, 255, 0.9) inset;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease;
+  overflow: hidden;
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 20px 45px -12px rgba(14, 165, 233, 0.16),
+              0 0 25px -4px rgba(56, 189, 248, 0.2),
+              0 0 1px 1px #ffffff inset;
+}
+
+.work-card-media {
+  position: relative;
+  width: 100%;
+  height: 205px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #090d16;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  margin-bottom: 1.15rem;
+  flex-shrink: 0;
+}
+
+.work-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.work-card:hover .work-card-img {
+  transform: scale(1.035);
+}
+
+.work-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.work-card:hover .work-card-overlay {
+  opacity: 1;
+}
+
+.work-card-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px 20px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.86rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(6px);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.work-card:hover .work-card-visit-btn {
+  transform: translateY(0);
+}
+
+.work-card-visit-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.work-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.work-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.work-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.work-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0369a1;
+  background: rgba(224, 242, 254, 0.75);
+  padding: 3px 9px;
+  border-radius: 9999px;
+  border: 1px solid rgba(186, 230, 253, 0.85);
+}
+
+.work-domain-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #475569;
+  background: rgba(241, 245, 249, 0.9);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.work-domain-pill:hover {
+  color: #0284c7;
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(224, 242, 254, 0.5);
+}
+
+.work-domain-pill i {
+  font-size: 0.65rem;
+}
+
+.work-title {
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+
+.work-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #475569;
+  margin-bottom: 1.15rem;
+  flex-grow: 1;
+}
+
+.work-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+/* Responsive Rules for Work Section */
+@media (max-width: 1024px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .work-section {
+    padding: 30px 0 80px 0;
+  }
+  .work-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+    gap: 1.5rem;
+  }
+  .work-card-media {
+    height: 185px;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-section {
+    padding: 20px 0 70px 0;
+  }
+  .work-container {
+    padding: 0 1rem;
+  }
+  .work-card {
+    padding: 1rem;
+    border-radius: 18px;
+  }
+  .work-card-media {
+    height: 170px;
+    margin-bottom: 0.95rem;
+  }
+  .work-title {
+    font-size: 1.2rem;
+  }
+  .work-desc {
+    font-size: 0.84rem;
+    line-height: 1.5;
   }
 }
