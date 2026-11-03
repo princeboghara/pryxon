@@ -73,15 +73,15 @@ function initPryxon() {
      =================================================================== */
   if (typeof window.initCloudSky === 'function') {
     window.initCloudSky('hero3dCanvas', {
-      zenith: '#38bdf8',    // Luminous celestial sky
-      horizon: '#fce7f3',   // Soft warm pastel sunrise blush / pearl
+      zenith: '#0284c7',    // Sky blue
+      horizon: '#d4eafc',   // Soft horizon
       cloud: '#ffffff',     // Fluffy white clouds
-      glow: 'rgba(253, 224, 71, 0.45)', // Warm golden sun aura
+      glow: 'rgba(255, 255, 255, 0.95)',
       coverage: 0.62,       // Lush cloud coverage
       speed: 1.2,           // Natural drift
       size: 1.3,            // Full cumulus cloud puffs
       softness: 2.4,        // Soft feathered edges
-      shadow: 0.58,         // Volumetric atmospheric depth
+      shadow: 0.65,         // Volumetric atmospheric depth
       cirrus: 0.7,          // High wispy veil
       sunX: 0.82,
       sunY: 0.94,
@@ -371,197 +371,6 @@ function initPryxon() {
   }
 
   initCoverflowGallery();
-
-  /* ===================================================================
-     5. ORIGINKIT 3D COVERFLOW CAROUSEL (OUR WORK SECTION)
-     =================================================================== */
-  function initWorkCoverflow() {
-    const workWrapper = document.getElementById('workCoverflow');
-    const cards = Array.from(document.querySelectorAll('.work-card'));
-    const prevBtn = document.getElementById('workPrevBtn');
-    const nextBtn = document.getElementById('workNextBtn');
-    const dotsContainer = document.getElementById('workDots');
-
-    if (!workWrapper || cards.length === 0) return;
-
-    const n = cards.length;
-    let active = 0;
-    let isLocked = false;
-    let autoplayTimer = null;
-
-    // Create dots
-    if (dotsContainer) {
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < n; i++) {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'coverflow-dot' + (i === 0 ? ' is-active' : '');
-        dot.setAttribute('aria-label', `Go to project slide ${i + 1}`);
-        dot.addEventListener('click', () => {
-          setActive(i);
-          resetAutoplay();
-        });
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function updateWorkCoverflow() {
-      const isMobile = window.innerWidth <= 640;
-      const gap = isMobile ? 6.5 : 9.0;
-      const tilt = isMobile ? 14 : 18;
-      const sideTilt = isMobile ? 4 : 6;
-      const depth = isMobile ? 180 : 240;
-      const scaleStep = isMobile ? 0.14 : 0.15;
-
-      cards.forEach((card, i) => {
-        let rel = i - active;
-        if (rel > n / 2) rel -= n;
-        if (rel < -n / 2) rel += n;
-
-        const ax = Math.abs(rel);
-        const visible = ax <= 2;
-        const isActive = rel === 0;
-
-        const sc = Math.max(0.42, 1 - ax * scaleStep);
-        const tx = rel * (gap * 30);
-        const tz = -ax * depth;
-        const ry = -rel * tilt;
-        const rz = rel * sideTilt;
-
-        card.style.transform = `translate(-50%, -50%) translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg) rotateZ(${rz.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
-        card.style.opacity = visible ? (isActive ? '1' : (ax === 1 ? '0.78' : '0.45')) : '0';
-        card.style.zIndex = (10 - ax).toString();
-        card.style.pointerEvents = visible ? 'auto' : 'none';
-
-        if (isActive) {
-          card.classList.add('is-active');
-          card.setAttribute('aria-hidden', 'false');
-        } else {
-          card.classList.remove('is-active');
-          card.setAttribute('aria-hidden', 'true');
-        }
-      });
-
-      // Update dots
-      if (dotsContainer) {
-        const dots = dotsContainer.querySelectorAll('.coverflow-dot');
-        dots.forEach((dot, idx) => {
-          if (idx === active) {
-            dot.classList.add('is-active');
-          } else {
-            dot.classList.remove('is-active');
-          }
-        });
-      }
-    }
-
-    function setActive(newActive) {
-      if (isLocked) return;
-      isLocked = true;
-      active = (((newActive % n) + n) % n);
-      updateWorkCoverflow();
-      setTimeout(() => {
-        isLocked = false;
-      }, 550);
-    }
-
-    // Card click brings to center
-    cards.forEach((card, idx) => {
-      card.addEventListener('click', (e) => {
-        if (idx !== active) {
-          e.preventDefault();
-          setActive(idx);
-          resetAutoplay();
-        }
-      });
-    });
-
-    // Prev / Next button listeners
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        setActive(active - 1);
-        resetAutoplay();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        setActive(active + 1);
-        resetAutoplay();
-      });
-    }
-
-    // Keyboard arrow navigation
-    workWrapper.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        setActive(active + 1);
-        resetAutoplay();
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        setActive(active - 1);
-        resetAutoplay();
-      }
-    });
-
-    // Touch swipe navigation for mobile
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    workWrapper.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 0) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-
-    workWrapper.addEventListener('touchend', (e) => {
-      if (e.changedTouches.length > 0) {
-        const deltaX = e.changedTouches[0].clientX - touchStartX;
-        const deltaY = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
-          if (deltaX < 0) {
-            setActive(active + 1);
-          } else {
-            setActive(active - 1);
-          }
-          resetAutoplay();
-        }
-      }
-    }, { passive: true });
-
-    // Autoplay (every 4.2s, pauses on hover)
-    function startAutoplay() {
-      stopAutoplay();
-      autoplayTimer = setInterval(() => {
-        if (!document.hidden) {
-          setActive(active + 1);
-        }
-      }, 4200);
-    }
-
-    function stopAutoplay() {
-      if (autoplayTimer) {
-        clearInterval(autoplayTimer);
-        autoplayTimer = null;
-      }
-    }
-
-    function resetAutoplay() {
-      stopAutoplay();
-      startAutoplay();
-    }
-
-    workWrapper.addEventListener('mouseenter', stopAutoplay);
-    workWrapper.addEventListener('mouseleave', startAutoplay);
-    window.addEventListener('resize', updateWorkCoverflow, { passive: true });
-
-    // Initial render & start autoplay
-    updateWorkCoverflow();
-    startAutoplay();
-  }
-
-  initWorkCoverflow();
 }
 
 if (document.readyState === 'loading') {
