@@ -73,15 +73,15 @@ function initPryxon() {
      =================================================================== */
   if (typeof window.initCloudSky === 'function') {
     window.initCloudSky('hero3dCanvas', {
-      zenith: '#0284c7',    // Sky blue
-      horizon: '#d4eafc',   // Soft horizon
+      zenith: '#38bdf8',    // Luminous celestial sky
+      horizon: '#fce7f3',   // Soft warm pastel sunrise blush / pearl
       cloud: '#ffffff',     // Fluffy white clouds
-      glow: 'rgba(255, 255, 255, 0.95)',
+      glow: 'rgba(253, 224, 71, 0.45)', // Warm golden sun aura
       coverage: 0.62,       // Lush cloud coverage
       speed: 1.2,           // Natural drift
       size: 1.3,            // Full cumulus cloud puffs
       softness: 2.4,        // Soft feathered edges
-      shadow: 0.65,         // Volumetric atmospheric depth
+      shadow: 0.58,         // Volumetric atmospheric depth
       cirrus: 0.7,          // High wispy veil
       sunX: 0.82,
       sunY: 0.94,
