@@ -445,3 +445,4 @@ const __originkitPresetProps = {
 export default function Smooth3DSlideshow(props: Record<string, unknown>) {
   return <__OriginkitBase_Smooth3DSlideshow {...(__originkitPresetProps as Record<string, unknown>)} {...props} />;
 }
+
