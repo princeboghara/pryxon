@@ -8,6 +8,22 @@
 
 function initPryxon() {
   /* ===================================================================
+     0. SCROLL READING PROGRESS BAR
+     =================================================================== */
+  const scrollProgressBar = document.getElementById('scrollProgressBar');
+  if (scrollProgressBar) {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    };
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+  }
+
+  /* ===================================================================
      1. TOPBAR & MOBILE NAVIGATION
      =================================================================== */
   const mobileToggleBtn = document.getElementById('mobileToggleBtn');
@@ -251,7 +267,7 @@ function initPryxon() {
         if (isInteractive) {
           card.style.transition = 'none';
         } else {
-          card.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+          card.style.transition = 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
         }
 
         card.style.transform = `translate(-50%, -50%) translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg) rotateZ(${rz.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
@@ -289,7 +305,7 @@ function initPryxon() {
       renderCoverflow(0, false);
       setTimeout(() => {
         isLocked = false;
-      }, 550);
+      }, 650);
     }
 
     // Card click brings to center if not dragged
@@ -336,7 +352,12 @@ function initPryxon() {
       }
     });
 
-    // Real-time Pointer (Touch & Mouse) Gesture Physics
+    // Real-time Pointer (Touch & Mouse) Gesture Physics with Momentum
+    let dragStartTime = 0;
+    let lastMoveTime = 0;
+    let lastMoveX = 0;
+    let velocityX = 0;
+
     function getSwipeDistance() {
       const cardWidth = window.innerWidth <= 480 ? 295 : (window.innerWidth <= 768 ? 340 : 420);
       return cardWidth * 0.62;
@@ -351,6 +372,10 @@ function initPryxon() {
       dragStartY = e.clientY;
       activeOnStart = active;
       currentDragOffset = 0;
+      dragStartTime = performance.now();
+      lastMoveTime = dragStartTime;
+      lastMoveX = e.clientX;
+      velocityX = 0;
       stopAutoplay();
     }
 
@@ -380,6 +405,14 @@ function initPryxon() {
 
       if (isDragging) {
         if (e.cancelable) e.preventDefault();
+        const now = performance.now();
+        const dt = now - lastMoveTime;
+        if (dt > 12) {
+          velocityX = (e.clientX - lastMoveX) / dt;
+          lastMoveTime = now;
+          lastMoveX = e.clientX;
+        }
+
         const swipeDistance = getSwipeDistance();
         // Negative deltaX (dragging to the left) moves forward (positive offset)
         currentDragOffset = -deltaX / swipeDistance;
@@ -399,10 +432,18 @@ function initPryxon() {
         } catch (_) {}
 
         const deltaX = e.clientX - dragStartX;
+        const swipeDuration = performance.now() - dragStartTime;
+        const isQuickFlick = swipeDuration < 320 && Math.abs(deltaX) > 18;
         const threshold = 32;
 
         let target = activeOnStart;
-        if (deltaX < -threshold) {
+        if (isQuickFlick || Math.abs(velocityX) > 0.32) {
+          if (velocityX < -0.18 || deltaX < -threshold) {
+            target = activeOnStart + 1;
+          } else if (velocityX > 0.18 || deltaX > threshold) {
+            target = activeOnStart - 1;
+          }
+        } else if (deltaX < -threshold) {
           target = activeOnStart + Math.max(1, Math.round(Math.abs(currentDragOffset)));
         } else if (deltaX > threshold) {
           target = activeOnStart - Math.max(1, Math.round(Math.abs(currentDragOffset)));
@@ -511,6 +552,46 @@ function initPryxon() {
     renderCoverflow(0, false);
     startAutoplay();
   }
+
+  /* ===================================================================
+     5. INTERACTIVE CONTACT FORM SUBMISSION
+     =================================================================== */
+  window.handleProjectFormSubmit = function() {
+    const form = document.getElementById('projectInquiryForm');
+    const statusMsg = document.getElementById('formStatusMsg');
+    const submitBtn = document.getElementById('formSubmitBtn');
+    if (!form || !statusMsg) return;
+
+    const nameInput = document.getElementById('userName');
+    const emailInput = document.getElementById('userEmail');
+    const serviceInput = document.getElementById('serviceSelect');
+    const detailsInput = document.getElementById('projectDetails');
+
+    if (!nameInput.value.trim() || !emailInput.value.trim() || !serviceInput.value || !detailsInput.value.trim()) {
+      statusMsg.style.color = '#ef4444';
+      statusMsg.textContent = 'Please fill out all required fields.';
+      return;
+    }
+
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Sending Inquiry...</span> <i class="fa-solid fa-circle-notch fa-spin"></i>`;
+    }
+
+    setTimeout(() => {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+      statusMsg.style.color = '#10b981';
+      statusMsg.innerHTML = `<i class="fa-solid fa-circle-check"></i> Thank you, <strong>${nameInput.value.trim()}</strong>! Your inquiry has been received. Our architects will contact you within 24 hours.`;
+      form.reset();
+      setTimeout(() => {
+        statusMsg.textContent = '';
+      }, 7000);
+    }, 600);
+  };
 
   initCoverflowGallery();
 }

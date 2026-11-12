@@ -15,14 +15,20 @@
 
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/style.css?v=16" />
 </head>
 <body>
 
-  <!-- Ambient lighting background -->
+  <!-- Top Reading / Scroll Progress Line -->
+  <div class="scroll-progress-line" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Ambient Living Scene & Architectural Grid Background -->
   <div class="ambient-scene" aria-hidden="true">
     <div class="sunlight-beam"></div>
-    <div class="ambient-glow"></div>
+    <div class="ambient-mesh-blob blob-1"></div>
+    <div class="ambient-mesh-blob blob-2"></div>
+    <div class="ambient-mesh-blob blob-3"></div>
+    <div class="architectural-grid"></div>
   </div>
 
   <!-- ================= FLOATING TOPBAR ================= -->
@@ -43,7 +49,7 @@
           <a href="#services" class="nav-link">Services</a>
         </li>
         <li>
-          <a href="#our-work" class="nav-link">Our Work</a>
+          <a href="#work" class="nav-link">Our Work</a>
         </li>
         <li>
           <a href="#about" class="nav-link">About</a>
@@ -58,9 +64,11 @@
         <!-- Get Started Button -->
         <a href="#contact" class="btn-get-started">
           <span>Get Started</span>
-          <svg class="arrow-svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <span class="btn-arrow-badge">
+            <svg class="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
         </a>
 
         <!-- Mobile Menu Toggle Button (for responsive screens) -->
@@ -78,16 +86,18 @@
       <ul class="mobile-nav-list">
         <li><a href="#home" class="mobile-nav-link active">Home</a></li>
         <li><a href="#services" class="mobile-nav-link">Services</a></li>
-        <li><a href="#our-work" class="mobile-nav-link">Our Work</a></li>
+        <li><a href="#work" class="mobile-nav-link">Our Work</a></li>
         <li><a href="#about" class="mobile-nav-link">About</a></li>
         <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
       </ul>
       <div class="mobile-drawer-footer">
         <a href="#contact" class="btn-get-started btn-mobile-full">
           <span>Get Started</span>
-          <svg class="arrow-svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <span class="btn-arrow-badge">
+            <svg class="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
         </a>
       </div>
     </div>
@@ -243,13 +253,15 @@
         <div class="hero-action-group">
           <a href="#contact" class="btn btn-hero-primary">
             <span>Start Your Project</span>
-            <svg class="arrow-svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <span class="btn-arrow-badge">
+              <svg class="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
           </a>
           
           <a href="#services" class="btn btn-hero-secondary">
-            <i class="fa-solid fa-circle-play play-icon"></i>
+            <span class="btn-play-badge"><i class="fa-solid fa-play"></i></span>
             <span>Explore Capabilities</span>
           </a>
         </div>
@@ -262,16 +274,16 @@
   <section class="services-section" id="services">
     <div class="services-container">
       
-      <!-- Section Header (Clean & Minimal) -->
+      <!-- Section Header (Clean & Direct) -->
       <div class="section-header">
         <div class="section-badge">
-          <span>Our Services</span>
+          <span>Capabilities</span>
         </div>
         <h2 class="section-title">
-          Engineered With Precision.
+          What We Build.
         </h2>
         <p class="section-subtitle">
-          Next-generation digital solutions designed to elevate and scale your business.
+          Next-generation websites, bespoke software, and automated digital solutions built for scale.
         </p>
       </div>
 
@@ -285,7 +297,7 @@
             <div class="coverflow-card-inner">
               <div class="coverflow-card-glow" aria-hidden="true"></div>
               <div class="coverflow-card-media">
-                <img src="assets/images/services/service-web-dashboard.jpg" alt="Web Development SaaS Analytics Dashboard" class="coverflow-card-img" loading="lazy" />
+                <img src="assets/images/services/service-web-dashboard-light.jpg" alt="Web Development SaaS Analytics Dashboard in Light Mode" class="coverflow-card-img" loading="lazy" />
               </div>
               <div class="service-card-meta">
                 <span class="service-tag">Web Platforms</span>
@@ -313,7 +325,7 @@
             <div class="coverflow-card-inner">
               <div class="coverflow-card-glow" aria-hidden="true"></div>
               <div class="coverflow-card-media">
-                <img src="assets/images/services/service-ecommerce-store.jpg" alt="E-Commerce Storefront Brand Website" class="coverflow-card-img" loading="lazy" />
+                <img src="assets/images/services/service-ecommerce-light.jpg" alt="E-Commerce Storefront Platform in Light Mode" class="coverflow-card-img" loading="lazy" />
               </div>
               <div class="service-card-meta">
                 <span class="service-tag">Online Stores</span>
@@ -601,8 +613,341 @@
     </div>
   </section>
 
+  <!-- ================= ABOUT SECTION (BENTO GRID VALUE PILLARS) ================= -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      
+      <!-- Section Header -->
+      <div class="section-header">
+        <div class="section-badge">
+          <span>About Pryxon</span>
+        </div>
+        <h2 class="section-title">
+          Crafting Category-Defining Digital Products.
+        </h2>
+        <p class="section-subtitle">
+          We combine cutting-edge engineering, bespoke design, and scalable cloud architecture to help ambitious founders and businesses thrive globally.
+        </p>
+      </div>
+
+      <!-- Bento Grid Feature Pillars -->
+      <div class="about-bento-grid">
+        
+        <!-- Pillar 1: Engineering Precision & Speed (Large Bento Card) -->
+        <div class="bento-card bento-card-large">
+          <div class="bento-card-content">
+            <div class="bento-icon-wrap">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <span class="bento-tag">Zero Bloat</span>
+            <h3 class="bento-title">Built with Modern, High-Performance Tech</h3>
+            <p class="bento-desc">
+              We engineer with Next.js 15, TypeScript, Python, and edge-native architectures. Zero slow templates or legacy code — every line is written for speed, security, and sub-800ms global load times.
+            </p>
+            <div class="bento-metrics-row">
+              <div class="bento-metric-item">
+                <span class="bento-metric-val">99+</span>
+                <span class="bento-metric-lbl">PageSpeed Score</span>
+              </div>
+              <div class="bento-metric-item">
+                <span class="bento-metric-val">&lt; 0.8s</span>
+                <span class="bento-metric-lbl">Global Edge Latency</span>
+              </div>
+              <div class="bento-metric-item">
+                <span class="bento-metric-val">99.99%</span>
+                <span class="bento-metric-lbl">Uptime Architecture</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Conversion & Product UX -->
+        <div class="bento-card">
+          <div class="bento-card-content">
+            <div class="bento-icon-wrap">
+              <i class="fa-solid fa-compass-drafting"></i>
+            </div>
+            <span class="bento-tag">Design That Converts</span>
+            <h3 class="bento-title">Intuitive Human-Centric UI/UX</h3>
+            <p class="bento-desc">
+              Every interface is crafted to reduce friction and guide users seamlessly toward conversion. We design for clarity, trust, and lasting engagement.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Direct Senior Leadership -->
+        <div class="bento-card">
+          <div class="bento-card-content">
+            <div class="bento-icon-wrap">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <span class="bento-tag">Founder-Led</span>
+            <h3 class="bento-title">Direct Senior Leadership</h3>
+            <p class="bento-desc">
+              No junior handoffs or convoluted agency layers. You collaborate directly with senior architects and developers who genuinely care about your product's outcome.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 4: End-to-End Execution (Wide Bento Card) -->
+        <div class="bento-card bento-card-wide">
+          <div class="bento-card-content">
+            <div class="bento-icon-wrap">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <span class="bento-tag">Full Lifecycle</span>
+            <h3 class="bento-title">From Concept Wireframe to Scaled Cloud Deployment</h3>
+            <p class="bento-desc">
+              We handle the entire journey: product strategy, interactive Figma prototyping, frontend development, database engineering, payment integration, and post-launch maintenance.
+            </p>
+            <div class="bento-feature-badges">
+              <span class="bento-badge"><i class="fa-solid fa-check"></i> 100% Code Ownership</span>
+              <span class="bento-badge"><i class="fa-solid fa-check"></i> Automated CI/CD Deployment</span>
+              <span class="bento-badge"><i class="fa-solid fa-check"></i> Dedicated Post-Launch Support</span>
+              <span class="bento-badge"><i class="fa-solid fa-check"></i> Enterprise Security Standards</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION (SPLIT INQUIRY & CONNECT) ================= -->
+  <section class="contact-section" id="contact">
+    <div class="contact-container">
+      <div class="contact-grid">
+        
+        <!-- Left Column: Contact Details & Info -->
+        <div class="contact-info-col">
+          <div class="section-badge">
+            <span>Get In Touch</span>
+          </div>
+          <h2 class="contact-title">
+            Let’s Build Something Exceptional Together.
+          </h2>
+          <p class="contact-desc">
+            Have a project in mind, need to revamp an existing platform, or looking to deploy an automated AI workflow? Tell us about your vision.
+          </p>
+
+          <div class="contact-cards-list">
+            <!-- Card 1: Direct Email -->
+            <a href="mailto:contact@pryxon.in" class="contact-method-card">
+              <div class="contact-method-icon">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              <div class="contact-method-content">
+                <span class="contact-method-label">Email Us Directly</span>
+                <span class="contact-method-value">contact@pryxon.in</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square contact-card-arrow"></i>
+            </a>
+
+            <!-- Card 2: WhatsApp -->
+            <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" class="contact-method-card">
+              <div class="contact-method-icon whatsapp-icon">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div class="contact-method-content">
+                <span class="contact-method-label">Quick Chat on WhatsApp</span>
+                <span class="contact-method-value">+91 (Instant Response)</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square contact-card-arrow"></i>
+            </a>
+
+            <!-- Card 3: Studio Location -->
+            <div class="contact-method-card">
+              <div class="contact-method-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="contact-method-content">
+                <span class="contact-method-label">Studio Headquarters</span>
+                <span class="contact-method-value">Surat, Gujarat, India (Global Remote)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Studio Live Availability Pill -->
+          <div class="contact-status-box">
+            <span class="status-indicator-dot"></span>
+            <div class="status-box-text">
+              <strong>Available for Q1 / Q2 Projects:</strong>
+              <span>Selective client onboardings &amp; dedicated product sprints.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Project Inquiry Form -->
+        <div class="contact-form-col">
+          <div class="contact-form-card">
+            <h3 class="form-card-title">Send a Project Inquiry</h3>
+            <p class="form-card-sub">Fill out the details below and we'll reply within 24 hours.</p>
+
+            <form class="project-inquiry-form" id="projectInquiryForm" onsubmit="event.preventDefault(); window.handleProjectFormSubmit ? window.handleProjectFormSubmit() : alert('Thank you! We will get back to you shortly.');">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="userName" class="form-label">Your Name</label>
+                  <input type="text" id="userName" name="name" class="form-input" placeholder="e.g. John Doe" required />
+                </div>
+                <div class="form-group">
+                  <label for="userEmail" class="form-label">Email Address</label>
+                  <input type="email" id="userEmail" name="email" class="form-input" placeholder="john@example.com" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="serviceSelect" class="form-label">Service Needed</label>
+                <select id="serviceSelect" name="service" class="form-select" required>
+                  <option value="" disabled selected>Select a primary service</option>
+                  <option value="web-dev">Web Development &amp; SaaS Platforms</option>
+                  <option value="ecommerce">E-Commerce &amp; D2C Storefronts</option>
+                  <option value="mobile-app">Mobile App (iOS &amp; Android)</option>
+                  <option value="custom-software">Custom Enterprise Software / Cloud</option>
+                  <option value="whatsapp-crm">WhatsApp CRM &amp; Lead Generation</option>
+                  <option value="ai-automation">AI Automations &amp; LLM Workflows</option>
+                  <option value="other">Other / Custom Scope</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Estimated Project Budget</label>
+                <div class="budget-pills-group">
+                  <label class="budget-pill">
+                    <input type="radio" name="budget" value="1k-3k" />
+                    <span>$1k – $3k</span>
+                  </label>
+                  <label class="budget-pill">
+                    <input type="radio" name="budget" value="3k-8k" checked />
+                    <span>$3k – $8k</span>
+                  </label>
+                  <label class="budget-pill">
+                    <input type="radio" name="budget" value="8k-15k" />
+                    <span>$8k – $15k</span>
+                  </label>
+                  <label class="budget-pill">
+                    <input type="radio" name="budget" value="15k+" />
+                    <span>$15k+</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="projectDetails" class="form-label">Project Details</label>
+                <textarea id="projectDetails" name="details" class="form-textarea" rows="4" placeholder="Briefly describe your goals, timeline, and any specific requirements..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-form-submit" id="formSubmitBtn">
+                <span>Submit Inquiry</span>
+                <span class="btn-arrow-badge">
+                  <svg class="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+
+              <div class="form-status-msg" id="formStatusMsg" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER & MASSIVE BRAND WATERMARK ================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Top Footer Grid -->
+      <div class="footer-top-grid">
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col footer-col-brand">
+          <a href="#" class="footer-brand-logo" aria-label="Pryxon Studio Home">
+            <img src="assets/images/logo_pryxon_studio.png" alt="Pryxon Studio" class="footer-logo-img" />
+          </a>
+          <p class="footer-brand-tagline">
+            We engineer next-generation web platforms, bespoke software, and automated digital solutions that empower businesses to lead globally.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://github.com/princeboghara" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="X / Twitter">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Capabilities</a></li>
+            <li><a href="#work">Featured Work</a></li>
+            <li><a href="#about">About Studio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Services -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Capabilities</h4>
+          <ul class="footer-links-list">
+            <li><a href="#services">Web Applications</a></li>
+            <li><a href="#services">E-Commerce &amp; D2C</a></li>
+            <li><a href="#services">iOS &amp; Android Apps</a></li>
+            <li><a href="#services">Custom Cloud Architecture</a></li>
+            <li><a href="#services">WhatsApp CRM Engines</a></li>
+            <li><a href="#services">AI Automation Workflows</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Studio Connect -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Studio</h4>
+          <ul class="footer-links-list">
+            <li><span class="footer-info-item"><i class="fa-solid fa-envelope"></i> contact@pryxon.in</span></li>
+            <li><span class="footer-info-item"><i class="fa-solid fa-location-dot"></i> Surat, Gujarat, India</span></li>
+          </ul>
+          <div class="footer-status-pill">
+            <span class="pulse-indicator"></span>
+            <span>All Systems Operational</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Sub-bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          &copy; 2026 Pryxon Studio. All rights reserved.
+        </p>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <span class="footer-dot-sep">&bull;</span>
+          <a href="#">Terms of Service</a>
+          <span class="footer-dot-sep">&bull;</span>
+          <a href="#">Security</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Massive Monumental Brand Watermark (Official PRYXON Brand Typography) -->
+    <div class="footer-monumental-watermark" aria-hidden="true">
+      <span class="watermark-text">PRY<span class="watermark-accent">X</span>ON</span>
+    </div>
+  </footer>
+
   <!-- Originkit Cloud Sky WebGL Shader & Custom Scripts -->
   <script src="js/cloud-sky.js?v=4"></script>
-  <script src="js/main.js?v=10"></script>
+  <script src="js/main.js?v=15"></script>
 </body>
 </html>
