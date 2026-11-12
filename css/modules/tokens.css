@@ -1,0 +1,46 @@
+/* ===================================================================
+   PRYXON - FLOATING TOPBAR & LIQUID GLASS 3D TECH HERO BANNER
+   Aesthetic: Ultra-modern Frosted Glass, Center Stage with 3D Canvas
+   Features:
+   - Original PRYXON Brand Logo
+   - Animated Line Fill Hover Effect on Nav Links (Left to Right, Soft & Smooth)
+   - Floating Pill Navigation
+   - Centered High-Impact Corporate Hero Banner (Clean Headline & Subtitle)
+   - Pure Liquid Glass Circular Floating 3D Tech Icons (Below Topbar Area)
+   =================================================================== */
+
+/* ===================================================================
+   0. OFFICIAL PRYXON BRAND TYPEFACE (PROXON)
+   =================================================================== */
+@font-face {
+  font-family: 'Proxon';
+  src: url('../assets/fonts/proxon.woff2') format('woff2'),
+       url('../assets/fonts/proxon.woff') format('woff'),
+       url('../assets/fonts/proxon.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 1. Global Variables & Design Tokens - Premium Digital Studio */
+:root {
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-brand: 'Proxon', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  /* Scene background colors */
+  --bg-scene: #f1f5f9;
+  --bg-scene-gradient: radial-gradient(circle at 75% 15%, rgba(255, 255, 255, 0.98) 0%, rgba(241, 245, 249, 0.96) 50%, #e2e8f0 100%);
+  
+  /* Floating Topbar Frosted Glass */
+  --topbar-bg: rgba(255, 255, 255, 0.88);
+  --topbar-border: rgba(226, 232, 240, 0.85);
+  --topbar-shadow: 0 8px 30px -8px rgba(15, 23, 42, 0.08), 
+                   0 1px 2px rgba(15, 23, 42, 0.04),
+                   inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  
+  /* Navigation Link Colors */
+  --text-main: #090d16;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --text-hover: #090d16;
+  --text-active: #090d16;

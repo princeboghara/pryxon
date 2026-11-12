@@ -1,0 +1,153 @@
+  
+  /* Brand Typography & Lines */
+  --nav-line: #090d16;
+  
+  /* Human-Engineered Studio CTA Buttons (Luminous Midnight Titanium) */
+  --btn-primary-bg: linear-gradient(180deg, #1e293b 0%, #0a0f1d 100%);
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: rgba(255, 255, 255, 0.2);
+  --btn-primary-shadow: 0 1px 2px rgba(15, 23, 42, 0.1), 0 8px 22px -3px rgba(15, 23, 42, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  --btn-primary-shadow-hover: 0 3px 6px rgba(15, 23, 42, 0.15), 0 14px 30px -3px rgba(15, 23, 42, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  
+  /* Dimensions & Transitions */
+  --topbar-height: 68px;
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. Base & Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-scene-gradient);
+  background-color: var(--bg-scene);
+  min-height: 100vh;
+  min-height: 100svh;
+  color: var(--text-main);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Top Reading / Scroll Progress Line */
+.scroll-progress-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #090d16 0%, #1e40af 50%, #38bdf8 100%);
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  transition: width 0.08s linear;
+}
+
+/* 3. Ambient Scene Background & Living Architecture */
+.ambient-scene {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.architectural-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 85%);
+  pointer-events: none;
+}
+
+.ambient-mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.blob-1 {
+  top: 35%;
+  left: -6%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(186, 230, 253, 0.5) 0%, rgba(224, 242, 254, 0) 70%);
+  animation: floatOrb 22s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  top: 60%;
+  right: -8%;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(199, 210, 254, 0.45) 0%, rgba(224, 231, 255, 0) 70%);
+  animation: floatOrb 26s ease-in-out infinite alternate-reverse;
+}
+
+.blob-3 {
+  top: 85%;
+  left: 20%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(224, 242, 254, 0.45) 0%, rgba(241, 245, 249, 0) 70%);
+  animation: floatOrb 30s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(35px, -30px) scale(1.06); }
+  100% { transform: translate(-25px, 25px) scale(0.96); }
+}
+
+.sunlight-beam {
+  position: absolute;
+  top: -120px;
+  right: 12%;
+  width: 600px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(55px);
+  transform: rotate(20deg);
+}
+
+/* 4. Floating Header Wrapper */

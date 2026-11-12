@@ -1,0 +1,903 @@
+   11. SERVICES SECTION (ORIGINKIT 3D COVERFLOW GALLERY - SEAMLESS BLEND)
+   =================================================================== */
+.services-section {
+  position: relative;
+  z-index: 10;
+  padding: 50px 0 130px 0;
+  background: var(--bg-scene); /* Smooth, unified background - zero cut */
+  overflow: hidden;
+}
+
+.services-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Section Header (Clean, Minimal & Modern) */
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2.4rem auto;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.badge-icon {
+  font-size: 0.78rem;
+  color: #090d16;
+}
+
+.section-title {
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  color: #090d16;
+  margin-bottom: 0.65rem;
+}
+
+.section-subtitle {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #64748b;
+  font-weight: 400;
+  max-width: 540px;
+  margin: 0 auto;
+}
+/* ===================================================================
+   ORIGINKIT 3D COVERFLOW STAGE & CARDS (SOFT, MINIMAL & PRODUCT VISUALS)
+   =================================================================== */
+.coverflow-gallery-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 590px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1600px;
+  overflow: visible;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.coverflow-gallery-wrapper.is-dragging {
+  cursor: grabbing !important;
+}
+
+.coverflow-stage {
+  position: relative;
+  width: 420px;
+  height: 515px;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+}
+
+.coverflow-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 420px;
+  height: 515px;
+  border-radius: 22px;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.coverflow-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.2px solid rgba(226, 232, 240, 0.9);
+  border-radius: 22px;
+  padding: 1.25rem 1.35rem 1.4rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px -8px rgba(15, 23, 42, 0.06),
+              0 1px 3px rgba(15, 23, 42, 0.04),
+              0 0 1px 1px rgba(255, 255, 255, 0.95) inset;
+  overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.coverflow-card.is-active .coverflow-card-inner {
+  border-color: #090d16;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.14),
+              0 2px 6px rgba(15, 23, 42, 0.04),
+              0 0 1px 1px #ffffff inset;
+}
+
+.coverflow-card-glow {
+  display: none;
+}
+
+.coverflow-card.is-active .coverflow-card-glow {
+  display: none;
+}
+
+/* Dim overlay to give depth to inactive cards */
+.coverflow-dim-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.coverflow-card:not(.is-active) .coverflow-dim-overlay {
+  opacity: 1;
+}
+
+/* Product Preview Media Mockup Container */
+.coverflow-card-media {
+  position: relative;
+  width: 100%;
+  height: 168px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #090d16;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  margin-bottom: 1.05rem;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.12),
+              inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.coverflow-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.45s ease;
+  pointer-events: none;
+}
+
+.coverflow-card.is-active:hover .coverflow-card-img {
+  transform: scale(1.025);
+}
+
+/* Card Content Elements */
+.service-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.55rem;
+}
+
+.service-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #090d16;
+  background: #f1f5f9;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #090d16;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.55rem;
+  line-height: 1.28;
+}
+
+.service-desc {
+  font-size: 0.88rem;
+  line-height: 1.54;
+  color: #475569;
+  margin-bottom: 1.15rem;
+  flex-grow: 1;
+}
+
+.service-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.tech-pill {
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  transition: all var(--transition-fast);
+}
+
+.coverflow-card.is-active .tech-pill {
+  background: #f1f5f9;
+  color: #090d16;
+  border-color: #cbd5e1;
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #090d16;
+  transition: all var(--transition-fast);
+  margin-top: auto;
+}
+
+.service-link i {
+  font-size: 0.82rem;
+  transition: transform 0.25s ease;
+}
+
+.coverflow-card.is-active .service-link {
+  color: #090d16;
+}
+
+.service-link:hover,
+.coverflow-card.is-active .service-link:hover {
+  color: #2563eb;
+}
+
+.service-link:hover i,
+.coverflow-card.is-active .service-link:hover i {
+  transform: translateX(4px);
+}
+
+/* Minimal & Professional Floating Capsule Dock Controls */
+.coverflow-controls {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 4px 8px;
+  margin-top: 1.6rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  z-index: 20;
+  transition: all 0.25s ease;
+}
+
+.coverflow-controls:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.coverflow-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: none;
+}
+
+.coverflow-btn:hover {
+  background: #f1f5f9;
+  color: #090d16;
+  transform: scale(1.05);
+}
+
+.coverflow-btn:active {
+  transform: scale(0.94);
+}
+
+.coverflow-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.2;
+}
+
+.coverflow-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 4px;
+}
+
+.coverflow-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.coverflow-dot:hover {
+  background: #94a3b8;
+}
+
+.coverflow-dot.is-active {
+  width: 16px;
+  background: #090d16;
+  border-radius: 9999px;
+  box-shadow: none;
+}
+
+/* Responsive Rules for Coverflow Gallery */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 30px 0 75px 0;
+  }
+  .section-header {
+    margin-bottom: 1.85rem;
+  }
+  .section-title {
+    font-size: 1.68rem;
+    margin-bottom: 0.45rem;
+  }
+  .section-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.54;
+  }
+  .coverflow-gallery-wrapper {
+    min-height: 540px;
+  }
+  .coverflow-stage {
+    width: 340px;
+    height: 495px;
+  }
+  .coverflow-card {
+    width: 340px;
+    height: 495px;
+    border-radius: 20px;
+  }
+  .coverflow-card-inner {
+    padding: 1.15rem 1.25rem 1.25rem 1.25rem;
+    border-radius: 20px;
+  }
+  .coverflow-card-media {
+    height: 152px;
+    margin-bottom: 0.95rem;
+  }
+  .service-title {
+    font-size: 1.18rem;
+    margin-bottom: 0.45rem;
+  }
+  .service-desc {
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 0.95rem;
+  }
+  .service-pills {
+    margin-bottom: 1rem;
+    gap: 0.4rem;
+  }
+  .tech-pill {
+    font-size: 0.71rem;
+    padding: 3.5px 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-section {
+    padding: 20px 0 65px 0;
+  }
+  .services-container {
+    padding: 0 0.85rem;
+  }
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.48rem;
+    margin-bottom: 0.4rem;
+  }
+  .section-subtitle {
+    font-size: 0.86rem;
+    line-height: 1.46;
+    padding: 0 0.25rem;
+  }
+  .coverflow-gallery-wrapper {
+    min-height: 490px;
+  }
+  .coverflow-stage {
+    width: 295px;
+    height: 470px;
+  }
+  .coverflow-card {
+    width: 295px;
+    height: 470px;
+    border-radius: 18px;
+  }
+  .coverflow-card-inner {
+    padding: 1rem 1.05rem 1.1rem 1.05rem;
+    border-radius: 18px;
+  }
+  .coverflow-card-media {
+    height: 140px;
+    margin-bottom: 0.85rem;
+    border-radius: 12px;
+  }
+  .service-title {
+    font-size: 1.12rem;
+    margin-bottom: 0.4rem;
+  }
+  .service-desc {
+    font-size: 0.83rem;
+    line-height: 1.48;
+    margin-bottom: 0.85rem;
+  }
+  .service-pills {
+    margin-bottom: 0.9rem;
+    gap: 0.35rem;
+  }
+  .tech-pill {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+  .coverflow-controls {
+    margin-top: 1.25rem;
+    gap: 0.45rem;
+    padding: 3px 6px;
+  }
+  .coverflow-btn {
+    width: 24px;
+    height: 24px;
+  }
+  .coverflow-btn svg {
+    width: 11px;
+    height: 11px;
+  }
+  .coverflow-dot {
+    width: 4px;
+    height: 4px;
+  }
+  .coverflow-dot.is-active {
+    width: 13px;
+  }
+}
+
+
+/* ===================================================================
+   12. OUR WORK SECTION (SELECTED PROJECTS - MINIMAL & CLEAN)
+   =================================================================== */
+.work-section {
+  position: relative;
+  z-index: 10;
+  padding: 40px 0 120px 0;
+  background: var(--bg-scene);
+  overflow: hidden;
+}
+
+.work-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.85rem;
+  width: 100%;
+}
+
+.work-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.2px solid rgba(226, 232, 240, 0.9);
+  border-radius: 20px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06),
+              0 0 1px 1px rgba(255, 255, 255, 0.9) inset;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease;
+  overflow: hidden;
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+  border-color: #cbd5e1;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12),
+              0 1px 3px rgba(15, 23, 42, 0.04),
+              0 0 1px 1px #ffffff inset;
+}
+
+.work-card-media {
+  position: relative;
+  width: 100%;
+  height: 205px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #090d16;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  margin-bottom: 1.15rem;
+  flex-shrink: 0;
+}
+
+.work-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.work-card:hover .work-card-img {
+  transform: scale(1.035);
+}
+
+.work-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.work-card:hover .work-card-overlay {
+  opacity: 1;
+}
+
+.work-card-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px 22px;
+  background: #090d16;
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(6px);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.work-card:hover .work-card-visit-btn {
+  transform: translateY(0);
+}
+
+.work-card-visit-btn:hover {
+  background: #1e293b;
+  color: #ffffff;
+  transform: translateY(0) scale(1.03);
+}
+
+.work-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.work-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.work-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.work-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #090d16;
+  background: #f1f5f9;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+}
+
+.work-domain-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #090d16;
+  background: #ffffff;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.work-domain-pill:hover {
+  background: #090d16;
+  color: #ffffff;
+  border-color: #090d16;
+}
+
+.work-domain-pill i {
+  font-size: 0.65rem;
+}
+
+.work-title {
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: #090d16;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+
+.work-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #475569;
+  margin-bottom: 1.15rem;
+  flex-grow: 1;
+}
+
+.work-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+/* Responsive Rules for Work Section */
+@media (max-width: 1024px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .work-section {
+    padding: 30px 0 80px 0;
+  }
+  .work-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+    gap: 1.5rem;
+  }
+  .work-card-media {
+    height: 185px;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-section {
+    padding: 20px 0 70px 0;
+  }
+  .work-container {
+    padding: 0 1rem;
+  }
+  .work-card {
+    padding: 1rem;
+    border-radius: 18px;
+  }
+  .work-card-media {
+    height: 170px;
+    margin-bottom: 0.95rem;
+  }
+  .work-title {
+    font-size: 1.2rem;
+  }
+  .work-desc {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+}
+
+/* ===================================================================
+   13. ABOUT SECTION (BENTO GRID VALUE PILLARS)
+   =================================================================== */
+.about-section {
+  position: relative;
+  z-index: 10;
+  padding: 50px 0 120px 0;
+  background: var(--bg-scene);
+  overflow: hidden;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.about-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  width: 100%;
+}
+
+.bento-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 22px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 30px -8px rgba(15, 23, 42, 0.05),
+              0 1px 2px rgba(15, 23, 42, 0.03),
+              inset 0 1px 1px #ffffff;
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: #cbd5e1;
+  box-shadow: 0 18px 40px -10px rgba(15, 23, 42, 0.1),
+              0 2px 6px rgba(15, 23, 42, 0.04),
+              inset 0 1px 1px #ffffff;
+}
+
+.bento-card-large {
+  grid-column: span 2;
+}
+
+.bento-card-wide {
+  grid-column: span 3;
+}
+
+.bento-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #090d16 0%, #1e293b 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+
+.bento-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #090d16;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  margin-bottom: 0.85rem;
+  width: fit-content;
+}
+
+.bento-title {
+  font-size: 1.38rem;
+  font-weight: 800;
+  color: #090d16;
+  letter-spacing: -0.025em;
+  line-height: 1.28;
+  margin-bottom: 0.75rem;
+}
+
+.bento-desc {
+  font-size: 0.94rem;
+  line-height: 1.62;
+  color: #475569;
+  font-weight: 400;
+}
+
+.bento-metrics-row {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  margin-top: 1.85rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  flex-wrap: wrap;
+}
+
+.bento-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-metric-val {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #090d16;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.bento-metric-lbl {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bento-feature-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.6rem;
+}
+
+.bento-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #090d16;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.bento-badge i {
+  color: #10b981;
+  font-size: 0.75rem;
+}
+
+/* ===================================================================

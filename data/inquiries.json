@@ -1,0 +1,41 @@
+[
+  {
+    "id": "inq_8f9273da65",
+    "name": "Elon Carter",
+    "email": "carter@orbitalventures.com",
+    "service": "ai-automation",
+    "serviceName": "AI Automations & LLM Workflows",
+    "budget": "15k+",
+    "budgetLabel": "$15k+",
+    "details": "Need autonomous multi-agent pipeline integrated with our ERP system.",
+    "status": "new",
+    "createdAt": "2026-11-12T09:02:11.436435Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "inq_sample_01",
+    "name": "Sarah Jenkins",
+    "email": "sarah.j@novaproducts.io",
+    "service": "web-dev",
+    "serviceName": "Web Development & SaaS Platforms",
+    "budget": "8k-15k",
+    "budgetLabel": "$8k – $15k",
+    "details": "Looking to architect and build a high-performance customer portal and analytics dashboard with real-time billing integrations.",
+    "status": "new",
+    "createdAt": "2026-11-12T09:30:00.000Z",
+    "ip": "127.0.0.1"
+  },
+  {
+    "id": "inq_sample_02",
+    "name": "David Chen",
+    "email": "dchen@apexbrands.co",
+    "service": "ecommerce",
+    "serviceName": "E-Commerce & D2C Storefronts",
+    "budget": "15k+",
+    "budgetLabel": "$15k+",
+    "details": "We need a custom headless storefront migration from Shopify Plus to Next.js with global edge caching and 99+ Core Web Vitals.",
+    "status": "read",
+    "createdAt": "2026-11-11T16:15:00.000Z",
+    "ip": "127.0.0.1"
+  }
+]

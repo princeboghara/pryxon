@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pryxon Studio — Executive Admin Portal</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="../assets/images/logo_clean.png" />
+
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="css/admin.css?v=2" />
+</head>
+<body>
+  <!-- Ambient High-Tech Mesh -->
+  <div class="admin-bg-mesh"></div>
+
+  <div class="admin-wrapper">
+
+    <!-- ================= VIEW 1: SECURE AUTHENTICATION GATE ================= -->
+    <div class="login-view-container" id="loginView">
+      <div class="login-card">
+        <img src="../assets/images/logo_pryxon_studio.png" alt="Pryxon Studio" class="login-logo" />
+        <h1 class="login-title">Executive Studio Portal</h1>
+        <p class="login-subtitle">Confidential Access — Authorized Founders &amp; Architects Only</p>
+
+        <form id="loginForm">
+          <div class="login-form-group">
+            <label for="passcodeInput" class="login-form-label">Studio Master Passcode</label>
+            <div class="login-input-wrap">
+              <input type="password" id="passcodeInput" class="login-input" placeholder="Enter master key..." required autocomplete="current-password" />
+              <button type="button" class="login-toggle-eye" id="togglePasscodeEye" aria-label="Toggle password visibility">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-login" id="loginSubmitBtn">
+            <span>Unlock Dashboard</span>
+          </button>
+
+          <div class="login-error-msg" id="loginErrorMsg" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ================= VIEW 2: EXECUTIVE INBOX DASHBOARD ================= -->
+    <div class="dashboard-view" id="dashboardView" style="display: none;">
+      
+      <!-- Topbar Header -->
+      <header class="admin-header">
+        <div class="admin-header-brand">
+          <img src="../assets/images/logo_pryxon_studio.png" alt="Pryxon Studio" class="admin-logo-img" />
+          <span class="admin-portal-badge">Executive Inbox</span>
+        </div>
+
+        <div class="admin-header-actions">
+          <button type="button" class="btn-admin-action" id="refreshBtn" title="Reload Inquiries">
+            <i class="fa-solid fa-rotate-right"></i>
+            <span>Refresh</span>
+          </button>
+          <button type="button" class="btn-admin-action" id="exportBtn" title="Export Inquiries to CSV">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Export CSV</span>
+          </button>
+          <button type="button" class="btn-admin-action btn-logout" id="logoutBtn" title="Lock &amp; Logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Lock</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- KPI Metrics Grid -->
+      <section class="stats-grid">
+        <div class="stat-card card-blue">
+          <div class="stat-header">
+            <span class="stat-label">Total Inquiries</span>
+            <i class="fa-regular fa-folder-closed stat-icon"></i>
+          </div>
+          <div class="stat-val" id="totalCount">0</div>
+          <div class="stat-sub">All-time client leads</div>
+        </div>
+
+        <div class="stat-card card-emerald">
+          <div class="stat-header">
+            <span class="stat-label">New &amp; Unread</span>
+            <i class="fa-regular fa-envelope-open stat-icon"></i>
+          </div>
+          <div class="stat-val" id="newCount">0</div>
+          <div class="stat-sub">Requires architect response</div>
+        </div>
+
+        <div class="stat-card card-purple">
+          <div class="stat-header">
+            <span class="stat-label">In Discussion</span>
+            <i class="fa-solid fa-comments stat-icon"></i>
+          </div>
+          <div class="stat-val" id="contactedCount">0</div>
+          <div class="stat-sub">Discovery calls active</div>
+        </div>
+
+        <div class="stat-card card-amber">
+          <div class="stat-header">
+            <span class="stat-label">Pipeline Valuation</span>
+            <i class="fa-solid fa-chart-line stat-icon"></i>
+          </div>
+          <div class="stat-val" id="pipelineValue">$0k+</div>
+          <div class="stat-sub">Estimated contract value</div>
+        </div>
+      </section>
+
+      <!-- Controls & Search -->
+      <div class="table-controls-card">
+        <div class="filter-tabs">
+          <button type="button" class="filter-btn active" data-filter="all">
+            All <span class="filter-count">0</span>
+          </button>
+          <button type="button" class="filter-btn" data-filter="new">
+            New <span class="filter-count">0</span>
+          </button>
+          <button type="button" class="filter-btn" data-filter="read">
+            Read <span class="filter-count">0</span>
+          </button>
+          <button type="button" class="filter-btn" data-filter="contacted">
+            Contacted <span class="filter-count">0</span>
+          </button>
+          <button type="button" class="filter-btn" data-filter="archived">
+            Archived <span class="filter-count">0</span>
+          </button>
+        </div>
+
+        <div class="search-box-wrap">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search client, email or scope..." />
+        </div>
+      </div>
+
+      <!-- Inquiries List Container -->
+      <div class="inquiries-container" id="inquiriesList">
+        <!-- Rendered dynamically by admin.js -->
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= INQUIRY DETAIL MODAL ================= -->
+  <div class="modal-backdrop" id="detailModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-regular fa-id-badge text-sky-400"></i>
+          <h3 class="modal-client-name" id="modalClientName">Client Name</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-meta-grid">
+          <div>
+            <div class="meta-field-label">Email Address</div>
+            <div class="meta-field-val" id="modalClientEmail">client@example.com</div>
+          </div>
+          <div>
+            <div class="meta-field-label">Received Date</div>
+            <div class="meta-field-val" id="modalDate">Nov 12, 2026</div>
+          </div>
+          <div>
+            <div class="meta-field-label">Service Scope</div>
+            <div class="meta-field-val" id="modalService">Web Development</div>
+          </div>
+          <div>
+            <div class="meta-field-label">Estimated Budget</div>
+            <div class="meta-field-val" id="modalBudget">$8k – $15k</div>
+          </div>
+        </div>
+
+        <div class="message-box">
+          <div class="message-box-label">Client Project Description &amp; Scope</div>
+          <div class="message-box-content" id="modalMessage">
+            Description text here...
+          </div>
+        </div>
+
+        <div class="status-selector-row">
+          <span class="meta-field-label">Update Lead Status:</span>
+          <select id="modalStatusSelect" class="status-dropdown">
+            <option value="new">NEW (Unread)</option>
+            <option value="read">READ</option>
+            <option value="contacted">CONTACTED / DISCOVERY</option>
+            <option value="archived">ARCHIVED</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-actions-bar">
+        <button type="button" class="btn-icon-action btn-del" id="modalDeleteBtn" title="Delete Inquiry">
+          <i class="fa-regular fa-trash-can"></i>
+        </button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-reply" id="modalWhatsAppBtn">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp Chat</span>
+        </a>
+        <a href="#" class="btn-primary-reply" id="modalEmailReplyBtn">
+          <i class="fa-regular fa-paper-plane"></i>
+          <span>Reply via Email</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Controller -->
+  <script src="js/admin.js?v=2"></script>
+</body>
+</html>

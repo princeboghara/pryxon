@@ -1,0 +1,113 @@
+   16. RESPONSIVE BREAKPOINTS FOR NEW SECTIONS
+   =================================================================== */
+@media (max-width: 1024px) {
+  .about-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-card-large {
+    grid-column: span 2;
+  }
+  .bento-card-wide {
+    grid-column: span 2;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer-top-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 30px 0 80px 0;
+  }
+  .about-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .bento-card,
+  .bento-card-large,
+  .bento-card-wide {
+    grid-column: span 1;
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+  .bento-title {
+    font-size: 1.2rem;
+  }
+  .bento-metrics-row {
+    gap: 1.4rem;
+  }
+  .bento-metric-val {
+    font-size: 1.5rem;
+  }
+
+  .contact-section {
+    padding: 30px 0 80px 0;
+  }
+  .contact-title {
+    font-size: 1.8rem;
+  }
+  .contact-form-card {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .budget-pills-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .site-footer {
+    padding-top: 50px;
+  }
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+    margin-bottom: 40px;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section,
+  .contact-section {
+    padding: 20px 0 65px 0;
+  }
+  .about-container,
+  .contact-container {
+    padding: 0 1rem;
+  }
+  .contact-title {
+    font-size: 1.55rem;
+  }
+  .contact-desc {
+    font-size: 0.92rem;
+  }
+  .contact-method-card {
+    padding: 1rem;
+  }
+  .contact-form-card {
+    padding: 1.25rem;
+  }
+  .budget-pills-group {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
+  .budget-pill span {
+    font-size: 0.7rem;
+    padding: 7px 6px;
+  }
+  .watermark-text {
+    font-size: clamp(2.2rem, 13vw, 4.6rem);
+    letter-spacing: 0.04em;
+  }
+}
