@@ -24,24 +24,28 @@ export async function POST(req: Request) {
       ip: req.headers.get("x-forwarded-for") || "local",
     };
 
-    // Save to local JSON database for persistence
-    const dataDir = path.join(process.cwd(), "data");
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
-
-    const filePath = path.join(dataDir, "inquiries.json");
-    let existing: any[] = [];
-    if (fs.existsSync(filePath)) {
-      try {
-        existing = JSON.parse(fs.readFileSync(filePath, "utf8"));
-      } catch {
-        existing = [];
+    // Save to database/file with serverless fallback
+    try {
+      const dataDir = process.env.VERCEL ? "/tmp/data" : path.join(process.cwd(), "data");
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
       }
-    }
 
-    existing.unshift(submission);
-    fs.writeFileSync(filePath, JSON.stringify(existing, null, 2), "utf8");
+      const filePath = path.join(dataDir, "inquiries.json");
+      let existing: any[] = [];
+      if (fs.existsSync(filePath)) {
+        try {
+          existing = JSON.parse(fs.readFileSync(filePath, "utf8"));
+        } catch {
+          existing = [];
+        }
+      }
+
+      existing.unshift(submission);
+      fs.writeFileSync(filePath, JSON.stringify(existing, null, 2), "utf8");
+    } catch (fsErr) {
+      console.warn("Storage warning (serverless filesystem):", fsErr);
+    }
 
     return NextResponse.json({
       success: true,
