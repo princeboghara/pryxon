@@ -77,7 +77,13 @@ export default function Services() {
 
   return (
     <section id="services" className="relative py-20 px-4 sm:px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <motion.div
+        className="max-w-7xl mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <Badge variant="default" className="mb-3 px-3.5 py-1">
@@ -222,7 +228,25 @@ export default function Services() {
             </button>
           </div>
         </div>
-      </div>
+
+        {/* Bottom Explore Button Styled Like Get Started */}
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <Link href="#contact" className="btn-get-started shadow-lg hover:shadow-xl transition-all">
+            <span>Explore All Capabilities</span>
+            <span className="btn-arrow-badge">
+              <svg className="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+          </Link>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

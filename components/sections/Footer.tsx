@@ -3,11 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Linkedin, Twitter, Instagram, Mail, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
     <footer className="relative z-10 glass-panel border-t border-slate-200/85 pt-16 pb-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6"
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+      >
         {/* Top Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
           {/* Col 1: Brand Info */}
@@ -129,7 +136,7 @@ export default function Footer() {
             <Link href="#" className="hover:text-slate-900 transition-colors">Security</Link>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Massive Monumental Brand Watermark (Official PRYXON Typography) */}
       <div className="w-full overflow-hidden pt-12 pb-4 flex items-center justify-center select-none pointer-events-none border-t border-slate-200/60 mt-8 bg-gradient-to-b from-transparent to-white/40">

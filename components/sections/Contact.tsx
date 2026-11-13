@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Mail, MessageCircle, MapPin, ArrowRight, CheckCircle2, AlertCircle, Loader2, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -68,7 +69,13 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-20 px-4 sm:px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <motion.div
+        className="max-w-7xl mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Direct Info */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
@@ -295,7 +302,7 @@ export default function Contact() {
             </Card>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

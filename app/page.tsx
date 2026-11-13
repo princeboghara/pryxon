@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import AtmosphericSky from "@/components/canvas/AtmosphericSky";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
@@ -11,7 +12,12 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen text-slate-900 overflow-x-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="relative min-h-screen text-slate-900 overflow-x-hidden selection:bg-blue-500/20"
+    >
       {/* 3D Hardware-Accelerated Procedural Cloud Sky */}
       <AtmosphericSky />
 
@@ -29,6 +35,6 @@ export default function Home() {
 
       {/* Monumental Footer */}
       <Footer />
-    </div>
+    </motion.div>
   );
 }

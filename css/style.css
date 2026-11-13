@@ -861,8 +861,8 @@ button {
 
   /* Hero adjustments */
   .hero-section {
-    padding-top: calc(var(--topbar-height) + 8vh);
-    padding-bottom: 50px;
+    padding-top: calc(var(--topbar-height) + 6vh);
+    padding-bottom: 72px;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -938,23 +938,23 @@ button {
   .pos-6  { top: 48% !important; left: 2% !important;   display: flex !important; }
   .pos-7  { top: 57% !important; left: 3.5% !important; display: flex !important; }
   .pos-8  { top: 66% !important; left: 2% !important;   display: flex !important; }
-  .pos-10 { top: 75% !important; left: 4% !important;   display: flex !important; }
-  .pos-11 { top: 83% !important; left: 2.5% !important; display: flex !important; }
-  .pos-13 { top: 88.5% !important; left: 7% !important; display: flex !important; }
+  .pos-10 { top: 74% !important; left: 3.5% !important; display: flex !important; }
+  .pos-11 { bottom: 90px !important; top: auto !important; left: 2.5% !important; display: flex !important; }
+  .pos-13 { bottom: 62px !important; top: auto !important; left: 6% !important; display: flex !important; }
 
   .pos-20 { top: 48% !important; right: 2% !important;   display: flex !important; }
   .pos-21 { top: 57% !important; right: 3.5% !important; display: flex !important; }
   .pos-22 { top: 66% !important; right: 2% !important;   display: flex !important; }
-  .pos-24 { top: 75% !important; right: 4% !important;   display: flex !important; }
-  .pos-26 { top: 83% !important; right: 2.5% !important; display: flex !important; }
-  .pos-25 { top: 88.5% !important; right: 7% !important; display: flex !important; }
+  .pos-24 { top: 74% !important; right: 3.5% !important; display: flex !important; }
+  .pos-26 { bottom: 90px !important; top: auto !important; right: 2.5% !important; display: flex !important; }
+  .pos-25 { bottom: 62px !important; top: auto !important; right: 6% !important; display: flex !important; }
 
-  /* Bottom Base of the U (Underneath Buttons) */
-  .pos-2  { top: 92% !important;   left: 18% !important; display: flex !important; }
-  .pos-16 { top: 92% !important;   right: 18% !important; display: flex !important; }
-  .pos-14 { top: 94.5% !important; left: 33% !important; display: flex !important; }
-  .pos-27 { top: 94.5% !important; right: 33% !important; display: flex !important; }
-  .pos-28 { top: 95.5% !important; left: 50% !important; right: auto !important; transform: translate(-50%, 0) !important; display: flex !important; }
+  /* Bottom Base of the U (Guaranteed zero cutoff on mobile screens) */
+  .pos-2  { bottom: 42px !important; top: auto !important; left: 16% !important; display: flex !important; }
+  .pos-16 { bottom: 42px !important; top: auto !important; right: 16% !important; display: flex !important; }
+  .pos-14 { bottom: 26px !important; top: auto !important; left: 31% !important; display: flex !important; }
+  .pos-27 { bottom: 26px !important; top: auto !important; right: 31% !important; display: flex !important; }
+  .pos-28 { bottom: 18px !important; top: auto !important; left: 50% !important; right: auto !important; transform: translate(-50%, 0) !important; display: flex !important; }
 
   /* Completely clear out Title area (top 18% to 47%) */
   .pos-4, .pos-5, .pos-9, .pos-12, .pos-18, .pos-19, .pos-23 {
@@ -998,8 +998,8 @@ button {
   }
 
   .hero-section {
-    padding-top: calc(var(--topbar-height) + 8vh);
-    padding-bottom: 50px;
+    padding-top: calc(var(--topbar-height) + 6vh);
+    padding-bottom: 72px;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -1068,23 +1068,23 @@ button {
   .pos-6  { top: 48% !important; left: 1.5% !important; display: flex !important; }
   .pos-7  { top: 57% !important; left: 3% !important;   display: flex !important; }
   .pos-8  { top: 66% !important; left: 1.5% !important; display: flex !important; }
-  .pos-10 { top: 75% !important; left: 3.5% !important; display: flex !important; }
-  .pos-11 { top: 83% !important; left: 2% !important;   display: flex !important; }
-  .pos-13 { top: 88.5% !important; left: 6% !important; display: flex !important; }
+  .pos-10 { top: 74% !important; left: 3.5% !important; display: flex !important; }
+  .pos-11 { bottom: 90px !important; top: auto !important; left: 2% !important;   display: flex !important; }
+  .pos-13 { bottom: 62px !important; top: auto !important; left: 6% !important; display: flex !important; }
 
   .pos-20 { top: 48% !important; right: 1.5% !important; display: flex !important; }
   .pos-21 { top: 57% !important; right: 3% !important;   display: flex !important; }
   .pos-22 { top: 66% !important; right: 1.5% !important; display: flex !important; }
-  .pos-24 { top: 75% !important; right: 3.5% !important; display: flex !important; }
-  .pos-26 { top: 83% !important; right: 2% !important;   display: flex !important; }
-  .pos-25 { top: 88.5% !important; right: 6% !important; display: flex !important; }
+  .pos-24 { top: 74% !important; right: 3.5% !important; display: flex !important; }
+  .pos-26 { bottom: 90px !important; top: auto !important; right: 2% !important;   display: flex !important; }
+  .pos-25 { bottom: 62px !important; top: auto !important; right: 6% !important; display: flex !important; }
 
-  /* Bottom Base of the U (Underneath Buttons) */
-  .pos-2  { top: 92% !important;   left: 17% !important; display: flex !important; }
-  .pos-16 { top: 92% !important;   right: 17% !important; display: flex !important; }
-  .pos-14 { top: 94.5% !important; left: 32% !important; display: flex !important; }
-  .pos-27 { top: 94.5% !important; right: 32% !important; display: flex !important; }
-  .pos-28 { top: 95.5% !important; left: 50% !important; right: auto !important; transform: translate(-50%, 0) !important; display: flex !important; }
+  /* Bottom Base of the U (Guaranteed zero cutoff on mobile screens) */
+  .pos-2  { bottom: 42px !important; top: auto !important; left: 16% !important; display: flex !important; }
+  .pos-16 { bottom: 42px !important; top: auto !important; right: 16% !important; display: flex !important; }
+  .pos-14 { bottom: 26px !important; top: auto !important; left: 31% !important; display: flex !important; }
+  .pos-27 { bottom: 26px !important; top: auto !important; right: 31% !important; display: flex !important; }
+  .pos-28 { bottom: 18px !important; top: auto !important; left: 50% !important; right: auto !important; transform: translate(-50%, 0) !important; display: flex !important; }
 
   /* Completely clear out Title area (top 18% to 47%) */
   .pos-4, .pos-5, .pos-9, .pos-12, .pos-18, .pos-19, .pos-23 {
