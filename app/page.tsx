@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import AtmosphericSky from "@/components/canvas/AtmosphericSky";
+import CloudSky from "@/components/originkit/ui/cloud-sky";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
@@ -18,8 +18,22 @@ export default function Home() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="relative min-h-screen text-slate-900 overflow-x-hidden selection:bg-blue-500/20"
     >
-      {/* 3D Hardware-Accelerated Procedural Cloud Sky */}
-      <AtmosphericSky />
+      {/* Official Originkit Cloud Sky Component */}
+      <div
+        className="fixed inset-0 w-screen h-screen pointer-events-none z-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <CloudSky
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            minWidth: 0,
+            minHeight: 0,
+          }}
+        />
+      </div>
 
       {/* Floating Glassmorphic Topbar Navigation */}
       <Navbar />
