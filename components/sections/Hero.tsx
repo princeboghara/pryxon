@@ -64,25 +64,25 @@ export default function Hero() {
             animate={{
               opacity: 1,
               scale: 1,
-              y: [0, -16, 0],
-              x: [0, idx % 2 === 0 ? 8 : -8, 0],
+              y: [0, -12, 0],
+              x: [0, idx % 2 === 0 ? 5 : -5, 0],
             }}
             transition={{
               opacity: { duration: 0.8, delay: idx * 0.02 },
               scale: { duration: 0.8, delay: idx * 0.02 },
               y: {
-                duration: 5.2 + (idx % 4) * 0.6,
+                duration: 5.0 + (idx % 4) * 0.5,
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "easeInOut",
-                delay: (item.phase % 2) * 0.6,
+                delay: (item.phase % 2) * 0.5,
               },
               x: {
-                duration: 6.0 + (idx % 3) * 0.7,
+                duration: 5.8 + (idx % 3) * 0.6,
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "easeInOut",
-                delay: (item.phase % 3) * 0.5,
+                delay: (item.phase % 3) * 0.4,
               },
             }}
           >

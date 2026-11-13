@@ -6,7 +6,12 @@ export const metadata: Metadata = {
   title: "Pryxon Technologies | Turning Bold Ideas Into Powerful Digital Solutions",
   description: "Next-generation websites, bespoke software, mobile apps, e-commerce storefronts, and automated AI solutions built for scale.",
   icons: {
-    icon: "/assets/images/logo_pryxon_studio.png",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
@@ -18,6 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/icon.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
