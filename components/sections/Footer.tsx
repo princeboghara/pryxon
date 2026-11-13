@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Instagram, Mail, MapPin } from "lucide-react";
+import { Github, Linkedin, Twitter, Instagram, Mail, MapPin, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -34,6 +34,24 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-2 pt-2">
               <a
+                href="https://wa.me/918141815695?text=Hello%20Pryxon%20Studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-emerald-600 hover:text-white transition-colors"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
+              <a
+                href="https://instagram.com/pryxonstudio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-pink-600 hover:text-white transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
                 href="https://github.com/princeboghara"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -59,15 +77,6 @@ export default function Footer() {
                 className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
               >
                 <Twitter className="w-4 h-4" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-pink-600 hover:text-white transition-colors"
-              >
-                <Instagram className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -106,13 +115,40 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
               Studio
             </h4>
-            <ul className="space-y-2 text-sm text-slate-600">
+            <ul className="space-y-2.5 text-sm text-slate-600">
               <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-slate-400" />
-                <span>contact@pryxon.in</span>
+                <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+                <a
+                  href="https://wa.me/918141815695"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-emerald-700 font-medium transition-colors"
+                >
+                  +91 81418 15695 (WhatsApp)
+                </a>
               </li>
               <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-slate-400" />
+                <Instagram className="w-4 h-4 text-pink-600 shrink-0" />
+                <a
+                  href="https://instagram.com/pryxonstudio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-pink-700 font-medium transition-colors"
+                >
+                  @pryxonstudio (Instagram)
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-blue-600 shrink-0" />
+                <a
+                  href="mailto:contact@pryxon.in"
+                  className="hover:text-slate-950 transition-colors"
+                >
+                  contact@pryxon.in
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
                 <span>Surat, Gujarat, India</span>
               </li>
             </ul>
@@ -138,13 +174,13 @@ export default function Footer() {
         </div>
       </motion.div>
 
-      {/* Massive Monumental Brand Watermark (Official PRYXON Typography) */}
-      <div className="w-full overflow-hidden pt-12 pb-4 flex items-center justify-center select-none pointer-events-none border-t border-slate-200/60 mt-8 bg-gradient-to-b from-transparent to-white/40">
+      {/* Massive Monumental Brand Watermark (Official PRYXON Typography - Darker & Punchy) */}
+      <div className="w-full overflow-hidden pt-12 pb-4 flex items-center justify-center select-none pointer-events-none border-t border-slate-200/70 mt-8 bg-gradient-to-b from-transparent to-slate-100/50">
         <span
           style={{ fontFamily: "var(--font-brand)" }}
-          className="text-[13vw] font-bold tracking-wider leading-none uppercase text-transparent bg-clip-text bg-gradient-to-b from-slate-900/10 to-slate-900/2 text-center whitespace-nowrap"
+          className="text-[13vw] font-bold tracking-wider leading-none uppercase text-transparent bg-clip-text bg-gradient-to-b from-slate-950/45 via-slate-900/30 to-slate-800/15 text-center whitespace-nowrap"
         >
-          PRY<span className="text-sky-500/25">X</span>ON
+          PRY<span className="text-sky-600/55">X</span>ON
         </span>
       </div>
     </footer>

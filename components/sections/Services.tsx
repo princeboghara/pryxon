@@ -97,11 +97,35 @@ export default function Services() {
           </p>
         </div>
 
-        {/* 3D Coverflow Container */}
+        {/* 3D Coverflow Container (Circular Infinite Loop) */}
         <div className="relative w-full max-w-4xl mx-auto min-h-[580px] sm:min-h-[540px] flex items-center justify-center">
+          {/* Side Navigation Arrow Buttons (Outside card zone, zero overlap) */}
+          <button
+            type="button"
+            onClick={prevSlide}
+            aria-label="Previous service"
+            className="hidden sm:flex absolute -left-2 md:-left-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 rounded-full items-center justify-center bg-white/95 hover:bg-white text-slate-800 shadow-lg border border-slate-200/80 transition-all hover:scale-105 active:scale-95"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <button
+            type="button"
+            onClick={nextSlide}
+            aria-label="Next service"
+            className="hidden sm:flex absolute -right-2 md:-right-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 rounded-full items-center justify-center bg-white/95 hover:bg-white text-slate-800 shadow-lg border border-slate-200/80 transition-all hover:scale-105 active:scale-95"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
           <div className="relative w-full h-[540px] flex items-center justify-center">
             {services.map((service, index) => {
-              const offset = index - currentIndex;
+              // Circular continuous infinite wrap
+              const len = services.length;
+              let offset = (index - currentIndex) % len;
+              if (offset > len / 2) offset -= len;
+              if (offset < -len / 2) offset += len;
+
               const absOffset = Math.abs(offset);
               const isVisible = absOffset <= 2;
 
@@ -190,42 +214,6 @@ export default function Services() {
                 </motion.div>
               );
             })}
-          </div>
-
-          {/* Minimal Capsule Dock Controls */}
-          <div className="absolute bottom-2 flex items-center gap-3 px-3 py-1.5 rounded-full glass-panel-subtle shadow-md">
-            <button
-              type="button"
-              onClick={prevSlide}
-              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200/70 text-slate-700 transition-colors"
-              aria-label="Previous service"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex items-center gap-1.5 px-1">
-              {services.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setCurrentIndex(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === currentIndex ? "w-6 bg-slate-950" : "w-2 bg-slate-300 hover:bg-slate-400"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={nextSlide}
-              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200/70 text-slate-700 transition-colors"
-              aria-label="Next service"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
 
