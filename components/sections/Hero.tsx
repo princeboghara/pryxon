@@ -64,9 +64,9 @@ export default function Hero() {
             animate={{
               opacity: 1,
               scale: 1,
-              y: [0, -26, 6, -16, 0],
-              x: [0, idx % 2 === 0 ? 14 : -14, idx % 2 === 0 ? -6 : 6, 0],
-              rotate: [0, (idx % 2 === 0 ? 1 : -1) * 4, (idx % 2 === 0 ? -1 : 1) * 2, 0],
+              y: [0, -20, 6, -12, 0],
+              x: [0, idx % 2 === 0 ? 8 : -8, idx % 2 === 0 ? -4 : 4, 0],
+              rotate: [0, (idx % 2 === 0 ? 1 : -1) * 3, (idx % 2 === 0 ? -1 : 1) * 1.5, 0],
             }}
             transition={{
               opacity: { duration: 0.8, delay: idx * 0.02 },
