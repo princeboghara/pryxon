@@ -54,11 +54,11 @@ export default function Navbar() {
       <header className="fixed top-3.5 left-0 w-full z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
         <nav
           aria-label="Main Navigation"
-          className="pointer-events-auto w-full max-w-[1200px] h-[66px] px-4 sm:px-6 rounded-2xl glass-topbar flex items-center justify-between transition-all duration-300"
+          className="pointer-events-auto w-full max-w-[1200px] h-[58px] sm:h-[66px] px-3.5 sm:px-6 rounded-2xl glass-topbar flex items-center justify-between transition-all duration-300"
         >
           {/* Brand Logo */}
-          <Link href="#home" className="flex items-center shrink-0 pr-4 group">
-            <div className="relative w-32 sm:w-36 h-9 transition-transform duration-200 group-hover:scale-[1.02]">
+          <Link href="#home" className="flex items-center shrink-0 pr-2 sm:pr-4 group">
+            <div className="relative w-28 sm:w-36 h-7 sm:h-9 transition-transform duration-200 group-hover:scale-[1.02]">
               <Image
                 src="/assets/images/logo_pryxon_studio.png"
                 alt="Pryxon Studio"
@@ -98,10 +98,10 @@ export default function Navbar() {
           </ul>
 
           {/* Right Action Items */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <Link
               href="#contact"
-              className="btn-get-started"
+              className="btn-get-started hidden sm:inline-flex"
             >
               <span>Start Your Project</span>
               <span className="btn-arrow-badge">
@@ -115,7 +115,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100/80 text-slate-800 hover:bg-slate-200/80 transition-colors"
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100/80 text-slate-800 hover:bg-slate-200/80 transition-colors shrink-0"
               aria-label="Toggle navigation"
               aria-expanded={mobileOpen}
             >

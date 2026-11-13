@@ -1,6 +1,6 @@
 "use client";
 
-import { Code2, Compass, UserCheck, Layers, Check } from "lucide-react";
+import { Code2, Compass, UserCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -28,44 +28,33 @@ export default function About() {
           </p>
         </div>
 
-        {/* Compact Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
-          {/* Pillar 1: High Performance Tech */}
-          <Card className="lg:col-span-2 glass-panel p-4 sm:p-5 rounded-2xl flex flex-col justify-between border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+        {/* 3 Compact & Short Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4">
+          {/* Card 1: Tech */}
+          <Card className="glass-panel p-4 sm:p-5 rounded-2xl flex flex-col justify-between border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
             <div>
               <div className="flex items-center gap-2.5 mb-2.5">
                 <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
                   <Code2 className="w-4 h-4" />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50/80 px-2 py-0.5 rounded-md border border-blue-100">
-                  Zero Bloat
+                  Speed &amp; Tech
                 </span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-1.5">
-                Engineered with Modern, Ultra-Fast Tech
+              <h3 className="text-base font-bold text-slate-950 mb-1.5">
+                Edge-Native &amp; Ultra Fast
               </h3>
-              <p className="text-xs text-slate-600 leading-relaxed mb-3">
-                Next.js 15, TypeScript, Python, and edge-native architectures. Zero sluggish templates — written clean for speed and security.
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Next.js 15, TypeScript &amp; Python architectures engineered for sub-second page loads and zero bloat.
               </p>
             </div>
-
-            <div className="grid grid-cols-3 gap-2 pt-3 border-t border-slate-100">
-              <div className="p-1.5 sm:p-2 rounded-lg bg-slate-50/90 border border-slate-200/50 text-center">
-                <div className="text-base sm:text-lg font-extrabold text-slate-950">99+</div>
-                <div className="text-[9px] text-slate-500 font-medium">PageSpeed</div>
-              </div>
-              <div className="p-1.5 sm:p-2 rounded-lg bg-slate-50/90 border border-slate-200/50 text-center">
-                <div className="text-base sm:text-lg font-extrabold text-slate-950">&lt; 0.8s</div>
-                <div className="text-[9px] text-slate-500 font-medium">Edge Speed</div>
-              </div>
-              <div className="p-1.5 sm:p-2 rounded-lg bg-slate-50/90 border border-slate-200/50 text-center">
-                <div className="text-base sm:text-lg font-extrabold text-slate-950">99.99%</div>
-                <div className="text-[9px] text-slate-500 font-medium">Uptime SLA</div>
-              </div>
+            <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+              <span>Performance</span>
+              <span className="font-bold text-slate-900">99+ PageSpeed</span>
             </div>
           </Card>
 
-          {/* Pillar 2: UX Card */}
+          {/* Card 2: UX */}
           <Card className="glass-panel p-4 sm:p-5 rounded-2xl flex flex-col justify-between border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
             <div>
               <div className="flex items-center gap-2.5 mb-2.5">
@@ -76,69 +65,40 @@ export default function About() {
                   Conversion First
                 </span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-1.5">
+              <h3 className="text-base font-bold text-slate-950 mb-1.5">
                 Intuitive Human UI/UX
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Interfaces crafted to minimize friction, guide users effortlessly, and maximize conversion rates.
               </p>
             </div>
+            <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+              <span>Experience</span>
+              <span className="font-bold text-emerald-700">Frictionless UX</span>
+            </div>
           </Card>
 
-          {/* Pillar 3: Leadership Card */}
+          {/* Card 3: Team & Ownership */}
           <Card className="glass-panel p-4 sm:p-5 rounded-2xl flex flex-col justify-between border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
             <div>
               <div className="flex items-center gap-2.5 mb-2.5">
-                <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
+                <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100">
                   <UserCheck className="w-4 h-4" />
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50/80 px-2 py-0.5 rounded-md border border-amber-100">
-                  Founder Led
+                <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-100">
+                  Direct Access
                 </span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-1.5">
-                Direct Senior Team
+              <h3 className="text-base font-bold text-slate-950 mb-1.5">
+                Senior Team &amp; Ownership
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                No middlemen or junior handoffs. You work directly with lead engineers who care about your results.
+                No middlemen or junior handoffs. You work directly with lead engineers and own 100% of your source code.
               </p>
             </div>
-          </Card>
-
-          {/* Pillar 4: Wide Lifecycle Card */}
-          <Card className="lg:col-span-2 glass-panel p-4 sm:p-5 rounded-2xl flex flex-col justify-between border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-            <div>
-              <div className="flex items-center gap-2.5 mb-2.5">
-                <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100">
-                  <Layers className="w-4 h-4" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-100">
-                  Full Stack
-                </span>
-              </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-950 mb-1.5">
-                Concept to Cloud Scale
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed mb-3">
-                Full-cycle product delivery: discovery, UI/UX, full-stack development, database architecture, and managed deployments.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-1.5 pt-2.5 border-t border-slate-100">
-              {[
-                "100% Code Ownership",
-                "CI/CD Automation",
-                "Post-Launch Support",
-                "High Security",
-              ].map((badge) => (
-                <span
-                  key={badge}
-                  className="inline-flex items-center gap-1 text-[10px] font-medium text-slate-700 bg-slate-100/90 px-2 py-0.5 rounded-md border border-slate-200/60"
-                >
-                  <Check className="w-2.5 h-2.5 text-emerald-600" />
-                  <span>{badge}</span>
-                </span>
-              ))}
+            <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+              <span>Code &amp; IP</span>
+              <span className="font-bold text-purple-700">100% Client Owned</span>
             </div>
           </Card>
         </div>
