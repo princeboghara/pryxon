@@ -7,20 +7,20 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 glass-panel border-t border-slate-200/85 pt-10 sm:pt-16 pb-4 sm:pb-6 overflow-hidden">
+    <footer className="relative z-10 glass-panel border-t border-slate-200/85 pt-10 sm:pt-14 pb-4 sm:pb-6 overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6"
-        initial={{ opacity: 0, y: 35 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Top Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-10 mb-8 sm:mb-14">
-          {/* Col 1: Brand Info */}
-          <div className="lg:col-span-5 space-y-3 sm:space-y-4">
+        {/* Top Footer Grid (Clean Symmetrical 2-Column Agency Layout — No Navigation/Capabilities) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-8 sm:mb-12">
+          {/* Col 1: Brand & Agency Positioning */}
+          <div className="md:col-span-7 space-y-3.5">
             <Link href="#home" className="inline-block">
-              <div className="relative w-32 sm:w-36 h-8 sm:h-9">
+              <div className="relative w-36 h-9">
                 <Image
                   src="/assets/images/logo_pryxon_studio.png"
                   alt="Pryxon Studio"
@@ -29,10 +29,10 @@ export default function Footer() {
                 />
               </div>
             </Link>
-            <p className="text-xs sm:text-sm text-slate-600 max-w-sm leading-relaxed">
-              We engineer next-generation web platforms, bespoke software, and automated digital solutions that empower businesses to lead globally.
+            <p className="text-xs sm:text-sm text-slate-600 max-w-md leading-relaxed">
+              We engineer next-generation web applications, bespoke software, and automated digital workflows that empower ambitious businesses to innovate and lead globally.
             </p>
-            <div className="flex items-center gap-2 pt-1 sm:pt-2">
+            <div className="flex items-center gap-2 pt-1">
               <a
                 href="https://wa.me/918141815695?text=Hello%20Pryxon%20Studio"
                 target="_blank"
@@ -40,7 +40,7 @@ export default function Footer() {
                 aria-label="WhatsApp"
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-emerald-600 hover:text-white transition-colors"
               >
-                <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <MessageCircle className="w-4 h-4" />
               </a>
               <a
                 href="https://instagram.com/pryxonstudio"
@@ -49,7 +49,7 @@ export default function Footer() {
                 aria-label="Instagram"
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-pink-600 hover:text-white transition-colors"
               >
-                <Instagram className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <Instagram className="w-4 h-4" />
               </a>
               <a
                 href="https://github.com/princeboghara"
@@ -58,7 +58,7 @@ export default function Footer() {
                 aria-label="GitHub"
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
               >
-                <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <Github className="w-4 h-4" />
               </a>
               <a
                 href="https://linkedin.com"
@@ -67,7 +67,7 @@ export default function Footer() {
                 aria-label="LinkedIn"
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-blue-600 hover:text-white transition-colors"
               >
-                <Linkedin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href="https://x.com"
@@ -76,112 +76,87 @@ export default function Footer() {
                 aria-label="Twitter"
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
               >
-                <Twitter className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <Twitter className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Navigation & Capabilities (Compact 2-Column Row on Mobile) */}
-          <div className="lg:col-span-4 grid grid-cols-2 gap-4">
-            {/* Col 2: Navigation */}
-            <div className="space-y-2 sm:space-y-3">
-              <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-900">
-                Navigation
-              </h4>
-              <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-slate-600">
-                <li><Link href="#home" className="hover:text-slate-950 transition-colors">Home</Link></li>
-                <li><Link href="#services" className="hover:text-slate-950 transition-colors">Capabilities</Link></li>
-                <li><Link href="#work" className="hover:text-slate-950 transition-colors">Featured Work</Link></li>
-                <li><Link href="#about" className="hover:text-slate-950 transition-colors">About Studio</Link></li>
-                <li><Link href="#contact" className="hover:text-slate-950 transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-
-            {/* Col 3: Capabilities */}
-            <div className="space-y-2 sm:space-y-3">
-              <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-900">
-                Capabilities
-              </h4>
-              <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-slate-600">
-                <li><Link href="#services" className="hover:text-slate-950 transition-colors">Web Apps</Link></li>
-                <li><Link href="#services" className="hover:text-slate-950 transition-colors">E-Commerce</Link></li>
-                <li><Link href="#services" className="hover:text-slate-950 transition-colors">Mobile Apps</Link></li>
-                <li><Link href="#services" className="hover:text-slate-950 transition-colors">Cloud &amp; DevOps</Link></li>
-                <li><Link href="#services" className="hover:text-slate-950 transition-colors">WhatsApp CRM</Link></li>
-                <li><Link href="#services" className="hover:text-slate-950 transition-colors">AI Workflows</Link></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Col 4: Studio Connect */}
-          <div className="lg:col-span-3 space-y-2 sm:space-y-3">
-            <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-900">
-              Studio
+          {/* Col 2: Studio Connect & Direct Comms */}
+          <div className="md:col-span-5 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
+              Direct Studio Desk
             </h4>
-            <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
-              <li className="flex items-center gap-2">
-                <MessageCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600">
+              <li className="flex items-center gap-2.5">
+                <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
                 <a
                   href="https://wa.me/918141815695"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-emerald-700 font-medium transition-colors"
+                  className="hover:text-emerald-700 font-semibold transition-colors"
                 >
-                  +91 81418 15695 (WhatsApp)
+                  +91 81418 15695 (WhatsApp Priority)
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Instagram className="w-3.5 h-3.5 text-pink-600 shrink-0" />
+              <li className="flex items-center gap-2.5">
+                <Instagram className="w-4 h-4 text-pink-600 shrink-0" />
                 <a
                   href="https://instagram.com/pryxonstudio"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-pink-700 font-medium transition-colors"
                 >
-                  @pryxonstudio (Instagram)
+                  @pryxonstudio (Official Instagram)
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+              <li className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-blue-600 shrink-0" />
                 <a
                   href="mailto:contact@pryxon.in"
-                  className="hover:text-slate-950 transition-colors"
+                  className="hover:text-slate-950 font-medium transition-colors"
                 >
                   contact@pryxon.in
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                <span>Surat, Gujarat, India</span>
+              <li className="flex items-center gap-2.5">
+                <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
+                <span>Surat, Gujarat, India &bull; Global Remote Delivery</span>
               </li>
             </ul>
-            <div className="pt-1">
-              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-[10px] sm:text-[11px] font-semibold text-emerald-800">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+
+            <div className="pt-1.5 flex items-center gap-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-[11px] font-semibold text-emerald-800">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>All Systems Operational</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Sub-bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pt-4 sm:pt-8 border-t border-slate-200/70 text-[11px] sm:text-xs text-slate-500">
+        {/* Bottom Sub-bar with Software Agency Legal Compliance Links */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5 border-t border-slate-200/70 text-xs text-slate-500">
           <p>&copy; {new Date().getFullYear()} Pryxon Studio. All rights reserved.</p>
-          <div className="flex items-center gap-3 sm:gap-4">
-            <Link href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
-            <span>&bull;</span>
-            <Link href="#" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
-            <span>&bull;</span>
-            <Link href="#" className="hover:text-slate-900 transition-colors">Security</Link>
+          <div className="flex items-center gap-4 text-xs font-medium">
+            <Link href="/privacy" className="hover:text-slate-900 transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-slate-300">&bull;</span>
+            <Link href="/terms" className="hover:text-slate-900 transition-colors">
+              Terms of Service
+            </Link>
+            <span className="text-slate-300">&bull;</span>
+            <Link href="/security" className="hover:text-slate-900 transition-colors">
+              Security
+            </Link>
           </div>
         </div>
       </motion.div>
 
-      {/* Massive Monumental Brand Watermark (Official PRYXON Typography - Compact on Mobile) */}
-      <div className="w-full overflow-hidden pt-4 sm:pt-10 pb-2 sm:pb-4 flex items-center justify-center select-none pointer-events-none border-t border-slate-200/70 mt-4 sm:mt-8 bg-gradient-to-b from-transparent to-slate-100/50">
+      {/* Monumental Brand Watermark (Normal Big, Elegant & Punchy) */}
+      <div className="w-full overflow-hidden pt-6 sm:pt-10 pb-3 sm:pb-5 flex items-center justify-center select-none pointer-events-none border-t border-slate-200/70 mt-6 sm:mt-8 bg-gradient-to-b from-transparent to-slate-100/50">
         <span
           style={{ fontFamily: "var(--font-brand)" }}
-          className="text-[12vw] sm:text-[13vw] font-bold tracking-wider leading-none uppercase text-transparent bg-clip-text bg-gradient-to-b from-slate-950/45 via-slate-900/30 to-slate-800/15 text-center whitespace-nowrap"
+          className="text-[13vw] sm:text-[12vw] md:text-[11vw] font-bold tracking-wider leading-none uppercase text-transparent bg-clip-text bg-gradient-to-b from-slate-950/45 via-slate-900/30 to-slate-800/15 text-center whitespace-nowrap"
         >
           PRY<span className="text-sky-600/55">X</span>ON
         </span>

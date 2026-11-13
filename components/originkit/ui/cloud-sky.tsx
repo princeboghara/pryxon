@@ -299,8 +299,8 @@ interface Props {
 function __OriginkitBase_CloudSky(props: Props) {
     const {
         style,
-        background = "#258bf5",
-        baseColor = "#a8d5fc",
+        background = "#3894f6",
+        baseColor = "#b8defc",
         accentColor = "#FFFFFF",
         density = 100,
         speed = 64,
@@ -500,8 +500,8 @@ function __OriginkitBase_CloudSky(props: Props) {
 }
 
 const __originkitPresetProps = {
-  "background": "#258bf5",
-  "baseColor": "#a8d5fc",
+  "background": "#3894f6",
+  "baseColor": "#b8defc",
   "accentColor": "#FFFFFF",
   "sun": {
     "x": 85,

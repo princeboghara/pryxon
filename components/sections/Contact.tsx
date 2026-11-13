@@ -111,94 +111,100 @@ export default function Contact() {
 
         {/* 2-Column Luxury Rebuilt Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          {/* Left Column: Direct Communication Channels */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
-            {/* WhatsApp Priority Card */}
+          {/* Left Column: Direct Communication Channels (Compact & Sleek) */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-3">
+            {/* WhatsApp Priority Card (Compact) */}
             <a
               href="https://wa.me/918141815695?text=Hello%20Pryxon%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative p-6 rounded-3xl glass-panel border border-emerald-500/25 hover:border-emerald-500/50 hover:shadow-[0_16px_40px_-8px_rgba(16,185,129,0.18)] transition-all duration-300 block overflow-hidden bg-gradient-to-br from-white/95 to-emerald-50/40"
+              className="group relative p-4 sm:p-4.5 rounded-2xl glass-panel border border-emerald-500/25 hover:border-emerald-500/50 hover:shadow-md transition-all duration-300 block overflow-hidden bg-gradient-to-br from-white/95 to-emerald-50/40"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-                  <MessageCircle className="w-6 h-6" />
+              <div className="flex items-center justify-between mb-2.5">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                    <MessageCircle className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+                      WhatsApp Priority
+                    </div>
+                    <div className="text-base sm:text-lg font-extrabold text-slate-950 leading-tight">
+                      +91 81418 15695
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-[10px] font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Instant Reply</span>
                 </div>
               </div>
 
-              <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-1">
-                WhatsApp Business
-              </div>
-              <div className="text-xl sm:text-2xl font-extrabold text-slate-950 mb-1">
-                +91 81418 15695
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 mb-4">
-                Chat directly with our tech architects. Get rapid estimates, scope reviews, and immediate answers.
-              </p>
-
-              <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-700 group-hover:text-emerald-800 transition-colors">
-                <span>Start WhatsApp Chat</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <div className="flex items-center justify-between pt-1 text-xs text-slate-600">
+                <span className="text-[11px] text-slate-500 truncate mr-2">Rapid project estimates &amp; direct chat</span>
+                <span className="inline-flex items-center gap-1 font-bold text-emerald-700 group-hover:text-emerald-800 shrink-0 text-xs">
+                  <span>Chat</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
               </div>
             </a>
 
-            {/* Instagram Official Card */}
+            {/* Instagram Official Card (Compact) */}
             <a
               href="https://instagram.com/pryxonstudio"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative p-6 rounded-3xl glass-panel border border-pink-500/20 hover:border-pink-500/40 hover:shadow-[0_16px_40px_-8px_rgba(236,72,153,0.15)] transition-all duration-300 block overflow-hidden bg-gradient-to-br from-white/95 to-pink-50/30"
+              className="group relative p-4 sm:p-4.5 rounded-2xl glass-panel border border-pink-500/20 hover:border-pink-500/40 hover:shadow-md transition-all duration-300 block overflow-hidden bg-gradient-to-br from-white/95 to-pink-50/30"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                  <Instagram className="w-6 h-6" />
+              <div className="flex items-center justify-between mb-2.5">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                    <Instagram className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-pink-700">
+                      Instagram Official
+                    </div>
+                    <div className="text-base sm:text-lg font-extrabold text-slate-950 leading-tight">
+                      @pryxonstudio
+                    </div>
+                  </div>
                 </div>
-                <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-pink-100/70 border border-pink-200 text-pink-700">
-                  @pryxonstudio
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-pink-100/70 border border-pink-200 text-pink-700">
+                  Follow &amp; DM
                 </span>
               </div>
 
-              <div className="text-xs font-bold uppercase tracking-wider text-pink-700 mb-1">
-                Instagram Official
-              </div>
-              <div className="text-xl sm:text-2xl font-extrabold text-slate-950 mb-1">
-                @pryxonstudio
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 mb-4">
-                Explore our design drops, client showcase teasers, and DM us directly for inquiries.
-              </p>
-
-              <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-pink-700 group-hover:text-pink-800 transition-colors">
-                <span>Open @pryxonstudio</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+              <div className="flex items-center justify-between pt-1 text-xs text-slate-600">
+                <span className="text-[11px] text-slate-500 truncate mr-2">Design drops &amp; client showcase teasers</span>
+                <span className="inline-flex items-center gap-1 font-bold text-pink-700 group-hover:text-pink-800 shrink-0 text-xs">
+                  <span>Open</span>
+                  <ExternalLink className="w-3 h-3" />
+                </span>
               </div>
             </a>
 
-            {/* Direct Email & Location Badge */}
-            <div className="p-5 rounded-3xl glass-panel border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3.5 w-full sm:w-auto">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100 shrink-0">
-                  <Mail className="w-4.5 h-4.5" />
+            {/* Direct Email & Location Badge (Compact) */}
+            <div className="p-3.5 sm:p-4 rounded-2xl glass-panel border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100 shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
                     Official Email
                   </div>
                   <a
                     href="mailto:contact@pryxon.in"
-                    className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors"
+                    className="text-xs sm:text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors"
                   >
                     contact@pryxon.in
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-slate-500 w-full sm:w-auto justify-start sm:justify-end border-t sm:border-t-0 pt-2 sm:pt-0 border-slate-100">
-                <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-500 w-full sm:w-auto justify-start sm:justify-end border-t sm:border-t-0 pt-2 sm:pt-0 border-slate-100">
+                <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
                 <span>Surat, India &bull; Global Remote</span>
               </div>
             </div>
