@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cloudBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a101d"/>
+      <stop offset="100%" stop-color="#141c2e"/>
+    </linearGradient>
+    <linearGradient id="nodeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="violetGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Frame -->
+  <rect x="15" y="15" width="370" height="190" rx="14" fill="url(#cloudBg)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Top System Bar -->
+  <path d="M15 15 h370 r14 0 v28 h-370 v-28 r0 -14" fill="#0d1424"/>
+  <circle cx="34" cy="29" r="4.5" fill="#38bdf8"/>
+  <rect x="46" y="25" width="80" height="8" rx="4" fill="#f8fafc"/>
+  <rect x="290" y="23" width="80" height="13" rx="6.5" fill="rgba(16, 185, 129, 0.15)"/>
+  <circle cx="300" cy="29.5" r="3" fill="#10b981"/>
+  <text x="338" y="33" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#10b981" text-anchor="middle">SYSTEM HEALTHY</text>
+
+  <!-- Architectural Diagram Nodes & Network -->
+  <!-- Left Side: Cloud Architecture & API Pipeline -->
+  <g transform="translate(30, 52)">
+    <!-- Node 1: Client Layer -->
+    <rect x="0" y="10" width="70" height="34" rx="7" fill="#17223b" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="35" y="24" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#f8fafc" text-anchor="middle">Client Apps</text>
+    <text x="35" y="35" font-family="system-ui, sans-serif" font-size="6.5" fill="#94a3b8" text-anchor="middle">Web • iOS • Android</text>
+
+    <!-- Node 2: API Gateway / Auth (Center) -->
+    <rect x="100" y="2" width="85" height="50" rx="8" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="142" y="18" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#c084fc" text-anchor="middle">API GATEWAY</text>
+    <text x="142" y="30" font-family="system-ui, sans-serif" font-size="7" fill="#f8fafc" text-anchor="middle">Load Balancer</text>
+    <text x="142" y="42" font-family="system-ui, sans-serif" font-size="6" fill="#94a3b8" text-anchor="middle">OAuth2 • SSL • CDN</text>
+
+    <!-- Node 3: Microservices / Backend Logic -->
+    <rect x="100" y="80" width="85" height="50" rx="8" fill="#162c3d" stroke="#0ea5e9" stroke-width="1.5"/>
+    <text x="142" y="96" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#38bdf8" text-anchor="middle">MICROSERVICES</text>
+    <text x="142" y="108" font-family="system-ui, sans-serif" font-size="7" fill="#f8fafc" text-anchor="middle">Business Logic</text>
+    <text x="142" y="120" font-family="system-ui, sans-serif" font-size="6" fill="#94a3b8" text-anchor="middle">Docker • Kubernetes</text>
+
+    <!-- Node 4: Database / Cloud Cluster (Right) -->
+    <rect x="215" y="10" width="70" height="34" rx="7" fill="#17223b" stroke="#10b981" stroke-width="1.2"/>
+    <text x="250" y="24" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#f8fafc" text-anchor="middle">Cloud DB</text>
+    <text x="250" y="35" font-family="system-ui, sans-serif" font-size="6.5" fill="#10b981" text-anchor="middle">Postgres / Redis</text>
+
+    <!-- Node 5: Enterprise Analytics / BI -->
+    <rect x="215" y="88" width="70" height="34" rx="7" fill="#17223b" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="250" y="102" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#f8fafc" text-anchor="middle">Analytics Hub</text>
+    <text x="250" y="113" font-family="system-ui, sans-serif" font-size="6.5" fill="#fbbf24" text-anchor="middle">Live Reporting</text>
+
+    <!-- Connector Lines -->
+    <path d="M70 27 L100 27" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="85" cy="27" r="2.5" fill="#38bdf8"/>
+
+    <path d="M142 52 L142 80" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="142" cy="66" r="3" fill="#a855f7"/>
+
+    <path d="M185 27 L215 27" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M185 105 L215 105" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- Right Side Stat Bar -->
+  <g transform="translate(315, 52)">
+    <rect x="0" y="0" width="55" height="62" rx="8" fill="#131c31" stroke="#334155" stroke-width="1"/>
+    <text x="27" y="18" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#94a3b8" text-anchor="middle">UPTIME</text>
+    <text x="27" y="36" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#10b981" text-anchor="middle">99.99%</text>
+    <text x="27" y="50" font-family="system-ui, sans-serif" font-size="6" fill="#64748b" text-anchor="middle">HA Cluster</text>
+
+    <rect x="0" y="70" width="55" height="62" rx="8" fill="#131c31" stroke="#334155" stroke-width="1"/>
+    <text x="27" y="88" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#94a3b8" text-anchor="middle">SCALE</text>
+    <text x="27" y="106" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#38bdf8" text-anchor="middle">10M+</text>
+    <text x="27" y="120" font-family="system-ui, sans-serif" font-size="6" fill="#64748b" text-anchor="middle">Req / Day</text>
+  </g>
+</svg>

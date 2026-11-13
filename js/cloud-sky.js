@@ -268,10 +268,6 @@ void main(){
     const ptr = { x: 0, y: 0, inside: false };
 
     function render(now) {
-      if (document.hidden) {
-        requestAnimationFrame(render);
-        return;
-      }
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
 

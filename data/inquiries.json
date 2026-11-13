@@ -1,5 +1,16 @@
 [
   {
+    "id": "inq_mwesj549r92t",
+    "name": "Tech Stack Test",
+    "email": "test@pryxon.in",
+    "service": "web-dev",
+    "budget": "3k-8k",
+    "details": "Testing modern Next.js 15 API route",
+    "createdAt": "2026-11-13T09:44:53.673Z",
+    "status": "new",
+    "ip": "::1"
+  },
+  {
     "id": "inq_8f9273da65",
     "name": "Elon Carter",
     "email": "carter@orbitalventures.com",

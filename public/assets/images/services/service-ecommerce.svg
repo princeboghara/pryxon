@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ecomBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#151b2e"/>
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main Store Container Frame -->
+  <rect x="15" y="15" width="370" height="190" rx="14" fill="url(#ecomBg)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Store Header Bar -->
+  <path d="M15 15 h370 r14 0 v32 h-370 v-32 r0 -14" fill="#0c1222"/>
+  <!-- Brand logo mark -->
+  <rect x="30" y="24" width="14" height="14" rx="4" fill="url(#emeraldGlow)"/>
+  <rect x="52" y="27" width="50" height="8" rx="4" fill="#f8fafc"/>
+  <rect x="110" y="29" width="30" height="4" rx="2" fill="#64748b"/>
+  <rect x="148" y="29" width="30" height="4" rx="2" fill="#64748b"/>
+  <!-- Cart with Badge -->
+  <circle cx="345" cy="31" r="10" fill="#1e293b"/>
+  <path d="M341 33 h8 l-1.2 5 h-5.6 z M343 30 v-2 a2 2 0 0 1 4 0 v2" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <circle cx="353" cy="24" r="5" fill="#ef4444"/>
+  <text x="353" y="26.5" font-family="system-ui, sans-serif" font-size="6" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+
+  <!-- Left: Featured Product Card -->
+  <g transform="translate(30, 56)">
+    <rect x="0" y="0" width="170" height="136" rx="10" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+    <!-- Product Image Preview Area -->
+    <rect x="10" y="10" width="150" height="66" rx="8" fill="#1e293b"/>
+    <!-- Sneaker / Gadget Silhouette in Glowing Gradients -->
+    <path d="M35 52 C45 42, 60 48, 80 44 C95 40, 110 32, 125 35 C135 37, 140 46, 138 52 C125 54, 90 56, 35 52 Z" fill="url(#purpleGlow)" opacity="0.85"/>
+    <path d="M35 52 L138 52 L135 58 L37 58 Z" fill="#f8fafc"/>
+    <circle cx="132" cy="22" r="9" fill="rgba(16, 185, 129, 0.2)"/>
+    <text x="132" y="25" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#10b981" text-anchor="middle">NEW</text>
+    
+    <!-- Product Info -->
+    <rect x="12" y="84" width="70" height="6" rx="3" fill="#f8fafc"/>
+    <rect x="12" y="94" width="40" height="4" rx="2" fill="#64748b"/>
+    <!-- Price & Rating -->
+    <text x="12" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#38bdf8">$189.00</text>
+    <text x="56" y="111" font-family="system-ui, sans-serif" font-size="8" fill="#64748b" text-decoration="line-through">$249</text>
+    <g transform="translate(100, 102)">
+      <circle cx="6" cy="6" r="4" fill="#f59e0b"/>
+      <text x="14" y="9" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#f8fafc">4.9 (1.2k)</text>
+    </g>
+    <!-- Add to Cart CTA -->
+    <rect x="10" y="118" width="150" height="12" rx="6" fill="url(#emeraldGlow)"/>
+    <text x="85" y="127" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle">⚡ INSTANT CHECKOUT</text>
+  </g>
+
+  <!-- Right: Sales Performance & Conversion Metrics -->
+  <g transform="translate(212, 56)">
+    <!-- Sales Boost Card -->
+    <rect x="0" y="0" width="158" height="64" rx="10" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+    <text x="12" y="18" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#94a3b8">MONTHLY REVENUE</text>
+    <text x="12" y="38" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#f8fafc">$84,250</text>
+    <rect x="96" y="10" width="52" height="16" rx="8" fill="rgba(16, 185, 129, 0.15)"/>
+    <text x="122" y="21" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#10b981" text-anchor="middle">↑ +48.6%</text>
+    <!-- Mini sparkline -->
+    <path d="M12 52 L35 48 L60 50 L90 42 L120 45 L145 36" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Secure Checkout & Payment Gateway Integration -->
+    <rect x="0" y="72" width="158" height="64" rx="10" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+    <text x="12" y="88" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#94a3b8">PAYMENT GATEWAYS</text>
+    <g transform="translate(12, 96)">
+      <!-- Stripe Badge -->
+      <rect x="0" y="0" width="40" height="20" rx="5" fill="#6366f1"/>
+      <text x="20" y="13" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle">stripe</text>
+      <!-- Razorpay / UPI Badge -->
+      <rect x="46" y="0" width="40" height="20" rx="5" fill="#0284c7"/>
+      <text x="66" y="13" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle">UPI / Pay</text>
+      <!-- Apple Pay -->
+      <rect x="92" y="0" width="42" height="20" rx="5" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="113" y="13" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#f8fafc" text-anchor="middle"> Pay</text>
+    </g>
+    <text x="12" y="128" font-family="system-ui, sans-serif" font-size="6.5" font-weight="500" fill="#64748b">🔒 100% PCI-DSS Compliant Security</text>
+  </g>
+</svg>

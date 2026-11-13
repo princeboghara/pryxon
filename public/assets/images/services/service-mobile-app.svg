@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mobileBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="phoneScreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas Frame -->
+  <rect x="15" y="15" width="370" height="190" rx="14" fill="url(#mobileBg)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Left Side: Sleek Smartphone Mockup (Center Left) -->
+  <g transform="translate(42, 22)">
+    <!-- Outer Phone Shadow & Body -->
+    <rect x="0" y="0" width="100" height="176" rx="20" fill="#020617" stroke="#475569" stroke-width="2.5"/>
+    <!-- Phone Screen Inner -->
+    <rect x="5" y="5" width="90" height="166" rx="16" fill="url(#phoneScreenGrad)"/>
+
+    <!-- Dynamic Island / Speaker Pill -->
+    <rect x="36" y="9" width="28" height="6" rx="3" fill="#000000"/>
+    <circle cx="56" cy="12" r="1.5" fill="#1e293b"/>
+
+    <!-- App Header in Phone -->
+    <rect x="14" y="24" width="35" height="5" rx="2.5" fill="#f8fafc"/>
+    <circle cx="82" cy="26" r="4" fill="#38bdf8"/>
+
+    <!-- Story Circles -->
+    <circle cx="21" cy="42" r="7" fill="none" stroke="url(#accentGrad)" stroke-width="1.5"/>
+    <circle cx="21" cy="42" r="5" fill="#64748b"/>
+    <circle cx="39" cy="42" r="7" fill="none" stroke="url(#accentGrad)" stroke-width="1.5"/>
+    <circle cx="39" cy="42" r="5" fill="#64748b"/>
+    <circle cx="57" cy="42" r="7" fill="none" stroke="url(#accentGrad)" stroke-width="1.5"/>
+    <circle cx="57" cy="42" r="5" fill="#64748b"/>
+    <circle cx="75" cy="42" r="7" fill="none" stroke="#475569" stroke-width="1.5"/>
+    <circle cx="75" cy="42" r="5" fill="#334155"/>
+
+    <!-- App Content Card -->
+    <rect x="12" y="58" width="76" height="54" rx="8" fill="#1e293b" stroke="#334155" stroke-width="0.8"/>
+    <!-- Image placeholder inside card -->
+    <rect x="16" y="62" width="68" height="28" rx="5" fill="url(#accentGrad)" opacity="0.8"/>
+    <rect x="16" y="94" width="46" height="4" rx="2" fill="#f8fafc"/>
+    <rect x="16" y="102" width="32" height="3.5" rx="1.7" fill="#64748b"/>
+    <circle cx="78" cy="98" r="4" fill="#ec4899"/>
+
+    <!-- Second mini card -->
+    <rect x="12" y="118" width="76" height="32" rx="8" fill="#1e293b" stroke="#334155" stroke-width="0.8"/>
+    <circle cx="24" cy="134" r="6" fill="url(#cyanGrad)"/>
+    <rect x="34" y="130" width="38" height="4" rx="2" fill="#f8fafc"/>
+    <rect x="34" y="136" width="24" height="3" rx="1.5" fill="#64748b"/>
+
+    <!-- Bottom Navigation Bar -->
+    <rect x="10" y="155" width="80" height="12" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+    <circle cx="24" cy="161" r="2.5" fill="#a855f7"/>
+    <circle cx="40" cy="161" r="2.5" fill="#64748b"/>
+    <circle cx="60" cy="161" r="2.5" fill="#64748b"/>
+    <circle cx="76" cy="161" r="2.5" fill="#64748b"/>
+    <!-- Home Bar Indicator -->
+    <rect x="36" y="167" width="28" height="2" rx="1" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Right Side: Architecture & Native Capabilities Badges -->
+  <g transform="translate(165, 30)">
+    <!-- Badge 1: Cross Platform iOS & Android -->
+    <rect x="0" y="0" width="205" height="45" rx="10" fill="#131c31" stroke="#334155" stroke-width="1.2"/>
+    <circle cx="22" cy="22" r="12" fill="rgba(56, 189, 248, 0.15)"/>
+    <text x="22" y="26" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">📱</text>
+    <text x="44" y="18" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f8fafc">iOS &amp; Android Native</text>
+    <text x="44" y="32" font-family="system-ui, sans-serif" font-size="7.5" fill="#94a3b8">React Native / Flutter / Kotlin / Swift</text>
+
+    <!-- Badge 2: Performance 60 FPS -->
+    <rect x="0" y="53" width="205" height="45" rx="10" fill="#131c31" stroke="#334155" stroke-width="1.2"/>
+    <circle cx="22" cy="75" r="12" fill="rgba(236, 72, 153, 0.15)"/>
+    <text x="22" y="79" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle">⚡</text>
+    <text x="44" y="71" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f8fafc">Silky Smooth 60/120 FPS</text>
+    <text x="44" y="85" font-family="system-ui, sans-serif" font-size="7.5" fill="#94a3b8">Fluid gesture physics &amp; haptic feedback</text>
+
+    <!-- Badge 3: Offline Sync & Push Notifications -->
+    <rect x="0" y="106" width="205" height="45" rx="10" fill="#131c31" stroke="#334155" stroke-width="1.2"/>
+    <circle cx="22" cy="128" r="12" fill="rgba(16, 185, 129, 0.15)"/>
+    <text x="22" y="132" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle">🔔</text>
+    <text x="44" y="124" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f8fafc">Real-time Push &amp; Offline Cache</text>
+    <text x="44" y="138" font-family="system-ui, sans-serif" font-size="7.5" fill="#94a3b8">Instant alerts, biometric face ID &amp; sync</text>
+  </g>
+</svg>
