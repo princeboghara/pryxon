@@ -1004,8 +1004,11 @@ button {
   }
 
   /* Hide the topbar button on mobile to give full room to logo + hamburger */
-  .nav-actions .btn-get-started {
-    display: none;
+  .nav-actions .btn-get-started,
+  .nav-cta-btn,
+  header nav .btn-get-started,
+  .floating-topbar .btn-get-started {
+    display: none !important;
   }
 
   .mobile-toggle-btn {
@@ -1178,6 +1181,13 @@ button {
   .logo-img {
     height: 34px;
     max-width: 155px;
+  }
+
+  .nav-actions .btn-get-started,
+  .nav-cta-btn,
+  header nav .btn-get-started,
+  .floating-topbar .btn-get-started {
+    display: none !important;
   }
 
   .mobile-toggle-btn {

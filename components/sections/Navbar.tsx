@@ -98,10 +98,10 @@ export default function Navbar() {
           </ul>
 
           {/* Right Action Items */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="nav-actions flex items-center gap-2 sm:gap-3 shrink-0">
             <Link
               href="#contact"
-              className="btn-get-started hidden sm:inline-flex"
+              className="btn-get-started nav-cta-btn !hidden md:!inline-flex"
             >
               <span>Start Your Project</span>
               <span className="btn-arrow-badge">
@@ -115,7 +115,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100/80 text-slate-800 hover:bg-slate-200/80 transition-colors shrink-0"
+              className="mobile-toggle-btn md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100/90 text-slate-800 hover:bg-slate-200/90 transition-colors shrink-0"
               aria-label="Toggle navigation"
               aria-expanded={mobileOpen}
             >
