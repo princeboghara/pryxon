@@ -214,11 +214,11 @@ export default function AtmosphericSky() {
       farX = (farX - 0.026 * rate * dt) % 1000;
       cirrusX = (cirrusX - 0.014 * rate * dt) % 1000;
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.0);
+      const dpr = Math.min(window.devicePixelRatio || 1, 0.8);
       const cw = window.innerWidth;
       const ch = window.innerHeight;
-      const bw = Math.max(1, Math.round(cw * dpr));
-      const bh = Math.max(1, Math.round(ch * dpr));
+      const bw = Math.min(1280, Math.max(1, Math.round(cw * dpr)));
+      const bh = Math.min(720, Math.max(1, Math.round(ch * dpr)));
 
       if (canvasEl.width !== bw || canvasEl.height !== bh) {
         canvasEl.width = bw;

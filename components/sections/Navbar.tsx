@@ -101,11 +101,13 @@ export default function Navbar() {
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="#contact"
-              className="hidden sm:inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold h-10 px-4.5 bg-gradient-to-b from-slate-900 to-slate-950 text-white shadow-[0_1px_2px_rgba(15,23,42,0.1),0_8px_20px_-3px_rgba(15,23,42,0.32),inset_0_1px_0_rgba(255,255,255,0.3)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.2),0_14px_28px_-3px_rgba(15,23,42,0.4)] hover:-translate-y-0.5 border border-white/20 transition-all duration-200"
+              className="btn-get-started"
             >
-              <span>Get Started</span>
-              <span className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
-                <ArrowRight className="w-3 h-3 text-white" />
+              <span>Start Your Project</span>
+              <span className="btn-arrow-badge">
+                <svg className="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </span>
             </Link>
 
