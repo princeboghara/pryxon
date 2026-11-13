@@ -18,19 +18,19 @@ export default function Home() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="relative min-h-screen text-slate-900 overflow-x-hidden selection:bg-blue-500/20"
     >
-      {/* Official Originkit Cloud Sky Component (Soft, Faded Ethereal Blue) */}
+      {/* Official Originkit Cloud Sky Component (Natural Sky Blue & Fluffy Clouds) */}
       <div
         className="fixed inset-0 w-screen h-screen pointer-events-none z-0 overflow-hidden"
         aria-hidden="true"
       >
         <CloudSky
-          background="#91bcee"
-          baseColor="#edf5fc"
+          background="#258bf5"
+          baseColor="#a8d5fc"
           accentColor="#FFFFFF"
           clouds={{
-            cirrus: 85,
-            shadow: 45,
-            softness: 220,
+            cirrus: 80,
+            shadow: 50,
+            softness: 210,
           }}
           pointer={{
             wind: 160,
@@ -46,8 +46,6 @@ export default function Home() {
             minHeight: 0,
           }}
         />
-        {/* Soft atmospheric fade wash for calm, faded luxury sky */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-white/35 pointer-events-none" />
       </div>
 
       {/* Floating Glassmorphic Topbar Navigation */}
