@@ -20,33 +20,52 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    let cachedOffsets: { id: string; top: number }[] = [];
+
+    const updateCachedOffsets = () => {
+      cachedOffsets = navItems.map((item) => {
+        const id = item.href.substring(1);
+        const el = document.getElementById(id);
+        return { id, top: el ? el.offsetTop : 0 };
+      });
+    };
+
+    updateCachedOffsets();
+    window.addEventListener("resize", updateCachedOffsets, { passive: true });
+
     const handleScroll = () => {
-      // Reading progress bar
-      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolledRatio = height > 0 ? (winScroll / height) * 100 : 0;
-      const progressBar = document.getElementById("scrollProgressBar");
-      if (progressBar) {
-        progressBar.style.width = `${scrolledRatio}%`;
-      }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const winScroll = window.scrollY || document.documentElement.scrollTop || 0;
+          const height = document.documentElement.scrollHeight - window.innerHeight;
+          const scrolledRatio = height > 0 ? (winScroll / height) * 100 : 0;
+          const progressBar = document.getElementById("scrollProgressBar");
+          if (progressBar) {
+            progressBar.style.width = `${scrolledRatio}%`;
+          }
 
-      setScrolled(winScroll > 30);
+          setScrolled(winScroll > 30);
 
-      // Active section spy
-      const sections = navItems.map((item) => item.href.substring(1));
-      const scrollPos = window.scrollY + 200;
+          const scrollPos = winScroll + 200;
+          for (let i = cachedOffsets.length - 1; i >= 0; i--) {
+            if (cachedOffsets[i].top <= scrollPos) {
+              setActiveSection((prev) => (prev !== cachedOffsets[i].id ? cachedOffsets[i].id : prev));
+              break;
+            }
+          }
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sec = document.getElementById(sections[i]);
-        if (sec && sec.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateCachedOffsets);
+    };
   }, []);
 
   return (

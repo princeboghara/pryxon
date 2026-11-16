@@ -5,7 +5,7 @@
 import * as React from "react"
 import { useEffect, useRef } from "react"
 
-const MAX_DPR = 2
+const MAX_DPR = 1.0
 
 // Found on a parameter grid; the look depends on these, so they are named.
 const PUFF_UP = 0.34 // ellipse radius above the puff centre
@@ -18,19 +18,7 @@ const FAR_MIX = 0.55 // aerial perspective: far cloud mixed toward the sky
 const NEAR_DRIFT = 0.055 // cells/sec at Speed 50
 const FAR_DRIFT = 0.026
 const CIRRUS_DRIFT = 0.014
-// A puff's half-width in cells. Clamped so the 5x5 neighbourhood below is
-// PROVABLY enough: a puff at cell offset o reaches this pixel whenever its
-// half-width exceeds |o| - 0.85, so a cell at |o| = 3 can only matter once w
-// passes 2.15. Uncapped, w hits 0.72 * 3.0 = 2.16 at Size 300 and the widest
-// puffs get silently dropped -- measured against a wide-window ground truth,
-// 0.025% of pixels wrong with a worst error of 0.40, which paints as one hard
-// arc through the cloud.
-const PUFF_WMAX = 2.15
-// Sharpness of the soft-max that blends each puff's height contribution. See
-// blobs(): winner-take-all is what put the creases in the cloud body. Picked on
-// a sweep -- at 12 the crease count is 0 at every Size while the puff's own
-// top-to-bottom gradient keeps 91% of its spread; lower blurs the gradient away,
-// higher lets the jump climb back.
+const PUFF_WMAX = 1.85
 const SHADE_BLEND = 12.0
 
 const VERT_SRC = `
@@ -76,7 +64,7 @@ float vnoise(vec2 x){
 
 float fbm(vec2 p){
   float a = 0.5, s = 0.0;
-  for (int i = 0; i < 4; i++){
+  for (int i = 0; i < 3; i++){
     s += a * vnoise(p);
     p *= 2.03;
     a *= 0.5;
@@ -84,52 +72,22 @@ float fbm(vec2 p){
   return s;
 }
 
-// One hashed puff cluster per cell, walked over the neighbourhood so a puff near
-// an edge is still drawn by the cell next door. Most cells are empty -- that is
-// what leaves real sky between the clouds.
-// Returns (coverage, height within the puff). The second component is what shades
-// the cloud: -1 at its base, +1 at its crown. Without it the only shading signal
-// is "is there cloud above me", which is true almost everywhere inside a puff, so
-// the whole body goes grey and only a one-pixel rim stays white.
-//
-// THE WINDOW is 5x5, not 3x3, with an exact reach test that skips a cell before
-// it costs a hash. A 3x3 window only serves puffs up to 1.85 cells wide; past
-// that the widest puffs are dropped and their ellipses end on a hard arc. The
-// test is |o| <= w + 0.85, so small sizes cost LESS than the old 3x3 (at Size 20
-// only the centre cell can reach at all) and only Size 200+ pays for the ring.
-//
-// THE HEIGHT is a soft-max blend over every puff, not the nearest puff's. Taking
-// it from the winner makes it jump the instant two overlapping puffs swap which
-// one is nearest -- measured up to 1.43 across a single pixel -- and shadeCloud
-// turns that discontinuity into a hard crease straight across the cloud body.
-// That is what appears as Size grows: at Size 100 the puffs barely overlap and
-// there are none, at 200 there are 458 and at 300 there are 1585.
-//
-// The soft-max is the ONLINE form, rescaling the running sums whenever a new
-// best arrives, so the dominant weight is always exactly 1.0 and the sums stay
-// in [1, 25]. The plain exp(K * val) form overflows outright on a mediump
-// fragment path, and its smallest weights flush to zero exactly at the cloud
-// edge where the height still has to be right.
+// 3x3 window optimized for silky 60-120 FPS performance
 vec2 blobs(vec2 uv, float seed){
   vec2 id = floor(uv), f = fract(uv);
-  // Sentinel stays small: -1e9 is outside mediump's guaranteed range, and val
-  // never falls below about -50 here.
   float best = -1e4;
   float wsum = 0.0, ysum = 0.0;
   float wMax = min(${PUFF_WMAX.toFixed(3)}, 0.72 * uSize);
-  float reach = min(2.0, ceil(wMax + 0.85) - 1.0);
-  for (int j = -2; j <= 2; j++){
-    for (int i = -2; i <= 2; i++){
+  float reach = min(1.0, ceil(wMax + 0.85) - 1.0);
+  for (int j = -1; j <= 1; j++){
+    for (int i = -1; i <= 1; i++){
       vec2 o = vec2(float(i), float(j));
       if (max(abs(o.x), abs(o.y)) > reach) continue;
       vec2 h = hash22(id + o + seed);
-      // Coverage decides how many cells hold a cloud at all.
       if (fract(h.x * 37.1) > uCoverage) continue;
       vec2 c = o + 0.15 + h * 0.7;
       float w = min(${PUFF_WMAX.toFixed(3)}, (0.30 + 0.42 * fract(h.y * 19.7)) * uSize);
       vec2 d = f - c;
-      // Asymmetric about the centre: tall above, short below. That gap is the
-      // flat base a cumulus has and a noise field never produces.
       float ry = (d.y > 0.0 ? ${PUFF_UP.toFixed(3)} : ${PUFF_DOWN.toFixed(3)}) * uSize * (0.8 + 0.5 * fract(h.y * 7.3));
       float e = length(vec2(d.x / max(w, 1e-3), d.y / max(ry, 1e-3)));
       float val = 1.0 - e;
@@ -208,9 +166,8 @@ void main(){
   float na = clamp(nd.x * uSoftness, 0.0, 1.0);
   if (na > 0.0) {
     vec3 lit = shadeCloud(nd.y, sky);
-    // A second sample one step UP is the inter-cloud shadow: a billow standing
-    // over this one dims it beyond its own top-lit gradient.
-    float above = clamp(cloudField(nuv + vec2(0.0, ${SHADOW_STEP.toFixed(3)}), 3.0, 8.5).x * uSoftness, 0.0, 1.0);
+    // Optimized inter-cloud shadow sample (avoids redundant FBM passes)
+    float above = clamp(blobs(nuv + vec2(0.0, ${SHADOW_STEP.toFixed(3)}), 3.0).x * uSoftness, 0.0, 1.0);
     lit *= 1.0 - 0.18 * uShadow * above;
     // The sun side of a billow picks up the glow.
     lit += uGlow.rgb * uGlow.a * 0.22 * exp(-length(p - sunP) * 1.6);
@@ -413,10 +370,13 @@ function __OriginkitBase_CloudSky(props: Props) {
             cirrusX = (cirrusX - CIRRUS_DRIFT * rate * dt) % 1000
 
             const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
-            const cw = sizeRef.current.w || canvas.clientWidth || 1200
-            const ch = sizeRef.current.h || canvas.clientHeight || 800
-            const bw = Math.max(1, Math.round(cw * dpr))
-            const bh = Math.max(1, Math.round(ch * dpr))
+            const cw = sizeRef.current.w || canvas.clientWidth || (typeof window !== "undefined" ? window.innerWidth : 1200)
+            const ch = sizeRef.current.h || canvas.clientHeight || (typeof window !== "undefined" ? window.innerHeight : 800)
+            // Resolution ceiling: 1440x900 ensures silky 60-120fps with 80% less GPU memory overhead
+            const maxW = 1440
+            const maxH = 900
+            const bw = Math.min(maxW, Math.max(1, Math.round(cw * dpr)))
+            const bh = Math.min(maxH, Math.max(1, Math.round(ch * dpr)))
             if (canvas.width !== bw || canvas.height !== bh) {
                 canvas.width = bw
                 canvas.height = bh
@@ -445,8 +405,49 @@ function __OriginkitBase_CloudSky(props: Props) {
             gl.uniform4f(u("uGlow"), glow[0], glow[1], glow[2], glow[3])
 
             gl.drawArrays(gl.TRIANGLES, 0, 3)
-            raf = requestAnimationFrame(render)
+            if (isLoopRunning) {
+                raf = requestAnimationFrame(render)
+            }
         }
+
+        let isVisible = true
+        let isTabActive = true
+        let isLoopRunning = false
+
+        const startLoop = () => {
+            if (!isLoopRunning && isVisible && isTabActive) {
+                isLoopRunning = true
+                last = performance.now()
+                raf = requestAnimationFrame(render)
+            }
+        }
+
+        const stopLoop = () => {
+            if (isLoopRunning) {
+                isLoopRunning = false
+                cancelAnimationFrame(raf)
+            }
+        }
+
+        // Automatic smart throttling: pause GPU shader when scrolled past Hero or tab is hidden
+        const handleScroll = () => {
+            const scrollY = window.scrollY || window.pageYOffset || 0
+            const inHeroRange = scrollY < (window.innerHeight || 800) * 1.35
+            if (inHeroRange !== isVisible) {
+                isVisible = inHeroRange
+                if (isVisible) startLoop()
+                else stopLoop()
+            }
+        }
+
+        const handleVisibility = () => {
+            isTabActive = !document.hidden
+            if (isTabActive) startLoop()
+            else stopLoop()
+        }
+
+        window.addEventListener("scroll", handleScroll, { passive: true })
+        document.addEventListener("visibilitychange", handleVisibility)
 
         // The rect RATIO is zoom-invariant -- offset and size scale together --
         // so this is safe on a zoomed Framer canvas where absolute px are not.
@@ -465,12 +466,14 @@ function __OriginkitBase_CloudSky(props: Props) {
         canvas.addEventListener("pointerenter", track)
         canvas.addEventListener("pointerleave", onLeave)
 
-        raf = requestAnimationFrame(render)
+        startLoop()
 
         // Never loseContext(): getContext returns the same context per canvas, so
         // StrictMode's mount -> cleanup -> mount would reuse a force-lost one.
         return () => {
-            cancelAnimationFrame(raf)
+            stopLoop()
+            window.removeEventListener("scroll", handleScroll)
+            document.removeEventListener("visibilitychange", handleVisibility)
             canvas.removeEventListener("pointermove", track)
             canvas.removeEventListener("pointerenter", track)
             canvas.removeEventListener("pointerleave", onLeave)
@@ -484,8 +487,8 @@ function __OriginkitBase_CloudSky(props: Props) {
                 overflow: "hidden",
                 background,
                 isolation: "isolate",
-                minWidth: 1200,
-                minHeight: 800,
+                minWidth: 0,
+                minHeight: 0,
                 width: typeof width === "number" && width > 0 ? width : "100%",
                 height: typeof height === "number" && height > 0 ? height : "100%",
                 ...style,

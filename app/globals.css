@@ -82,7 +82,7 @@ body {
               inset 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
-/* Architectural grid overlay */
+/* Architectural grid overlay (isolated GPU layer) */
 .architectural-grid {
   background-image: 
     linear-gradient(to right, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
@@ -90,6 +90,9 @@ body {
   background-size: 52px 52px;
   mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 85%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 85%);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: none;
 }
 
 /* Custom scrollbar */

@@ -55,43 +55,15 @@ export default function Hero() {
         {allTechIcons.map((item, idx) => (
           <motion.div
             key={item.pos}
-            className={`tech-card-3d ${item.pos}`}
+            className={`tech-card-3d ${item.pos} float-cycle-${idx % 4}`}
             title={item.title}
             data-depth={item.depth}
-            data-speed={item.speed}
-            data-phase={item.phase}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: [0, -20, 6, -12, 0],
-              x: [0, idx % 2 === 0 ? 8 : -8, idx % 2 === 0 ? -4 : 4, 0],
-              rotate: [0, (idx % 2 === 0 ? 1 : -1) * 3, (idx % 2 === 0 ? -1 : 1) * 1.5, 0],
-            }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{
-              opacity: { duration: 0.8, delay: idx * 0.02 },
-              scale: { duration: 0.8, delay: idx * 0.02 },
-              y: {
-                duration: 4.8 + (idx % 4) * 0.6,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-                delay: (item.phase % 2) * 0.4,
-              },
-              x: {
-                duration: 5.6 + (idx % 3) * 0.7,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-                delay: (item.phase % 3) * 0.3,
-              },
-              rotate: {
-                duration: 6.2 + (idx % 3) * 0.8,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-                delay: (item.phase % 2) * 0.5,
-              },
+              duration: 0.5,
+              delay: idx * 0.015,
+              ease: [0.16, 1, 0.3, 1],
             }}
           >
             <Image
@@ -100,6 +72,7 @@ export default function Hero() {
               width={24}
               height={24}
               className="tech-icon-img"
+              loading="eager"
             />
           </motion.div>
         ))}
