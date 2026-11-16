@@ -53,7 +53,7 @@ export default function AdminPage() {
     name: "",
     email: "",
     service: "Web Development",
-    budget: "3k-8k",
+    budget: "60k-1.2L",
     details: "",
   });
 
@@ -145,7 +145,7 @@ export default function AdminPage() {
           name: "",
           email: "",
           service: "Web Development",
-          budget: "3k-8k",
+          budget: "60k-1.2L",
           details: "",
         });
         fetchInquiries();
@@ -697,27 +697,26 @@ export default function AdminPage() {
                     className="w-full text-xs font-semibold rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-700"
                   >
                     <option value="Web Development">Web Development</option>
-                    <option value="E-Commerce">E-Commerce</option>
                     <option value="Mobile Apps">Mobile Apps</option>
+                    <option value="Shopify & E-Commerce">Shopify & E-Commerce</option>
                     <option value="Custom Software">Custom Software</option>
                     <option value="WhatsApp CRM">WhatsApp CRM</option>
-                    <option value="AI Automations">AI Automations</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">
-                    Budget
+                    Budget (INR)
                   </label>
                   <select
                     value={newLead.budget}
                     onChange={(e) => setNewLead({ ...newLead, budget: e.target.value })}
                     className="w-full text-xs font-semibold rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-700"
                   >
-                    <option value="1k-3k">$1k - $3k</option>
-                    <option value="3k-8k">$3k - $8k</option>
-                    <option value="8k-15k">$8k - $15k</option>
-                    <option value="15k+">$15k+</option>
+                    <option value="25k-60k">₹25k - ₹60k</option>
+                    <option value="60k-1.2L">₹60k - ₹1.2L</option>
+                    <option value="1.2L-2.5L">₹1.2L - ₹2.5L</option>
+                    <option value="2.5L+">₹2.5L+</option>
                   </select>
                 </div>
               </div>

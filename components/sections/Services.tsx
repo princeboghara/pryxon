@@ -12,19 +12,10 @@ const services = [
     id: "web-dev",
     tag: "Web Platforms",
     title: "Web Development",
-    desc: "Ultra-fast, responsive web platforms built with Next.js & TypeScript. Engineered for 99+ speed scores and effortless conversions.",
+    desc: "Ultra-fast, responsive web platforms built with Next.js 15 & TypeScript. Engineered for 99+ speed scores and effortless conversions.",
     image: "/assets/images/services/service-web-dashboard-light.jpg",
     pills: ["Next.js", "React", "TypeScript", "High Speed"],
     linkText: "Explore Web Solutions",
-  },
-  {
-    id: "ecommerce",
-    tag: "Online Stores",
-    title: "E-Commerce Development",
-    desc: "High-conversion digital storefronts with instant checkout flows, secure payment gateways, inventory management, and fast shopping.",
-    image: "/assets/images/services/service-ecommerce-light.jpg",
-    pills: ["Shopify", "Custom Stores", "Stripe & UPI", "+48% Sales"],
-    linkText: "Explore E-Commerce",
   },
   {
     id: "mobile-app",
@@ -34,6 +25,15 @@ const services = [
     image: "/assets/images/services/service-mobile-app.jpg",
     pills: ["React Native", "Flutter", "iOS & Android", "Offline Sync"],
     linkText: "Explore Mobile Apps",
+  },
+  {
+    id: "shopify-ecommerce",
+    tag: "Shopify & E-Com",
+    title: "Shopify Store & E-Commerce",
+    desc: "Bespoke high-converting Shopify storefronts & headless digital shops. Fast checkout flows, Razorpay, UPI & COD, inventory sync, and high conversion.",
+    image: "/assets/images/services/service-ecommerce-light.jpg",
+    pills: ["Shopify Pro", "Razorpay & UPI", "Custom Theme", "+48% Sales"],
+    linkText: "Explore Shopify Solutions",
   },
   {
     id: "custom-software",
@@ -50,22 +50,14 @@ const services = [
     title: "WhatsApp CRM & Lead",
     desc: "Turn WhatsApp into a 24/7 lead generation engine. 0.2s auto-replies, verified business messaging, auto-followups, and live CRM sync.",
     image: "/assets/images/services/service-whatsapp-crm.jpg",
-    pills: ["Meta API", "Smart Chatbot", "Auto Leads", "CRM Pipeline"],
+    pills: ["Meta Cloud API", "Smart Chatbot", "Auto Leads", "CRM Pipeline"],
     linkText: "Explore WhatsApp CRM",
-  },
-  {
-    id: "ai-automation",
-    tag: "Autonomous Agents",
-    title: "AI Automations",
-    desc: "Autonomous AI workflows and custom LLM agents that run 24/7. Auto-qualify leads, extract documents, and save 18+ hours every week.",
-    image: "/assets/images/services/service-ai-automation.jpg",
-    pills: ["GPT-4o & Claude", "AI Agents", "Task Auto", "Zero Error"],
-    linkText: "Explore AI Automations",
   },
 ];
 
 export default function Services() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
@@ -73,6 +65,21 @@ export default function Services() {
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = e.changedTouches[0].clientX - touchStartX.current;
+    if (diff > 40) {
+      prevSlide();
+    } else if (diff < -40) {
+      nextSlide();
+    }
+    touchStartX.current = null;
   };
 
   return (
@@ -93,13 +100,13 @@ export default function Services() {
             What We Build.
           </h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Next-generation websites, bespoke software, and automated digital solutions built for scale.
+            Next-generation websites, mobile apps, Shopify stores, and enterprise cloud solutions built for scale.
           </p>
         </div>
 
-        {/* 3D Coverflow Container (Circular Infinite Loop) */}
-        <div className="relative w-full max-w-4xl mx-auto min-h-[580px] sm:min-h-[540px] flex items-center justify-center">
-          {/* Side Navigation Arrow Buttons (Outside card zone, zero overlap) */}
+        {/* 3D Coverflow Container (Circular Infinite Loop with Butter-Smooth Touch & Drag) */}
+        <div className="relative w-full max-w-4xl mx-auto min-h-[580px] sm:min-h-[540px] flex flex-col items-center justify-center">
+          {/* Side Navigation Arrow Buttons */}
           <button
             type="button"
             onClick={prevSlide}
@@ -118,7 +125,11 @@ export default function Services() {
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          <div className="relative w-full h-[540px] flex items-center justify-center">
+          <div
+            className="relative w-full h-[540px] flex items-center justify-center touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             {services.map((service, index) => {
               // Circular continuous infinite wrap
               const len = services.length;
@@ -142,11 +153,12 @@ export default function Services() {
               return (
                 <motion.div
                   key={service.id}
-                  drag="x"
+                  drag={offset === 0 ? "x" : false}
                   dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.25}
                   onDragEnd={(_, info) => {
-                    if (info.offset.x < -40) nextSlide();
-                    else if (info.offset.x > 40) prevSlide();
+                    if (info.offset.x < -35) nextSlide();
+                    else if (info.offset.x > 35) prevSlide();
                   }}
                   animate={{
                     x: xTranslate,
@@ -155,14 +167,20 @@ export default function Services() {
                     scale: scale,
                     opacity: opacity,
                   }}
-                  transition={{ type: "spring", stiffness: 260, damping: 25 }}
+                  transition={{
+                    duration: 0.42,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
                   style={{
                     zIndex,
                     transformStyle: "preserve-3d",
+                    willChange: "transform, opacity",
                   }}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`absolute w-full max-w-[360px] sm:max-w-[420px] rounded-3xl glass-panel p-6 sm:p-7 shadow-[0_12px_36px_-6px_rgba(15,23,42,0.12)] cursor-pointer select-none border border-slate-200/90 ${
-                    offset === 0 ? "ring-2 ring-blue-500/20 shadow-2xl" : "hover:opacity-90"
+                  onClick={() => {
+                    if (offset !== 0) setCurrentIndex(index);
+                  }}
+                  className={`absolute w-full max-w-[360px] sm:max-w-[420px] rounded-3xl bg-white/95 p-6 sm:p-7 shadow-[0_12px_36px_-6px_rgba(15,23,42,0.12)] cursor-pointer select-none border border-slate-200/90 ${
+                    offset === 0 ? "ring-2 ring-blue-500/25 shadow-2xl" : "hover:opacity-90"
                   }`}
                 >
                   {/* Card Media Preview */}
@@ -214,6 +232,21 @@ export default function Services() {
                 </motion.div>
               );
             })}
+          </div>
+
+          {/* Smooth Dot Pagination Indicators */}
+          <div className="flex items-center justify-center gap-2 mt-4 z-40">
+            {services.map((s, idx) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Go to ${s.title}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === idx ? "w-7 bg-slate-900" : "w-2 bg-slate-300 hover:bg-slate-400"
+                }`}
+              />
+            ))}
           </div>
         </div>
 

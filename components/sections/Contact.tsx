@@ -22,18 +22,17 @@ import { Textarea } from "@/components/ui/textarea";
 
 const serviceChips = [
   "Web Development",
-  "E-Commerce",
   "Mobile Apps",
+  "Shopify & E-Commerce",
   "Custom Software",
   "WhatsApp CRM",
-  "AI Automations",
 ];
 
 const budgetOptions = [
-  { label: "$1k – $3k", value: "1k-3k" },
-  { label: "$3k – $8k", value: "3k-8k" },
-  { label: "$8k – $15k", value: "8k-15k" },
-  { label: "$15k+", value: "15k+" },
+  { label: "₹25k – ₹60k", value: "25k-60k" },
+  { label: "₹60k – ₹1.2L", value: "60k-1.2L" },
+  { label: "₹1.2L – ₹2.5L", value: "1.2L-2.5L" },
+  { label: "₹2.5L+", value: "2.5L+" },
 ];
 
 export default function Contact() {
@@ -41,7 +40,7 @@ export default function Contact() {
     name: "",
     email: "",
     service: "Web Development",
-    budget: "3k-8k",
+    budget: "60k-1.2L",
     details: "",
   });
 
@@ -74,7 +73,7 @@ export default function Contact() {
         name: "",
         email: "",
         service: "Web Development",
-        budget: "3k-8k",
+        budget: "60k-1.2L",
         details: "",
       });
     } catch (err: any) {
