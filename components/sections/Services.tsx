@@ -58,28 +58,72 @@ const services = [
 export default function Services() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const isTransitioning = useRef(false);
 
   const prevSlide = () => {
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
     setCurrentIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
+    setTimeout(() => {
+      isTransitioning.current = false;
+    }, 450);
   };
 
   const nextSlide = () => {
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
     setCurrentIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+    setTimeout(() => {
+      isTransitioning.current = false;
+    }, 450);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const diff = e.changedTouches[0].clientX - touchStartX.current;
-    if (diff > 40) {
-      prevSlide();
-    } else if (diff < -40) {
-      nextSlide();
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const diffX = e.changedTouches[0].clientX - touchStartX.current;
+    const diffY = e.changedTouches[0].clientY - touchStartY.current;
+
+    // Strict check: horizontal swipe must be prominent and greater than vertical scroll
+    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
     }
     touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
+  const isMouseDown = useRef(false);
+  const mouseStartX = useRef<number | null>(null);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isMouseDown.current = true;
+    mouseStartX.current = e.clientX;
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isMouseDown.current || mouseStartX.current === null) return;
+    const diff = e.clientX - mouseStartX.current;
+    if (diff > 45) {
+      prevSlide();
+    } else if (diff < -45) {
+      nextSlide();
+    }
+    isMouseDown.current = false;
+    mouseStartX.current = null;
+  };
+
+  const handleMouseLeave = () => {
+    isMouseDown.current = false;
+    mouseStartX.current = null;
   };
 
   return (
@@ -126,9 +170,12 @@ export default function Services() {
           </button>
 
           <div
-            className="relative w-full h-[540px] flex items-center justify-center touch-pan-y"
+            className="relative w-full h-[540px] flex items-center justify-center touch-pan-y cursor-grab active:cursor-grabbing"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
           >
             {services.map((service, index) => {
               // Circular continuous infinite wrap
@@ -153,13 +200,6 @@ export default function Services() {
               return (
                 <motion.div
                   key={service.id}
-                  drag={offset === 0 ? "x" : false}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.25}
-                  onDragEnd={(_, info) => {
-                    if (info.offset.x < -35) nextSlide();
-                    else if (info.offset.x > 35) prevSlide();
-                  }}
                   animate={{
                     x: xTranslate,
                     z: zTranslate,
@@ -168,7 +208,7 @@ export default function Services() {
                     opacity: opacity,
                   }}
                   transition={{
-                    duration: 0.42,
+                    duration: 0.45,
                     ease: [0.16, 1, 0.3, 1],
                   }}
                   style={{
@@ -177,7 +217,8 @@ export default function Services() {
                     willChange: "transform, opacity",
                   }}
                   onClick={() => {
-                    if (offset !== 0) setCurrentIndex(index);
+                    if (offset === -1) prevSlide();
+                    else if (offset === 1) nextSlide();
                   }}
                   className={`absolute w-full max-w-[360px] sm:max-w-[420px] rounded-3xl bg-white/95 p-6 sm:p-7 shadow-[0_12px_36px_-6px_rgba(15,23,42,0.12)] cursor-pointer select-none border border-slate-200/90 ${
                     offset === 0 ? "ring-2 ring-blue-500/25 shadow-2xl" : "hover:opacity-90"
