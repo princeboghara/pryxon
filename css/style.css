@@ -80,7 +80,6 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -597,6 +596,8 @@ button {
   overflow: hidden;
   padding-top: calc(var(--topbar-height) + 30px);
   padding-bottom: 40px;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
 }
 
 /* Hero Bottom Seamless Mist Blend (Smooth transition into Services section - No Cut) */
@@ -685,10 +686,10 @@ button {
   80% { transform: translate3d(4px, 6px, 0) rotate(1.6deg); }
 }
 
-.float-cycle-0 { animation: floatOrb1 5.4s ease-in-out infinite; will-change: transform; }
-.float-cycle-1 { animation: floatOrb2 6.2s ease-in-out infinite 0.6s; will-change: transform; }
-.float-cycle-2 { animation: floatOrb3 5.8s ease-in-out infinite 1.2s; will-change: transform; }
-.float-cycle-3 { animation: floatOrb4 6.8s ease-in-out infinite 1.8s; will-change: transform; }
+.float-cycle-0 { animation: floatOrb1 5.4s ease-in-out infinite; }
+.float-cycle-1 { animation: floatOrb2 6.2s ease-in-out infinite 0.6s; }
+.float-cycle-2 { animation: floatOrb3 5.8s ease-in-out infinite 1.2s; }
+.float-cycle-3 { animation: floatOrb4 6.8s ease-in-out infinite 1.8s; }
 
 .tech-icon-img {
   width: 24px;

@@ -46,10 +46,6 @@
   --font-brand: 'Proxon', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   color: hsl(var(--foreground));
   background-color: #eaf4fc;
@@ -59,19 +55,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism helpers */
+/* Glassmorphism helpers - High-performance GPU-friendly styling */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .glass-panel-subtle {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.85);
 }
 
 .glass-topbar {

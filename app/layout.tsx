@@ -34,8 +34,8 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased selection:bg-sky-500/20 selection:text-sky-900 font-sans relative">
-        {/* Top Reading Progress Bar */}
-        <div id="scrollProgressBar" className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-slate-900 via-blue-600 to-sky-400 z-[9999] pointer-events-none transition-all duration-75 w-0 shadow-[0_0_12px_rgba(56,189,248,0.4)]" />
+        {/* Top Reading Progress Bar (Hardware Accelerated ScaleX) */}
+        <div id="scrollProgressBar" className="fixed top-0 left-0 w-full h-[3px] bg-gradient-to-r from-slate-900 via-blue-600 to-sky-400 z-[9999] pointer-events-none origin-left scale-x-0 will-change-transform shadow-[0_0_12px_rgba(56,189,248,0.4)]" />
 
         {/* Ambient Subtle Architectural Grid */}
         <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden" aria-hidden="true">

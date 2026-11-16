@@ -39,13 +39,14 @@ export default function Navbar() {
         window.requestAnimationFrame(() => {
           const winScroll = window.scrollY || document.documentElement.scrollTop || 0;
           const height = document.documentElement.scrollHeight - window.innerHeight;
-          const scrolledRatio = height > 0 ? (winScroll / height) * 100 : 0;
+          const scrolledRatio = height > 0 ? (winScroll / height) : 0;
           const progressBar = document.getElementById("scrollProgressBar");
           if (progressBar) {
-            progressBar.style.width = `${scrolledRatio}%`;
+            progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, scrolledRatio))})`;
           }
 
-          setScrolled(winScroll > 30);
+          const isOverThreshold = winScroll > 30;
+          setScrolled((prev) => (prev !== isOverThreshold ? isOverThreshold : prev));
 
           const scrollPos = winScroll + 200;
           for (let i = cachedOffsets.length - 1; i >= 0; i--) {

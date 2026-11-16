@@ -1,0 +1,63 @@
+[
+  {
+    "id": "task_101",
+    "projectId": "proj_dnora",
+    "projectName": "DNORA Luxury",
+    "title": "Integrate Razorpay Magic 1-click checkout flow",
+    "description": "Wire Razorpay standard & UPI intent sdk into the checkout step. Ensure order status webhook callback is secured with secret.",
+    "status": "in-progress",
+    "priority": "high",
+    "assignedTo": "developer@pryxon.com",
+    "assigneeName": "Alex Morgan",
+    "dueDate": "2026-11-20"
+  },
+  {
+    "id": "task_102",
+    "projectId": "proj_dnora",
+    "projectName": "DNORA Luxury",
+    "title": "Optimize WebP & AVIF 3D clutch preview assets",
+    "description": "Compress product showcase assets to sub-150KB for silky 60fps mobile scroll performance.",
+    "status": "review",
+    "priority": "normal",
+    "assignedTo": "designer@pryxon.com",
+    "assigneeName": "Kavya Desai",
+    "dueDate": "2026-11-18"
+  },
+  {
+    "id": "task_103",
+    "projectId": "proj_avira",
+    "projectName": "Avira Global",
+    "title": "Build WhatsApp order status webhook listener",
+    "description": "Meta Cloud API webhook callback parsing order status and sending interactive template message with tracking URL.",
+    "status": "todo",
+    "priority": "high",
+    "assignedTo": "developer@pryxon.com",
+    "assigneeName": "Alex Morgan",
+    "dueDate": "2026-11-22"
+  },
+  {
+    "id": "task_104",
+    "projectId": "proj_kurapay",
+    "projectName": "Kura Pay",
+    "title": "Design multi-tenant API key management UI",
+    "description": "Create intuitive dashboard screen for rotating client secrets, configuring IP whitelists and webhook endpoints.",
+    "status": "in-progress",
+    "priority": "urgent",
+    "assignedTo": "priya@pryxon.com",
+    "assigneeName": "Priya Sharma",
+    "dueDate": "2026-11-19"
+  },
+  {
+    "id": "task_105",
+    "projectId": "proj_diraa",
+    "projectName": "Diraa Cloud",
+    "title": "Deploy multi-region failover health check on Render",
+    "description": "Configure automatic health checks with 5-second interval and automated DNS failover.",
+    "status": "completed",
+    "priority": "normal",
+    "assignedTo": "devansh@pryxon.com",
+    "assigneeName": "Devansh Patel",
+    "dueDate": "2026-11-12"
+  }
+]
+

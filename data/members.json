@@ -1,0 +1,51 @@
+[
+  {
+    "id": "mem_01",
+    "name": "Alex Morgan",
+    "email": "developer@pryxon.com",
+    "role": "Lead Architect & Fullstack",
+    "avatar": "AM",
+    "department": "Engineering",
+    "status": "active",
+    "activeProjects": 2,
+    "completedTasks": 38,
+    "joinedDate": "2025-03-15"
+  },
+  {
+    "id": "mem_02",
+    "name": "Priya Sharma",
+    "email": "priya@pryxon.com",
+    "role": "Senior Cloud & Backend Engineer",
+    "avatar": "PS",
+    "department": "Backend & Cloud",
+    "status": "active",
+    "activeProjects": 2,
+    "completedTasks": 44,
+    "joinedDate": "2025-05-10"
+  },
+  {
+    "id": "mem_03",
+    "name": "Kavya Desai",
+    "email": "designer@pryxon.com",
+    "role": "Lead UI/UX & Motion Designer",
+    "avatar": "KD",
+    "department": "Product Design",
+    "status": "active",
+    "activeProjects": 2,
+    "completedTasks": 52,
+    "joinedDate": "2025-06-01"
+  },
+  {
+    "id": "mem_04",
+    "name": "Devansh Patel",
+    "email": "devansh@pryxon.com",
+    "role": "DevOps & Infrastructure Lead",
+    "avatar": "DP",
+    "department": "Infrastructure",
+    "status": "active",
+    "activeProjects": 1,
+    "completedTasks": 29,
+    "joinedDate": "2025-08-20"
+  }
+]
+

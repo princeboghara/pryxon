@@ -1,0 +1,63 @@
+[
+  {
+    "id": "proj_dnora",
+    "name": "DNORA Luxury Storefront",
+    "client": "DNORA Brand House",
+    "clientEmail": "aarav@dnorastore.com",
+    "service": "Shopify & E-Commerce",
+    "budget": "₹59,999",
+    "status": "in-progress",
+    "progress": 78,
+    "deadline": "2026-11-28",
+    "leadArchitect": "Alex Morgan",
+    "repoUrl": "https://github.com/pryxon/dnora-luxury",
+    "figmaUrl": "https://figma.com/@pryxon/dnora-store",
+    "description": "Complete headless Shopify redesign with custom bridal clutch 3D product view and Razorpay 1-click checkout."
+  },
+  {
+    "id": "proj_avira",
+    "name": "Avira Global D2C Platform",
+    "client": "Avira Wellness Ltd",
+    "clientEmail": "dr.rohini@avirawellness.in",
+    "service": "Web Development",
+    "budget": "₹1,45,000",
+    "status": "in-review",
+    "progress": 92,
+    "deadline": "2026-11-20",
+    "leadArchitect": "Priya Sharma",
+    "repoUrl": "https://github.com/pryxon/avira-platform",
+    "figmaUrl": "https://figma.com/@pryxon/avira-wellness",
+    "description": "D2C Ayurvedic wellness engine with custom quiz recommender and automated WhatsApp dispatch."
+  },
+  {
+    "id": "proj_diraa",
+    "name": "Diraa Cloud Engine",
+    "client": "CloudEngine Systems",
+    "clientEmail": "siddharth@cloudengine.dev",
+    "service": "Custom Software",
+    "budget": "₹1,20,000",
+    "status": "completed",
+    "progress": 100,
+    "deadline": "2026-11-12",
+    "leadArchitect": "Devansh Patel",
+    "repoUrl": "https://github.com/pryxon/diraa-engine",
+    "figmaUrl": "https://figma.com/@pryxon/diraa-arch",
+    "description": "High-availability microservices router with low-latency API proxy and auto-scaling SSL certificates."
+  },
+  {
+    "id": "proj_kurapay",
+    "name": "Kura Pay Settlement Gateway",
+    "client": "Kura Financial Tech",
+    "clientEmail": "operations@kurapay.io",
+    "service": "Custom Software",
+    "budget": "₹2,10,000",
+    "status": "in-progress",
+    "progress": 45,
+    "deadline": "2026-12-15",
+    "leadArchitect": "Alex Morgan",
+    "repoUrl": "https://github.com/pryxon/kura-pay-settlement",
+    "figmaUrl": "https://figma.com/@pryxon/kura-gateway",
+    "description": "B2B payment reconciliation engine with automated webhook retries and multi-bank API adapters."
+  }
+]
+

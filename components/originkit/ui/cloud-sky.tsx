@@ -429,15 +429,18 @@ function __OriginkitBase_CloudSky(props: Props) {
             }
         }
 
-        // Automatic smart throttling: pause GPU shader when scrolled past Hero or tab is hidden
-        const handleScroll = () => {
-            const scrollY = window.scrollY || window.pageYOffset || 0
-            const inHeroRange = scrollY < (window.innerHeight || 800) * 1.35
-            if (inHeroRange !== isVisible) {
-                isVisible = inHeroRange
-                if (isVisible) startLoop()
-                else stopLoop()
-            }
+        // High-performance IntersectionObserver: completely stops GPU shader when scrolled past Hero
+        let observer: IntersectionObserver | null = null;
+        if (typeof IntersectionObserver !== "undefined") {
+            observer = new IntersectionObserver(
+                ([entry]) => {
+                    isVisible = entry.isIntersecting;
+                    if (isVisible) startLoop();
+                    else stopLoop();
+                },
+                { threshold: 0.02 }
+            );
+            observer.observe(canvas);
         }
 
         const handleVisibility = () => {
@@ -446,7 +449,6 @@ function __OriginkitBase_CloudSky(props: Props) {
             else stopLoop()
         }
 
-        window.addEventListener("scroll", handleScroll, { passive: true })
         document.addEventListener("visibilitychange", handleVisibility)
 
         // The rect RATIO is zoom-invariant -- offset and size scale together --
@@ -472,7 +474,7 @@ function __OriginkitBase_CloudSky(props: Props) {
         // StrictMode's mount -> cleanup -> mount would reuse a force-lost one.
         return () => {
             stopLoop()
-            window.removeEventListener("scroll", handleScroll)
+            observer?.disconnect()
             document.removeEventListener("visibilitychange", handleVisibility)
             canvas.removeEventListener("pointermove", track)
             canvas.removeEventListener("pointerenter", track)
