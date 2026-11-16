@@ -48,7 +48,18 @@
 
 body {
   color: hsl(var(--foreground));
-  background-color: #eaf4fc;
+  background: linear-gradient(180deg, 
+    #4fa5f8 0%,
+    #6db5fa 12%,
+    #96cbfa 24%,
+    #bde1fc 38%,
+    #def0fd 52%,
+    #f4faff 64%,
+    #ffffff 74%,
+    #eef7fe 86%,
+    #dceefd 100%
+  );
+  background-color: #4fa5f8;
   min-height: 100vh;
   min-height: 100svh;
   overflow-x: hidden;
@@ -57,23 +68,47 @@ body {
 
 /* Glassmorphism helpers - High-performance GPU-friendly styling */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 36px -8px rgba(15, 23, 42, 0.07), 0 2px 8px rgba(14, 165, 233, 0.04);
 }
 
 .glass-panel-subtle {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(226, 232, 240, 0.85);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.82);
 }
 
+/* Luxury White Glassmorphism Topbar */
 .glass-topbar {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  box-shadow: 0 8px 30px -8px rgba(15, 23, 42, 0.08), 
-              0 1px 2px rgba(15, 23, 42, 0.04),
-              inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.82) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 12px 36px -6px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(14, 165, 233, 0.04),
+    inset 0 1.5px 1px 0 #ffffff,
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.glass-topbar-scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid #ffffff;
+  box-shadow: 
+    0 16px 42px -6px rgba(15, 23, 42, 0.10),
+    0 4px 12px rgba(14, 165, 233, 0.05),
+    inset 0 1.5px 1px 0 #ffffff,
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Architectural grid overlay (isolated GPU layer) */
@@ -87,6 +122,22 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
   pointer-events: none;
+}
+
+/* Continuous Horizontal Infinite Marquee (Right-to-Left compositor drift) */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-smooth {
+    animation: none !important;
+  }
 }
 
 /* Custom scrollbar */

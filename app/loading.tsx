@@ -1,58 +1,73 @@
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-slate-50/90 text-slate-900 flex flex-col justify-between p-4 sm:p-8 animate-pulse overflow-hidden relative">
-      {/* Top Navigation Skeleton Bar */}
-      <div className="w-full max-w-5xl mx-auto h-16 rounded-2xl bg-white/70 border border-slate-200/80 shadow-sm flex items-center justify-between px-6 mb-12 backdrop-blur-md">
-        <div className="h-7 w-32 rounded-lg bg-slate-200/80" />
-        <div className="hidden md:flex items-center gap-6">
-          <div className="h-4 w-16 rounded bg-slate-200/70" />
-          <div className="h-4 w-16 rounded bg-slate-200/70" />
-          <div className="h-4 w-16 rounded bg-slate-200/70" />
-          <div className="h-4 w-16 rounded bg-slate-200/70" />
-        </div>
-        <div className="h-9 w-36 rounded-full bg-slate-900/15" />
-      </div>
+    <div
+      className="relative min-h-screen text-slate-900 overflow-x-hidden selection:bg-blue-500/20 animate-pulse"
+      style={{
+        background: "linear-gradient(180deg, #4fa5f8 0%, #6db5fa 12%, #96cbfa 24%, #bde1fc 38%, #def0fd 52%, #f4faff 64%, #ffffff 74%, #eef7fe 86%, #dceefd 100%)",
+      }}
+    >
+      {/* Top Reading Progress Bar placeholder */}
+      <div className="fixed top-0 left-0 w-full h-[3px] bg-blue-600/30 z-50" />
 
-      {/* Hero Skeleton Center */}
-      <div className="max-w-3xl mx-auto w-full text-center flex flex-col items-center my-auto space-y-6">
-        {/* Badge Skeleton */}
-        <div className="h-7 w-36 rounded-full bg-blue-100/70 border border-blue-200/60" />
+      {/* Floating White Glassmorphic Topbar Skeleton */}
+      <header className="fixed top-3.5 left-0 w-full z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
+        <div className="w-full max-w-[1200px] h-[58px] sm:h-[66px] px-4 sm:px-6 rounded-2xl glass-topbar flex items-center justify-between shadow-sm">
+          {/* Brand Logo Placeholder */}
+          <div className="h-7 sm:h-9 w-28 sm:w-36 rounded-xl bg-slate-900/15" />
 
-        {/* Headline Skeletons */}
-        <div className="h-10 sm:h-14 w-4/5 rounded-2xl bg-slate-300/70 max-w-xl mx-auto" />
-        <div className="h-9 sm:h-12 w-3/5 rounded-2xl bg-slate-200/80 max-w-md mx-auto" />
+          {/* Desktop Nav Links Placeholder */}
+          <div className="hidden md:flex items-center gap-3 lg:gap-4">
+            <div className="h-8 w-16 rounded-xl bg-slate-900/10" />
+            <div className="h-8 w-20 rounded-xl bg-slate-900/10" />
+            <div className="h-8 w-20 rounded-xl bg-slate-900/10" />
+            <div className="h-8 w-16 rounded-xl bg-slate-900/10" />
+            <div className="h-8 w-18 rounded-xl bg-slate-900/10" />
+          </div>
 
-        {/* Subtitle Skeletons */}
-        <div className="space-y-2.5 w-full max-w-lg mx-auto pt-2">
-          <div className="h-4 w-full rounded-md bg-slate-200/60" />
-          <div className="h-4 w-3/4 mx-auto rounded-md bg-slate-200/60" />
+          {/* CTA Button Placeholder */}
+          <div className="flex items-center gap-3">
+            <div className="hidden md:block h-10 w-40 rounded-full bg-slate-900/25" />
+            <div className="md:hidden h-10 w-10 rounded-xl bg-slate-900/10" />
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section Skeleton with 1:1 Layout Match */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-28 pb-16 overflow-hidden">
+        {/* Floating 3D Tech Icon Skeletons in realistic perimeter layout */}
+        <div className="hidden lg:block absolute inset-0 pointer-events-none" aria-hidden="true">
+          {/* Left Wing Floaters */}
+          <div className="absolute top-[22%] left-[10%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
+          <div className="absolute top-[36%] left-[6%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
+          <div className="absolute top-[52%] left-[12%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
+          <div className="absolute top-[68%] left-[18%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
+
+          {/* Right Wing Floaters */}
+          <div className="absolute top-[22%] right-[10%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
+          <div className="absolute top-[36%] right-[6%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
+          <div className="absolute top-[52%] right-[12%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
+          <div className="absolute top-[68%] right-[18%] w-14 h-14 rounded-full bg-white/75 border border-white/90 shadow-sm" />
         </div>
 
-        {/* Buttons Skeletons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full">
-          <div className="h-12 w-48 rounded-full bg-slate-900/80 shadow-md" />
-          <div className="h-12 w-44 rounded-full bg-white border border-slate-200/80" />
-        </div>
-      </div>
+        {/* Centered Hero Content Skeleton */}
+        <div className="max-w-3xl mx-auto w-full text-center flex flex-col items-center z-10 space-y-5">
+          {/* Main Heading Skeletons */}
+          <div className="h-10 sm:h-14 w-4/5 max-w-xl rounded-2xl bg-slate-900/20 mx-auto" />
+          <div className="h-9 sm:h-12 w-3/5 max-w-md rounded-2xl bg-blue-700/20 mx-auto" />
 
-      {/* Bottom Floating Cards Preview Skeleton */}
-      <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 opacity-60">
-        <div className="h-44 rounded-3xl bg-white/70 border border-slate-200/70 shadow-sm p-5 space-y-3">
-          <div className="h-5 w-20 rounded bg-slate-200" />
-          <div className="h-6 w-36 rounded bg-slate-300" />
-          <div className="h-12 w-full rounded-xl bg-slate-100" />
+          {/* Value Subtitle Skeletons */}
+          <div className="space-y-2 w-full max-w-lg mx-auto pt-2">
+            <div className="h-4 w-full rounded-md bg-slate-900/15" />
+            <div className="h-4 w-4/5 mx-auto rounded-md bg-slate-900/15" />
+          </div>
+
+          {/* Action Buttons Skeletons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 w-full">
+            <div className="h-12 w-48 rounded-full bg-slate-900/70 shadow-md" />
+            <div className="h-12 w-44 rounded-full bg-white/85 border border-white/90 shadow-xs" />
+          </div>
         </div>
-        <div className="h-44 rounded-3xl bg-white/70 border border-slate-200/70 shadow-sm p-5 space-y-3 hidden md:block">
-          <div className="h-5 w-20 rounded bg-slate-200" />
-          <div className="h-6 w-36 rounded bg-slate-300" />
-          <div className="h-12 w-full rounded-xl bg-slate-100" />
-        </div>
-        <div className="h-44 rounded-3xl bg-white/70 border border-slate-200/70 shadow-sm p-5 space-y-3 hidden md:block">
-          <div className="h-5 w-20 rounded bg-slate-200" />
-          <div className="h-6 w-36 rounded bg-slate-300" />
-          <div className="h-12 w-full rounded-xl bg-slate-100" />
-        </div>
-      </div>
+      </section>
     </div>
   );
 }

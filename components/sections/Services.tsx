@@ -291,7 +291,7 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Bottom Explore Button Styled Like Get Started */}
+        {/* Bottom Explore Button Linking to Dedicated /services Page */}
         <motion.div
           className="mt-12 flex justify-center"
           initial={{ opacity: 0, y: 20 }}
@@ -299,7 +299,7 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <Link href="#contact" className="btn-get-started shadow-lg hover:shadow-xl transition-all">
+          <Link href="/services" className="btn-get-started shadow-lg hover:shadow-xl transition-all">
             <span>Explore All Capabilities</span>
             <span className="btn-arrow-badge">
               <svg className="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">

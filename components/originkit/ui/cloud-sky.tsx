@@ -433,14 +433,15 @@ function __OriginkitBase_CloudSky(props: Props) {
         let observer: IntersectionObserver | null = null;
         if (typeof IntersectionObserver !== "undefined") {
             observer = new IntersectionObserver(
-                ([entry]) => {
-                    isVisible = entry.isIntersecting;
+                (entries) => {
+                    const entry = entries && entries[0];
+                    isVisible = entry ? entry.isIntersecting : true;
                     if (isVisible) startLoop();
                     else stopLoop();
                 },
                 { threshold: 0.02 }
             );
-            observer.observe(canvas);
+            if (canvas) observer.observe(canvas);
         }
 
         const handleVisibility = () => {
@@ -505,8 +506,8 @@ function __OriginkitBase_CloudSky(props: Props) {
 }
 
 const __originkitPresetProps = {
-  "background": "#3894f6",
-  "baseColor": "#b8defc",
+  "background": "#4fa5f8",
+  "baseColor": "#bde1fc",
   "accentColor": "#FFFFFF",
   "sun": {
     "x": 85,
@@ -514,14 +515,14 @@ const __originkitPresetProps = {
     "glow": "#FFFFFF"
   },
   "clouds": {
-    "cirrus": 90,
-    "shadow": 50,
-    "softness": 220
+    "cirrus": 75,
+    "shadow": 35,
+    "softness": 230
   },
   "pointer": {
-    "wind": 180,
+    "wind": 140,
     "damping": 50,
-    "parallax": 180
+    "parallax": 160
   }
 };
 

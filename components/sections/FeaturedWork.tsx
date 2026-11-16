@@ -9,6 +9,8 @@ import {
   ChevronRight,
   ShieldCheck,
   Lock,
+  Pause,
+  Play,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -226,6 +228,8 @@ const projects: ProjectItem[] = [
 export default function FeaturedWork() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeFilter, setActiveFilter] = useState<"all" | "ecommerce" | "fintech" | "saas" | "cloud-mobile">("all");
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const filteredProjects = projects.filter((p) => {
     if (activeFilter === "all") return true;
@@ -248,203 +252,226 @@ export default function FeaturedWork() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Section Header with Side-Scroll Controls */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-6">
-          <div className="max-w-2xl">
-            <Badge variant="default" className="mb-3 px-3.5 py-1">
-              Production Portfolio
-            </Badge>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mb-3">
-              Featured Client Work.
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Explore 14 live software systems, D2C luxury storefronts, enterprise SaaS engines, and cloud microservices engineered by Pryxon Studio.
-            </p>
+        {/* Section Header (Centered in Middle) */}
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8">
+          <Badge variant="default" className="mb-3 px-3.5 py-1">
+            Production Portfolio
+          </Badge>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mb-3">
+            Featured Client Work.
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+            Explore 14 live software systems, D2C luxury storefronts, enterprise SaaS engines, and cloud microservices engineered by Pryxon Studio.
+          </p>
+        </div>
+
+        {/* Category Filter Pills (Centered in Middle) & Controls */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="flex items-center justify-center gap-2 overflow-x-auto no-scrollbar py-1 flex-wrap">
+            <button
+              onClick={() => setActiveFilter("all")}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${activeFilter === "all"
+                ? "bg-slate-950 text-white shadow-sm"
+                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
+                }`}
+            >
+              All Work ({projects.length})
+            </button>
+            <button
+              onClick={() => setActiveFilter("ecommerce")}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${activeFilter === "ecommerce"
+                ? "bg-slate-950 text-white shadow-sm"
+                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
+                }`}
+            >
+              E-Commerce &amp; D2C (3)
+            </button>
+            <button
+              onClick={() => setActiveFilter("saas")}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${activeFilter === "saas"
+                ? "bg-slate-950 text-white shadow-sm"
+                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
+                }`}
+            >
+              Enterprise SaaS (4)
+            </button>
+            <button
+              onClick={() => setActiveFilter("fintech")}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${activeFilter === "fintech"
+                ? "bg-slate-950 text-white shadow-sm"
+                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
+                }`}
+            >
+              Fintech &amp; Payments (2)
+            </button>
+            <button
+              onClick={() => setActiveFilter("cloud-mobile")}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${activeFilter === "cloud-mobile"
+                ? "bg-slate-950 text-white shadow-sm"
+                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
+                }`}
+            >
+              Cloud, IoT &amp; Mobile (5)
+            </button>
           </div>
 
-          {/* Swipe / Scroll Arrow Controls */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* Controls: Pause/Play & Manual Prev/Next Buttons */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsPaused(!isPaused)}
+              aria-label={isPaused ? "Resume auto-scroll" : "Pause auto-scroll"}
+              className="h-9 px-3 rounded-full flex items-center gap-1.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-xs border border-slate-200/90 transition-all"
+            >
+              {isPaused ? (
+                <>
+                  <Play className="w-3.5 h-3.5 fill-current text-blue-600" />
+                  <span>Auto-Play</span>
+                </>
+              ) : (
+                <>
+                  <Pause className="w-3.5 h-3.5 text-slate-600" />
+                  <span>Pause</span>
+                </>
+              )}
+            </button>
             <button
               type="button"
               onClick={() => scroll("left")}
               aria-label="Scroll left"
-              className="w-11 h-11 rounded-full flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 shadow-sm border border-slate-200/90 transition-all hover:scale-105 active:scale-95"
+              className="w-9 h-9 rounded-full flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 shadow-xs border border-slate-200/90 transition-all hover:scale-105 active:scale-95"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               type="button"
               onClick={() => scroll("right")}
               aria-label="Scroll right"
-              className="w-11 h-11 rounded-full flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 shadow-sm border border-slate-200/90 transition-all hover:scale-105 active:scale-95"
+              className="w-9 h-9 rounded-full flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 shadow-xs border border-slate-200/90 transition-all hover:scale-105 active:scale-95"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-6 pt-1">
-          <button
-            onClick={() => setActiveFilter("all")}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-              activeFilter === "all"
-                ? "bg-slate-950 text-white shadow-sm"
-                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
-            }`}
-          >
-            All Work ({projects.length})
-          </button>
-          <button
-            onClick={() => setActiveFilter("ecommerce")}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-              activeFilter === "ecommerce"
-                ? "bg-slate-950 text-white shadow-sm"
-                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
-            }`}
-          >
-            E-Commerce & D2C (3)
-          </button>
-          <button
-            onClick={() => setActiveFilter("saas")}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-              activeFilter === "saas"
-                ? "bg-slate-950 text-white shadow-sm"
-                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
-            }`}
-          >
-            Enterprise SaaS (4)
-          </button>
-          <button
-            onClick={() => setActiveFilter("fintech")}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-              activeFilter === "fintech"
-                ? "bg-slate-950 text-white shadow-sm"
-                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
-            }`}
-          >
-            Fintech & Payments (2)
-          </button>
-          <button
-            onClick={() => setActiveFilter("cloud-mobile")}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-              activeFilter === "cloud-mobile"
-                ? "bg-slate-950 text-white shadow-sm"
-                : "bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50"
-            }`}
-          >
-            Cloud, IoT & Mobile (5)
-          </button>
-        </div>
-
-        {/* Side Scroll / Swipeable Horizontal Project Track */}
+        {/* Continuous Smooth Slow Right-to-Left Auto-Scroll Track */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-6 pt-2 px-1 no-scrollbar cursor-grab active:cursor-grabbing"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="relative w-full overflow-hidden py-3 -mx-4 sm:-mx-6 px-4 sm:px-6"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {filteredProjects.map((project) => (
-            <Card
-              key={project.id}
-              className="w-[88vw] sm:w-[390px] md:w-[420px] shrink-0 snap-center group overflow-hidden rounded-3xl border border-slate-200/90 bg-white hover:shadow-[0_16px_40px_-8px_rgba(15,23,42,0.10)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-              style={{ contain: "content" }}
-            >
-              {/* Project Visual Media Header */}
-              <div className="relative w-full h-52 sm:h-56 bg-slate-100 overflow-hidden border-b border-slate-200/70">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 88vw, 420px"
-                  loading="lazy"
-                />
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="text-[11px] font-bold text-white bg-slate-950/75 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20 shadow-xs">
-                    {project.statusBadge}
-                  </span>
-                </div>
-                <div className="absolute top-3 right-3 z-10">
-                  <span className="text-[11px] font-bold text-slate-900 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200 shadow-xs">
-                    {project.metric}
-                  </span>
-                </div>
-
-                {/* Live Visit Button ONLY for the starting projects that have URLs */}
-                {project.hasLiveUrl && project.url && (
-                  <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl bg-white/95 px-4 py-2 text-xs font-semibold text-slate-900 shadow-lg backdrop-blur-xs hover:bg-white transition-all transform scale-95 group-hover:scale-100"
-                    >
-                      <span>Visit Live Site</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+          <div
+            className="flex gap-6 w-max animate-marquee-smooth"
+            style={{
+              animation: `marqueeScroll ${Math.max(60, filteredProjects.length * 8.5)}s linear infinite`,
+              animationPlayState: isPaused || isHovered ? "paused" : "running",
+            }}
+          >
+            {/* Seamless Infinite Duplication for unbroken right-to-left drift */}
+            {[...filteredProjects, ...filteredProjects].map((project, idx) => (
+              <Card
+                key={`${project.id}-${idx}`}
+                className="w-[85vw] sm:w-[380px] md:w-[410px] shrink-0 group overflow-hidden rounded-3xl border border-slate-200/90 bg-white hover:shadow-[0_20px_45px_-10px_rgba(15,23,42,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+                style={{ contain: "content" }}
+              >
+                {/* Project Visual Media Header */}
+                <div className="relative w-full h-52 sm:h-56 bg-slate-100 overflow-hidden border-b border-slate-200/70">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 85vw, 410px"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="text-[11px] font-bold text-white bg-slate-950/75 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20 shadow-xs">
+                      {project.statusBadge}
+                    </span>
                   </div>
-                )}
-              </div>
+                  <div className="absolute top-3 right-3 z-10">
+                    <span className="text-[11px] font-bold text-slate-900 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200 shadow-xs">
+                      {project.metric}
+                    </span>
+                  </div>
 
-              {/* Project Content */}
-              <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="text-[11px] font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200/70"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Show external link pill ONLY if project has live URL */}
-                    {project.hasLiveUrl && project.url && project.domain ? (
+                  {/* Live Visit Button ONLY for the starting projects that have URLs */}
+                  {project.hasLiveUrl && project.url && (
+                    <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
                       <a
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors bg-white px-2.5 py-1 rounded-full border border-slate-200 shadow-xs"
+                        className="inline-flex items-center gap-2 rounded-xl bg-white/95 px-4 py-2 text-xs font-semibold text-slate-900 shadow-lg backdrop-blur-xs hover:bg-white transition-all transform scale-95 group-hover:scale-100"
                       >
-                        <span>{project.domain}</span>
-                        <ExternalLink className="w-3 h-3" />
+                        <span>Visit Live Site</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
                       </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200/80">
-                        <Lock className="w-3 h-3 text-slate-400" />
-                        <span>Client System</span>
-                      </span>
-                    )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Project Content */}
+                <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="text-[11px] font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200/70"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Show external link pill ONLY if project has live URL */}
+                      {project.hasLiveUrl && project.url && project.domain ? (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors bg-white px-2.5 py-1 rounded-full border border-slate-200 shadow-xs"
+                        >
+                          <span>{project.domain}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200/80">
+                          <Lock className="w-3 h-3 text-slate-400" />
+                          <span>Client System</span>
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mb-2">
+                      {project.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 line-clamp-3">
+                      {project.desc}
+                    </p>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mb-2">
-                    {project.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 line-clamp-3">
-                    {project.desc}
-                  </p>
+                  {/* Tech Pills */}
+                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+                    {project.pills.map((pill) => (
+                      <span
+                        key={pill}
+                        className="text-[11px] font-medium text-slate-600 bg-slate-100/90 px-2.5 py-0.5 rounded-md"
+                      >
+                        {pill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
-                  {project.pills.map((pill) => (
-                    <span
-                      key={pill}
-                      className="text-[11px] font-medium text-slate-600 bg-slate-100/90 px-2.5 py-0.5 rounded-md"
-                    >
-                      {pill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
 
-        {/* Bottom Explore Button Styled Like Get Started */}
+        {/* Bottom Explore Button Linking to Dedicated /work Page */}
         <motion.div
           className="mt-12 flex justify-center"
           initial={{ opacity: 0, y: 15 }}
@@ -452,11 +479,11 @@ export default function FeaturedWork() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <Link href="#contact" className="btn-get-started shadow-lg hover:shadow-xl transition-all">
-            <span>Commission Custom Software</span>
+          <Link href="/work" className="btn-get-started shadow-lg hover:shadow-xl transition-all">
+            <span>Explore All 14 Production Systems</span>
             <span className="btn-arrow-badge">
               <svg className="arrow-svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
           </Link>

@@ -7,11 +7,11 @@ import { ArrowRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "Our Work", href: "#work" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Services", href: "/#services" },
+  { label: "Our Work", href: "/#work" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -25,7 +25,7 @@ export default function Navbar() {
 
     const updateCachedOffsets = () => {
       cachedOffsets = navItems.map((item) => {
-        const id = item.href.substring(1);
+        const id = item.href.replace(/^(\/)?#/, "");
         const el = document.getElementById(id);
         return { id, top: el ? el.offsetTop : 0 };
       });
@@ -74,7 +74,9 @@ export default function Navbar() {
       <header className="fixed top-3.5 left-0 w-full z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
         <nav
           aria-label="Main Navigation"
-          className="pointer-events-auto w-full max-w-[1200px] h-[58px] sm:h-[66px] px-3.5 sm:px-6 rounded-2xl glass-topbar flex items-center justify-between transition-all duration-300"
+          className={`pointer-events-auto w-full max-w-[1200px] h-[58px] sm:h-[66px] px-3.5 sm:px-6 rounded-2xl flex items-center justify-between transition-all duration-300 ${
+            scrolled ? "glass-topbar-scrolled" : "glass-topbar"
+          }`}
         >
           {/* Brand Logo */}
           <Link href="#home" className="flex items-center shrink-0 pr-2 sm:pr-4 group">
@@ -92,23 +94,26 @@ export default function Navbar() {
           {/* Desktop Nav Links */}
           <ul className="hidden md:flex items-center gap-1.5 lg:gap-2">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
+              const itemKey = item.href.replace(/^(\/)?#/, "");
+              const isActive = activeSection === itemKey;
               return (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg ${
+                    className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-xl ${
                       isActive
-                        ? "text-slate-950 font-semibold"
-                        : "text-slate-600 hover:text-slate-950 hover:bg-slate-100/60"
+                        ? "text-slate-950 bg-white shadow-xs border border-slate-200/80"
+                        : "text-slate-600 hover:text-slate-950 hover:bg-slate-100/70"
                     }`}
                   >
                     {item.label}
                     {isActive && (
                       <motion.div
-                        layoutId="activeNavIndicator"
-                        className="absolute bottom-1 left-4 right-4 h-0.5 bg-slate-950 rounded-full"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        initial={{ opacity: 0, scaleX: 0.7 }}
+                        animate={{ opacity: 1, scaleX: 1 }}
+                        exit={{ opacity: 0, scaleX: 0.7 }}
+                        className="absolute bottom-1.5 left-4 right-4 h-0.5 bg-blue-600 rounded-full"
+                        transition={{ duration: 0.2 }}
                       />
                     )}
                   </Link>
@@ -120,8 +125,8 @@ export default function Navbar() {
           {/* Right Action Items */}
           <div className="nav-actions flex items-center gap-2 sm:gap-3 shrink-0">
             <Link
-              href="#contact"
-              className="btn-get-started nav-cta-btn !hidden md:!inline-flex"
+              href="/#contact"
+              className="btn-get-started nav-cta-btn !hidden md:!inline-flex shadow-sm hover:shadow-md"
             >
               <span>Start Your Project</span>
               <span className="btn-arrow-badge">
@@ -131,11 +136,11 @@ export default function Navbar() {
               </span>
             </Link>
 
-            {/* Mobile Toggle Button */}
+            {/* Mobile Toggle Button (White Glassmorphic) */}
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="mobile-toggle-btn md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100/90 text-slate-800 hover:bg-slate-200/90 transition-colors shrink-0"
+              className="mobile-toggle-btn md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md border border-slate-200/80 text-slate-800 hover:bg-white hover:text-slate-950 transition-all shrink-0 shadow-xs"
               aria-label="Toggle navigation"
               aria-expanded={mobileOpen}
             >
@@ -161,25 +166,28 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="fixed top-20 left-4 right-4 p-5 rounded-2xl glass-panel shadow-2xl z-50 md:hidden flex flex-col gap-2"
+              className="fixed top-20 left-4 right-4 p-5 rounded-2xl glass-topbar-scrolled shadow-2xl z-50 md:hidden flex flex-col gap-2"
             >
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                    activeSection === item.href.substring(1)
-                      ? "bg-slate-900 text-white font-semibold"
-                      : "text-slate-700 hover:bg-slate-100"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const itemKey = item.href.replace(/^(\/)?#/, "");
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                      activeSection === itemKey
+                        ? "bg-slate-900 text-white font-semibold"
+                        : "text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
               <div className="pt-3 border-t border-slate-200/80 mt-1">
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setMobileOpen(false)}
                   className="w-full flex items-center justify-center gap-2 rounded-xl text-sm font-semibold h-11 bg-slate-900 text-white shadow-md"
                 >

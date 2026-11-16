@@ -69,8 +69,8 @@ export default function Hero() {
             <Image
               src={item.icon}
               alt={item.title}
-              width={24}
-              height={24}
+              width={40}
+              height={40}
               className="tech-icon-img"
               loading="eager"
             />
@@ -119,7 +119,7 @@ export default function Hero() {
               </span>
             </Link>
 
-            <Link href="#services" className="btn btn-hero-secondary">
+            <Link href="/services" className="btn btn-hero-secondary">
               <span className="btn-play-badge">
                 <Play className="w-2.5 h-2.5 fill-current" />
               </span>
